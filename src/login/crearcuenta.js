@@ -57,9 +57,9 @@ export const Cuenta = props => {
 
     return ( 
     
-    <div className="h-screen overflow-hidden flex items-center justify-center bg-gray-200">
+    <div className="h-screen overflow-hidden flex items-center justify-center bg-cuartoColor">
         
-          <div className="bg-white shadow-2xl rounded px-24 pt-6 pb-8 mb-4 flex flex-col xl:w-1/3 sm:w-3/5 lg:w-2/5 md:w-1/2">
+          <div className="bg-white shadow-2xl rounded-extra h-login px-24 pt-6 pb-8 mb-4 flex flex-col  w-5/6 xl:w-1/3 sm:w-3/5 lg:w-2/5 md:w-1/2">
             
             <div className="flex items-center justify-center">
                 <h1 className="font-bold text-3xl mb-4">Crear Cuenta</h1>
@@ -135,7 +135,7 @@ export const Cuenta = props => {
                 <div className="flex items-center justify-center">
                     <button
                     type="submit"
-                    className=" bg-green-700 hover:bg-blue-dark text-white font-bold py-2 px-4 rounded cursor-pointer" 
+                    className=" bg-tercerColor hover:bg-blue-dark text-white font-bold py-2 px-4 rounded cursor-pointer" 
                     >Crear Cuenta</button>
                 </div>
 

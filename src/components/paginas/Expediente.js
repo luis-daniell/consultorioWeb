@@ -3,6 +3,7 @@ import Barra from "../ui/Barra";
 import Encabezado from "../ui/Encabezado";
 import Sidebar from "../ui/Sidebar";
 import Boton from "../ui/Boton";
+import NuevoExpediente from "../subcomponents/NuevoExpediente";
 
 export const Expediente = () => {
     return ( 
@@ -21,6 +22,7 @@ export const Expediente = () => {
                     <div className=" bg-green-700 w-1/2 flex justify-end items-center pr-12 pt-6">
                         <button
                             className=" bg-tercerColor hover:bg-blue-dark text-white font-bold py-2 px-4 rounded cursor-pointer font-source w-32"
+                            
                         >
                         Nuevo</button>
                     </div>
