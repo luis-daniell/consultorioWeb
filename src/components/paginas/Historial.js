@@ -3,9 +3,11 @@ import Sidebar from "../ui/Sidebar";
 
 export const Historial = () => {
     return ( 
-        <div className="md:flex min-h-screen">
+        <div className="">
             <Sidebar/>
-            <p>Historial</p>
+            <div className="bg-colorFondo w-4/5 box-border left-auto float-right">
+
+            </div>
 
         </div>
      );

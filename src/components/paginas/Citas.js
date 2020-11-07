@@ -3,9 +3,12 @@ import Sidebar from "../ui/Sidebar";
 
 export const Citas = () => {
     return ( 
-        <div className="md:flex min-h-screen">
+        <div className="bg-colorFondo">
             <Sidebar/>
-            <p>Citas</p>
+            
+            <div className="w-4/5 box-border left-auto float-right">
+                Hola
+            </div>
         </div>
      );
 }

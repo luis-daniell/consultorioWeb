@@ -5,9 +5,11 @@ import Sidebar from "../ui/Sidebar";
 
 export const Recetas = () => {
     return ( 
-        <div className="md:flex min-h-screen">
+        <div className="">
             <Sidebar/>
-            <p>Recetas</p>
+            <div className="bg-colorFondo w-4/5 box-border left-auto float-right">
+
+            </div>
         </div>
      );
 }

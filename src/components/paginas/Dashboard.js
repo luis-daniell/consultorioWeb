@@ -9,12 +9,10 @@ export const Dashboard = props => {
 
     
     
-    <div className="md:flex min-h-screen">
+    <div className="">
       <Sidebar/>
 
-      <p>Dashboard</p>
-
-      <div>
+      <div className="bg-colorFondo w-4/5 box-border left-auto float-right">
         <button
           className=" bg-green-700 hover:bg-blue-dark text-white font-bold py-2 px-4 rounded cursor-pointer"
           onClick={() => {

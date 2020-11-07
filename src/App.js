@@ -10,6 +10,10 @@ import {Expediente} from "./components/paginas/Expediente";
 import {Historial} from './components/paginas/Historial';
 
 
+
+import NuevoExpediente from "./components/subcomponents/NuevoExpediente";
+
+
 import PrivateRoute from "./login/private.route";
 import { AuthProvider } from "./components/ui/Auth";
 import { Route, Switch } from "react-router-dom";
@@ -35,11 +39,13 @@ const App = () => {
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
               <PrivateRoute exact path="/estadisticas" component={Estadisticas} />
               <PrivateRoute exact path="/recetas" component={Recetas} />
-              <PrivateRoute exact path="/perfil" component={Perfil} />
-              
+              <PrivateRoute exact path="/perfil" component={Perfil} />              
               <PrivateRoute exact path="/citas" component={Citas}/>
               <PrivateRoute exact path="/expediente" component={Expediente} />
               <PrivateRoute exact path="/historial" component={Historial}/> 
+
+              <PrivateRoute exact path="/nuevo-expediente" component={NuevoExpediente}/> 
+
           </div>
         </Switch>
       </AuthProvider>

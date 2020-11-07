@@ -4,9 +4,11 @@ import Sidebar from "../ui/Sidebar";
 
 export const Perfil = () => {
     return ( 
-        <div className="md:flex min-h-screen">
+        <div className="">
             <Sidebar/>
-            <p>Perfil</p>
+            <div className="bg-colorFondo w-4/5 box-border left-auto float-right">
+
+            </div>
         </div>
      );
 }

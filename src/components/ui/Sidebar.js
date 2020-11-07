@@ -7,7 +7,7 @@ const Sidebar = props => {
 
 
     return ( 
-        <div className="md:w-2/5 xl:w-1/5 bg-gray-800">
+        <aside className="w-1/5 fixed h-screen bg-gray-800 float-left">
             <div className="p-6">
                 <p className="uppercase text-white text-2xl tracking-wide text-center font-bold font-source">Consultorio</p>
 
@@ -28,7 +28,7 @@ const Sidebar = props => {
                 
 
             </div>
-        </div>
+        </aside>
 
         
      );
