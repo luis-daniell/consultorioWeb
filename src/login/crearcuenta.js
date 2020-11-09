@@ -84,6 +84,7 @@ export const Cuenta = props => {
                         placeholder="Nombre" 
                     />
                 </div>
+                
                 {formik.touched.nombre && formik.errors.nombre ? (
                             <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-2 mb-5" role="alert">
                                 <p>{formik.errors.nombre}</p>

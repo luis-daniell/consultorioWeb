@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavLink, Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 const Sidebar = props => {
 
@@ -14,14 +14,15 @@ const Sidebar = props => {
                 <p className="mt-3 text-gray-600">Administra tu consultorio</p>
 
                 <nav  className="mt-10">
-                    <Link className="p-1 text-white block hover:bg-yellow-500 hover:text-gray-900 font-source font-bold text-2xl" activeClassName="text-yellow-500" exact="true" to="/dashboard">Dashboard</Link>
-                    <Link className="p-1 text-white block hover:bg-yellow-500 hover:text-gray-900 font-source font-bold text-2xl" activeClassName="text-yellow-500" exact="true" to="/estadisticas">Estadisticas</Link>
-                    <Link className="p-1 text-white block hover:bg-yellow-500 hover:text-gray-900 font-source font-bold text-2xl" activeClassName="text-yellow-500" exact="true" to="/recetas">Recetas</Link>
-                    <Link className="p-1 text-white block hover:bg-yellow-500 hover:text-gray-900 font-source font-bold text-2xl" activeClassName="text-yellow-500" exact="true" to="/perfil">Perfil</Link>
-                    <Link className="p-1 text-white block hover:bg-yellow-500 hover:text-gray-900 font-source font-bold text-2xl" activeClassName="text-yellow-500" exact="true" to="/citas">Citas</Link>
+                    <NavLink className="p-1 text-white block hover:bg-yellow-500 hover:text-gray-900 font-source font-bold text-2xl" activeClassName="text-yellow-500"  to="/dashboard">Dashboard</NavLink> 
+                    <NavLink className="p-1 text-white block hover:bg-yellow-500 hover:text-gray-900 font-source font-bold text-2xl" activeClassName="text-yellow-500"  to="/estadisticas">Estadisticas</NavLink>
+                    <NavLink className="p-1 text-white block hover:bg-yellow-500 hover:text-gray-900 font-source font-bold text-2xl" activeClassName="text-yellow-500"  to="/recetas">Recetas</NavLink>
+                    <NavLink className="p-1 text-white block hover:bg-yellow-500 hover:text-gray-900 font-source font-bold text-2xl" activeClassName="text-yellow-500"  to="/perfil">Perfil</NavLink>
+                    <NavLink className="p-1 text-white block hover:bg-yellow-500 hover:text-gray-900 font-source font-bold text-2xl" activeClassName="text-yellow-500"  to="/citas">Citas</NavLink>
                     
-                    <Link className="p-1 text-white block hover:bg-yellow-500 hover:text-gray-900 font-source font-bold text-2xl" activeClassName="text-yellow-500" exact="true" to="/expediente">Expediente</Link>
-                    <Link className="p-1 text-white block hover:bg-yellow-500 hover:text-gray-900 font-source font-bold text-2xl" activeClassName="text-yellow-500" exact="true" to="/historial">Historial</Link>
+                    <NavLink className="p-1 text-white block hover:bg-yellow-500 hover:text-gray-900 font-source font-bold text-2xl" activeClassName="text-yellow-500"  to="/expediente">Expediente</NavLink>
+                    <NavLink className="p-1 text-white block hover:bg-yellow-500 hover:text-gray-900 font-source font-bold text-2xl" activeClassName="text-yellow-500"  to="/historial">Historial</NavLink>
+                    
                 </nav>
 
                 
@@ -34,4 +35,5 @@ const Sidebar = props => {
      );
 }
  
+//Se quito en exact to ="true"
 export default Sidebar;

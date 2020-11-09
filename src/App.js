@@ -33,7 +33,7 @@ const App = () => {
 
       <AuthProvider>
         <Switch>
-          <div className="App">
+          
               <Route exact path="/" component={Login} />
               <Route exact path="/registrar" component={Cuenta} />
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
@@ -46,7 +46,7 @@ const App = () => {
 
               <PrivateRoute exact path="/nuevo-expediente" component={NuevoExpediente}/> 
 
-          </div>
+
         </Switch>
       </AuthProvider>
     </FirebaseContext.Provider>

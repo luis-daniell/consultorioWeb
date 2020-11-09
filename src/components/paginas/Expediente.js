@@ -1,23 +1,57 @@
-import React, {useState} from 'react';
+import React, {useState, useContext, useEffect, useCallback} from 'react';
+import {FirebaseContext } from '../../firebase';
+import ExpedientesMostrar from '../ui/ExpedientesMostrar';
 import Barra from "../ui/Barra";
-import Encabezado from "../ui/Encabezado";
 import Sidebar from "../ui/Sidebar";
-import Boton from "../ui/Boton";
-import {Redirect} from 'react-router-dom';
 
 
 export const Expediente = props => {
 
+    //Definir el state para los expedientes 
+    const [expedientes, guardarExpedientes] = useState([]);
+
+    const {firebase} = useContext(FirebaseContext);
 
 
     const [visibilidad, setVisibilidad] = useState(false)
 
     //const navigate = useNavigate();
-
-
     const redireccionar = () => {
         props.history.push("/nuevo-expediente");
     }
+
+
+    //Consultar la base de datos al cargar 
+    useEffect(() => {
+        const obtenerExpedientes =  () => {
+            firebase.db.collection('expedientes').onSnapshot(manejarSnapshot);//Snapshot para ver los cambios en tiempo real y get para ver solamnente los cambios
+            
+        }
+        obtenerExpedientes();
+
+    },[]);
+
+
+
+    //Snapshop nos permite usar la base de datos en tiempo real de firestore
+    function manejarSnapshot(snapshot) {
+        const expedientes = snapshot.docs.map(doc => {
+            return{
+                id: doc.id,
+                ...doc.data()
+            }
+        });
+
+        //Almacenar los resultados en el state
+        guardarExpedientes(expedientes);
+    }
+
+
+
+
+
+
+
 
     return ( 
         <div className="">
@@ -44,7 +78,12 @@ export const Expediente = props => {
                 
 
                 <div className="bg-red-800">
-                    Hola
+                    {expedientes.map(expediente => (
+                        <ExpedientesMostrar
+                            key={expediente.id}
+                            expediente={expediente}
+                        /> 
+                    ))}
                 </div>
 
             </div>
