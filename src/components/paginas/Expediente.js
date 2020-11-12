@@ -57,7 +57,7 @@ export const Expediente = props => {
         <div className="">
             <Sidebar/>
             
-            <div className="bg-colorFondo w-4/5 box-border left-auto float-right">
+            <div className="bg-colorFondo w-4/5 box-border left-auto float-right h-screen">
                 <Barra/>
 
                 <div className=" flex">
@@ -77,14 +77,61 @@ export const Expediente = props => {
                 
                 
 
-                <div className="bg-red-800">
-                    {expedientes.map(expediente => (
-                        <ExpedientesMostrar
-                            key={expediente.id}
-                            expediente={expediente}
-                        /> 
-                    ))}
+               
+                <div className="flex justify-center ">
+                    <div className="bg-white w-11/12 mt-10 pb-20">
+
+                        <div className="flex">
+                            <div className=" flex w-1/2 justify-start items-center">
+                                <p className="font-source font-bold text-xl pl-12 pt-3">Pacientes</p>
+                            </div>
+
+                            <div className=" flex w-1/2 justify-end items-center pr-12 pt-6">
+                                <input placeholder="Buscar..." className="w-40 h-10 bg-colorFondo text-black"/>
+                            </div>
+
+
+                        </div>
+
+                        <div className="text-colorBoton flex justify-center">
+                            <div className="w-1/12  border-black border-b-2 mb-4">
+                                
+                            </div>
+
+                            <div className="w-2/12  border-black border-b-2 mb-4">
+                                <p>Nombre</p>
+                            </div>
+
+                            <div className="w-2/12  border-black border-b-2 mb-4">
+                                <p>Teléfono</p>
+                            </div>
+
+                            <div className="w-5/12  border-black border-b-2 mb-4">
+                                <p>Correo</p>
+                            </div>
+
+                            <div className="w-1/12  border-black border-b-2 mb-4">
+                                
+                            </div>
+                        </div>
+                        
+
+                        
+
+                        {expedientes.map(expediente => (
+                                <ExpedientesMostrar
+                                    key={expediente.id}
+                                    expediente={expediente}
+                                    props = {props}
+                                /> 
+                            ))}
+                        
+                        
+                    </div>
                 </div>
+                    
+               
+                
 
             </div>
             

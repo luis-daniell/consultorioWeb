@@ -12,6 +12,7 @@ import {Historial} from './components/paginas/Historial';
 
 
 import NuevoExpediente from "./components/subcomponents/NuevoExpediente";
+import VisualizarExpediente from "./components/subcomponents/VisualizarExpediente";
 
 
 import PrivateRoute from "./login/private.route";
@@ -44,7 +45,9 @@ const App = () => {
               <PrivateRoute exact path="/expediente" component={Expediente} />
               <PrivateRoute exact path="/historial" component={Historial}/> 
 
-              <PrivateRoute exact path="/nuevo-expediente" component={NuevoExpediente}/> 
+              <PrivateRoute exact path="/nuevo-expediente" component={NuevoExpediente}/>
+              
+              <PrivateRoute exact path="/visualizar-expediente" component={VisualizarExpediente}/> 
 
 
         </Switch>

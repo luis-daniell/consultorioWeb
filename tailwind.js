@@ -22,6 +22,7 @@ module.exports = {
         'cuartoColor': '#213E3B',
         'colorFondo' : '#F4F6F9',
         'colorBoton' : '#54B6B1',
+        'colorBuscador': '#F2F4F6',
       },
 
       height: {
@@ -35,7 +36,16 @@ module.exports = {
         '4/7': '57.1428571%',
         '5/7': '71.4285714%',
         '6/7': '85.7142857%',
+      },
+
+      backgroundImage: {
+        'usuario' : "url('/src/img/usuario.png')",
+      },
+
+      inset: {
+        '-18': '-6rem',
       }
+
 
 
 
