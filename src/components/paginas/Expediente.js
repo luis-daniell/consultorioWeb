@@ -1,23 +1,22 @@
-import React, {useState, useContext, useEffect, useCallback} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import {FirebaseContext } from '../../firebase';
 import ExpedientesMostrar from '../ui/ExpedientesMostrar';
 import Barra from "../ui/Barra";
 import Sidebar from "../ui/Sidebar";
+import {useHistory} from "react-router-dom";
 
 
 export const Expediente = props => {
 
+    const history = useHistory();
     //Definir el state para los expedientes 
     const [expedientes, guardarExpedientes] = useState([]);
 
     const {firebase} = useContext(FirebaseContext);
 
-
-    const [visibilidad, setVisibilidad] = useState(false)
-
     //const navigate = useNavigate();
     const redireccionar = () => {
-        props.history.push("/nuevo-expediente");
+        history.push("/nuevo-expediente");
     }
 
 
@@ -29,7 +28,7 @@ export const Expediente = props => {
         }
         obtenerExpedientes();
 
-    },[]);
+    },[firebase]);
 
 
 

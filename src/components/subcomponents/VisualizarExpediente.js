@@ -1,25 +1,45 @@
-import React, {useEffect} from 'react';
-import {useLocation} from "react-router-dom";
+import React from 'react';
+import {useLocation, useHistory} from "react-router-dom";
 import Sidebar from '../ui/Sidebar';
 import Barra from '../ui/Barra';
 import usuarioPerfil from '../../img/usuarioPerfil.svg';
+//import history from '../../history';
 
 
-const VisualizarExpediente = ({props}) => {
+const VisualizarExpediente = () => {
 
     const location = useLocation();
+    const history = useHistory();
 
+    const {nombre, apellidos, antecedentes, correo, diagnostico, domicilio, estilos, id, peso, presion, sexo, talla, telefono} = location.state.detail;
 
+    
+    const expediente = {
+        nombre2: nombre, 
+        apellidos2: apellidos,
+        antecedentes2: antecedentes,
+        correo2: correo,
+        diagnostico2: diagnostico, 
+        domicilio2: domicilio,
+        estilos2: estilos,
+        id2: id,
+        peso2: peso,
+        presion2: presion,
+        sexo2: sexo, 
+        talla2: talla,
+        telefono2: telefono
+    }
 
+    const abrirPagina = () => {
+     
+        
+        history.push({
 
-        console.log(location.state.detail);
+            pathname: "/modificar-expediente",
+            state: { detail: expediente }
 
-
-    //const {id} = expediente;
-    //console.log(expediente);
-   //s const {id} = props;
-
-    //console.log(id);
+        });
+     }
 
     return ( 
         <div className="">
@@ -37,9 +57,9 @@ const VisualizarExpediente = ({props}) => {
                     <div className="w-1/2 flex justify-end items-center pr-12 pt-6">
                         <button
                             className=" bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
-                            
+                            onClick={() => abrirPagina()}
                         >
-                        Nuevo</button>
+                        Modificar</button>
                     </div>
                 </div>
 
@@ -50,20 +70,112 @@ const VisualizarExpediente = ({props}) => {
 
                         <div className="w-10/12">
 
-                            <div className="bg-tercerColor border-1 border-black h-32 flex justify-center items-center content-center mt-6 rounded-t-extra">
-                                <p>jkb</p>
+                            <div className="bg-tercerColor border-1 border-black h-32 flex justify-center pt-6 rounded-t-extra text-white font-source font-bold text-3xl mt-6">
+                                <p>{nombre +" " + apellidos}</p>
                             </div>
 
 
-                            <div className="bg-orange-900 flex content-center justify-center ">
+                            <div className="bg-colorFondo flex content-center justify-center ">
  
                                 <img src={usuarioPerfil} className="-mt-12" width="120" height="120"/>
                                 
                             </div>
 
 
-                            <div className="bg-orange-500">
-                                    <p>Hola</p>
+                            <div className="bg-colorFondo pb-12 rounded-b-extra">
+                                    
+                                <div className=" flex h-auto content-center justify-around">
+                                    <div className="w-3/12 flex flex-col">
+                                        <p className="text-tercerColor text-2xl">Domicilio</p>
+                                        <p>{domicilio}</p>
+                                    </div>
+
+                                    <div className="w-3/12">
+                                        <p className="text-tercerColor text-2xl">Teléfono</p>
+                                       <p>{telefono}</p>
+                                    </div>
+
+                                    <div className="w-3/12">
+                                        <p className="text-tercerColor text-2xl">Sexo</p>
+                                        <p>{sexo}</p>
+                                    </div>
+                                
+                                </div>   
+                                
+
+
+
+                                <div className="bg-colorFondo flex h-auto justify-around mt-4">       
+                                    <div className="w-3/12">
+                                        <p className="text-tercerColor text-2xl">Diagnóstico</p>
+                                        <p>{diagnostico}</p>
+                                    </div>
+
+                                    <div className="w-3/12">
+                                        <p className="text-tercerColor text-lg">Antecedentes Familiares</p>
+                                        <p className="break-words">{antecedentes}</p>
+                                    </div>
+
+                                    <div className="w-3/12">
+                                        <p className="text-tercerColor text-2xl">Estilos de Vida</p>
+                                        <p className="break-words">{estilos}</p>
+                                    </div>
+                                </div>
+
+
+
+                                <div className="flex h-24 flex-wrap items-center content-center justify-around">
+
+
+                                    <div className="w-3/12">
+                                        <p className="text-tercerColor text-2xl">E-mail</p>
+                                        <p>{correo}</p>
+                                    </div>
+
+                                    {presion === "" ? null : 
+                                    <div className="w-3/12">
+                                        <p className="text-tercerColor text-2xl">Presión</p>
+                                        <p>{presion}</p>
+                                    </div>
+                                    }
+                                    
+                                   {peso === "" ? null : 
+                                   <div className="w-3/12">
+                                        <p className="text-tercerColor text-2xl">Peso</p>
+                                        <p>{peso}</p>
+                                    </div>}
+
+                                   
+
+                                </div> 
+
+                                <div className="flex h-24 flex-wrap items-center content-center justify-around">
+
+                                    {talla === "" ? null : 
+                                   <div className="w-3/12">
+                                        <p className="text-tercerColor text-2xl">Talla</p>
+                                        <p>{talla}</p>
+                                    </div>}
+
+                                    <div className="w-3/12">
+
+                                    </div>
+                                    <div className="w-3/12">
+
+                                    </div>
+
+
+                                </div>
+
+
+
+
+
+
+
+                                    
+
+
                             </div>
 
                         </div>

@@ -1,6 +1,5 @@
 import React, {useState, useContext} from 'react';
 import {useFormik} from 'formik';
-import * as Yup from 'yup';
 
 import Barra from "../ui/Barra";
 import {FirebaseContext} from '../../firebase';
@@ -13,10 +12,6 @@ const NuevoExpediente = props => {
     const [presion, guardarPresion] = useState(true);
     const [peso, guardarPeso] = useState(true);
     const [talla, guardarTalla] = useState(true);
-
-    //const [presiondiv, guardarPresiondiv] = useState(false);
-    //const [pesodiv, guardarPesodiv] = useState(false);
-    //const [talladiv, guardarTalladiv] = useState(false);
 
     //Context con las operaciones de firebase
     const {firebase} = useContext(FirebaseContext);

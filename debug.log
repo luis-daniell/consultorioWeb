@@ -1,3 +1,6 @@
 [1028/195602.498:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
 [1029/012447.826:ERROR:crash_report_database_win.cc(498)] failed to stat report
 [1029/012447.826:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1112/182108.143:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
+[1112/215844.350:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
+[1113/000107.282:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)

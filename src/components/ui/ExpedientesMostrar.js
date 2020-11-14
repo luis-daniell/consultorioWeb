@@ -1,23 +1,22 @@
 import React from 'react';
 import vision from '../../img/vision.svg';
 import VisualizarExpediente from '../subcomponents/VisualizarExpediente';
+import {useHistory} from "react-router-dom";
 
-const ExpedientesMostrar = ({expediente, props}) => {
+const ExpedientesMostrar = ({expediente}) => {
 
 
     const {id, nombre, telefono, correo} = expediente;
 
+    const history = useHistory();
+
+   //console.log(props);
 
     const abrirPagina = (id) => {
         
-       // <VisualizarExpediente
-           // id ={id}
-        ///>
-       // this.id
-        props.history.push({
+        history.push({
 
             pathname: "/visualizar-expediente",
-            search: '?query=abc',
             state: { detail: expediente }
 
         });

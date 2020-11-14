@@ -2,9 +2,11 @@ import React from 'react';
 import {useFormik} from 'formik';
 import firebase from '../firebase';
 import * as Yup from 'yup';
+import {useHistory} from "react-router-dom";
 
-export const Cuenta = props => {
+export const Cuenta = ({props}) => {
 
+   const history = useHistory();
 
 
     const formik = useFormik({
@@ -44,9 +46,9 @@ export const Cuenta = props => {
         try {
           await firebase.registrar(nombre, email, password);
           alert("Usuario Registrado");
-          props.history.push("/");
+          history.push("/");
         } catch (error) {
-            alert("El usuario ya ha sido registrado");
+        
           console.error('Hubo un error al crear el usuario ', error.message);
         }
       }

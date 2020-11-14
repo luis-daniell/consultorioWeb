@@ -13,6 +13,7 @@ import {Historial} from './components/paginas/Historial';
 
 import NuevoExpediente from "./components/subcomponents/NuevoExpediente";
 import VisualizarExpediente from "./components/subcomponents/VisualizarExpediente";
+import ModificarExpediente from "./components/subcomponents/ModificarExpediente";
 
 
 import PrivateRoute from "./login/private.route";
@@ -20,8 +21,6 @@ import { AuthProvider } from "./components/ui/Auth";
 import { Route, Switch } from "react-router-dom";
 
 import firebase, { FirebaseContext } from "./firebase";
-
-
 
 const App = () => {
   return ( 
@@ -33,7 +32,7 @@ const App = () => {
     >
 
       <AuthProvider>
-        <Switch>
+        <Switch >
           
               <Route exact path="/" component={Login} />
               <Route exact path="/registrar" component={Cuenta} />
@@ -48,6 +47,7 @@ const App = () => {
               <PrivateRoute exact path="/nuevo-expediente" component={NuevoExpediente}/>
               
               <PrivateRoute exact path="/visualizar-expediente" component={VisualizarExpediente}/> 
+              <PrivateRoute exact path="/modificar-expediente" component={ModificarExpediente}/> 
 
 
         </Switch>
