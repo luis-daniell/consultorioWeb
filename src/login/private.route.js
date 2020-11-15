@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { Route, Redirect } from "react-router-dom";
-import { AuthContext } from "../components/ui/Auth";
+import { FirebaseContext } from "../firebase/Auth";
+
 
 const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
-  const {currentUser} = useContext(AuthContext);
+  const {currentUser} = useContext(FirebaseContext);
   return (
     <Route
       {...rest}

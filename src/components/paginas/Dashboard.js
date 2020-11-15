@@ -1,9 +1,14 @@
-import React from "react";
+import React, {useContext} from "react";
 import firebase from "../../firebase/firebase";
 import Sidebar from "../ui/Sidebar";
+import { FirebaseContext } from "../../firebase/Auth";
 
 export const Dashboard = props => {
 
+
+  //const {currentUser } = AuthProvider;
+  const {currentUser} = useContext(FirebaseContext);
+  console.log(currentUser);
  
   return (
 
@@ -13,6 +18,7 @@ export const Dashboard = props => {
       <Sidebar/>
 
       <div className="bg-colorFondo w-4/5 box-border left-auto float-right">
+        <h2>Bienvenido {currentUser.displayName}</h2>
         <button
           className=" bg-green-700 hover:bg-blue-dark text-white font-bold py-2 px-4 rounded cursor-pointer"
           onClick={() => {

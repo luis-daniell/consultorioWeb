@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import app from 'firebase/app';
+import firebase from "./firebase";
 
-export const AuthContext = React.createContext();
+export const FirebaseContext = React.createContext();
 
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -19,12 +20,13 @@ export const AuthProvider = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider
+    <FirebaseContext.Provider
       value={{
-        currentUser
+        currentUser,
+        firebase
       }}
     >
       {children}
-    </AuthContext.Provider>
+    </FirebaseContext.Provider>
   );
 };

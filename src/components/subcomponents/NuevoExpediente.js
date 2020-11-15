@@ -2,7 +2,7 @@ import React, {useState, useContext} from 'react';
 import {useFormik} from 'formik';
 
 import Barra from "../ui/Barra";
-import {FirebaseContext} from '../../firebase';
+import {FirebaseContext} from '../../firebase/Auth';
 import Sidebar from "../ui/Sidebar";
 
 

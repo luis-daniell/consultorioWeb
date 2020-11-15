@@ -1,9 +1,10 @@
 import React, {useState, useContext, useEffect} from 'react';
-import {FirebaseContext } from '../../firebase';
+//import {FirebaseContext } from '../../firebase';
 import ExpedientesMostrar from '../ui/ExpedientesMostrar';
 import Barra from "../ui/Barra";
 import Sidebar from "../ui/Sidebar";
 import {useHistory} from "react-router-dom";
+import {FirebaseContext} from '../../firebase/Auth'
 
 
 export const Expediente = props => {

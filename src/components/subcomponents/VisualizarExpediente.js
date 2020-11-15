@@ -45,7 +45,7 @@ const VisualizarExpediente = () => {
         <div className="">
             <Sidebar/>
 
-            <div className="bg-colorFondo w-4/5 box-border left-auto float-right h-screen">
+            <div className="bg-colorFondo w-4/5 box-border left-auto float-right h-auto">
                 <Barra/>
 
                 <div className=" flex">
@@ -65,7 +65,7 @@ const VisualizarExpediente = () => {
 
 
                 <div className="flex justify-center ">
-                    <div className="bg-white w-11/12 mt-10 pb-20 flex justify-center">
+                    <div className="bg-white w-11/12 mt-10 pb-20 flex justify-center h-full mb-12">
 
 
                         <div className="w-10/12">

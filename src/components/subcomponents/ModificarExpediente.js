@@ -5,7 +5,7 @@ import Barra from '../ui/Barra';
 import usuarioPerfil from '../../img/usuarioPerfil.svg';
 import {useHistory} from 'react-router-dom';
 import {useFormik} from 'formik';
-import {FirebaseContext} from '../../firebase';
+import {FirebaseContext} from '../../firebase/Auth';
 
 
 

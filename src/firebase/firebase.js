@@ -26,13 +26,12 @@ class Firebase {
 
     // Registra un usuario
     async registrar(nombre, email, password) {
-        return this.auth.createUserWithEmailAndPassword(email, password);
+        const nuevoUsuario = await this.auth.createUserWithEmailAndPassword(email, password);
 
-        //return await nuevoUsuario.user.updateProfile({
-          //  displayName : nombre
-        //})
+        return await nuevoUsuario.user.updateProfile({
+           displayName : nombre
+        })
     }
-
 
 
     //Cerrar Sesion de usuario

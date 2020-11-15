@@ -14,22 +14,29 @@ import {Historial} from './components/paginas/Historial';
 import NuevoExpediente from "./components/subcomponents/NuevoExpediente";
 import VisualizarExpediente from "./components/subcomponents/VisualizarExpediente";
 import ModificarExpediente from "./components/subcomponents/ModificarExpediente";
+import ModificarPerfil from "./components/subcomponents/ModificarPerfil";
 
 
 import PrivateRoute from "./login/private.route";
-import { AuthProvider } from "./components/ui/Auth";
+import { AuthProvider } from "./firebase/Auth";
 import { Route, Switch } from "react-router-dom";
 
 import firebase, { FirebaseContext } from "./firebase";
 
+
 const App = () => {
+
+  
+
+
   return ( 
 
-    <FirebaseContext.Provider
-      value={{
-        firebase
-      }}
-    >
+
+    //<FirebaseContext.Provider
+     // value={{
+      //  firebase
+    //  }}
+   // >
 
       <AuthProvider>
         <Switch >
@@ -48,11 +55,12 @@ const App = () => {
               
               <PrivateRoute exact path="/visualizar-expediente" component={VisualizarExpediente}/> 
               <PrivateRoute exact path="/modificar-expediente" component={ModificarExpediente}/> 
+              <PrivateRoute exact path="/modificar-perfil" component={ModificarPerfil}/> 
 
 
         </Switch>
       </AuthProvider>
-    </FirebaseContext.Provider>
+    //</FirebaseContext.Provider>
    );
 }
  
