@@ -15,6 +15,7 @@ import NuevoExpediente from "./components/subcomponents/NuevoExpediente";
 import VisualizarExpediente from "./components/subcomponents/VisualizarExpediente";
 import ModificarExpediente from "./components/subcomponents/ModificarExpediente";
 import ModificarPerfil from "./components/subcomponents/ModificarPerfil";
+import ActualizarPerfil from "./components/subcomponents/ActualizarPerfil";
 
 
 import PrivateRoute from "./login/private.route";
@@ -56,6 +57,7 @@ const App = () => {
               <PrivateRoute exact path="/visualizar-expediente" component={VisualizarExpediente}/> 
               <PrivateRoute exact path="/modificar-expediente" component={ModificarExpediente}/> 
               <PrivateRoute exact path="/modificar-perfil" component={ModificarPerfil}/> 
+              <PrivateRoute exact path="/actualizar-perfil" component={ActualizarPerfil}/> 
 
 
         </Switch>

@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext} from 'react';
 import {useLocation, useHistory} from "react-router-dom";
 import { FirebaseContext } from "../../firebase/Auth";
 import Sidebar from "../ui/Sidebar";
@@ -7,83 +7,35 @@ import usuarioPerfil from '../../img/usuarioPerfil.svg';
 import ordenador from '../../img/ordenador.svg';
 
 
-export const Perfil = () => {
+const PerfilRelleno = () => {
 
 
-
-    const {currentUser, firebase} = useContext(FirebaseContext);
-
-    //Definir el state para el perdil 
-    const [perfil, guardarPerfil] = useState([]);
-    //State de boton MODIFICAR O ACTUALIZAR
-    const [estado, guardarEstado] = useState(false);
-
-    //State del nombre del usuario
-    const [nombre, guardarNombre] = useState('');
-
-    //State para los valores del usuario en Perfil
-
-    const [consultorio, guardarConsultorio] = useState('');
-    const [especialidad, guardarEspecialidad] = useState('');
-
-    const [cedula, guardarCedula] = useState('');
-    const [direccion, guardarDireccion] = useState('');
-    const [telefono, guardarTelefono] = useState('');
+    const {currentUser} = useContext(FirebaseContext);
 
     const history = useHistory();
 
+
+
     const abrirPagina = () => {
-        history.push({
-            pathname: "/modificar-perfil"
-        });
-     }
-
-     const abrirActualizar = () => {     
-        history.push({
-            pathname: "/actualizar-perfil",
-            state: { detail: perfil }
-        });
-     }
-
-     useEffect(() => {  
-            const obtenerPerfil = async () => {
-                const perfilQ = await firebase.db.collection('usuarios').doc(currentUser.uid);
-                const perfil = await perfilQ.get();
-                if(perfil.exists) {
-                   guardarPerfil( perfil.data() );
-                   guardarNombre(currentUser.displayName);
-                   guardarConsultorio(perfil.data().consultorio);
-                   guardarEspecialidad(perfil.data().especialidad);
-
-                   guardarCedula(perfil.data().cedula);
-                   guardarDireccion(perfil.data().direccion);
-                   guardarTelefono(perfil.data().telefono);
-                   
-                   guardarEstado(true);
-                   //guardarConsultarDB(false);
-                } else {
-                    guardarEstado(false);
-                    console.log("No existe");
-                    guardarNombre(currentUser.displayName);
-                    guardarConsultorio('Nombre de consultorio');
-                    guardarEspecialidad('----------');
-
-
-                    guardarCedula('----------');
-                   guardarDireccion('----------');
-                   guardarTelefono('----------');
-                    //guardarError( true );
-                    //guardarConsultarDB(false);
-                }
-            }
-            obtenerPerfil();
+     
         
-    }, []);
+        history.push({
 
-    //console.log(perfil);
+            pathname: "/modificar-perfil"
+
+        });
+     }
+
+
+
+
 
     return ( 
+
         <div className="">
+
+
+            
             <Sidebar/>
 
             <div className="bg-colorFondo w-4/5 box-border left-auto float-right h-auto">
@@ -96,21 +48,11 @@ export const Perfil = () => {
                     </div>
                     
                     <div className="w-1/2 flex justify-end items-center pr-12 pt-6">
-
-                       
-                        {estado ? 
-                            <button
-                            className=" bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
-                            onClick={() => abrirActualizar()}
-                        >
-                        Actualizar</button>
-                        : <button
+                        <button
                             className=" bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
                             onClick={() => abrirPagina()}
                         >
                         Modificar</button>
-                        }
-                        
                     </div>
                 </div>
 
@@ -122,7 +64,7 @@ export const Perfil = () => {
                         <div className="w-10/12">
 
                             <div className="bg-tercerColor border-1 border-black h-32 flex justify-center pt-6 rounded-t-extra text-white font-source font-bold text-3xl mt-6">
-                                <p>{nombre}</p>
+                                <p>{currentUser.displayName}</p>
                             </div>
 
 
@@ -149,7 +91,7 @@ export const Perfil = () => {
                                         <div className="w-11/12 flex flex-col content-center justify-center ">
                                             
                                             <div className="flex justify-center pt-3">
-                                                <p className="font-source text-2xl">{consultorio}</p>
+                                                <p className="font-source text-2xl">Nombre del consultorio</p>
                                             </div>
 
                                             <div className="flex justify-center">
@@ -169,7 +111,7 @@ export const Perfil = () => {
                                             <p className="text-tercerColor text-2xl">Especialidad</p>
                                             
                                             <div className=" border-4 border-tercerColor w-10/12 flex justify-around h-10 items-center">
-                                                <p>{especialidad}</p>
+                                                <p>-----</p>
                                             </div>
                                             
                                         </div>
@@ -178,7 +120,7 @@ export const Perfil = () => {
                                             <p className="text-tercerColor text-2xl">Cédula Profesional</p>
 
                                             <div className=" border-4 border-tercerColor w-10/12 flex justify-around h-10 items-center">
-                                                <p>{cedula}</p>
+                                                <p>-----</p>
                                             </div>
 
                                         </div>
@@ -192,7 +134,7 @@ export const Perfil = () => {
                                             <p className="text-tercerColor text-2xl">Dirección</p>
                                             
                                             <div className="border-4 border-tercerColor w-10/12 flex justify-around h-10 items-center">
-                                                <p>{direccion}</p>
+                                                <p>-----</p>
                                             </div>
                                         </div>
 
@@ -200,7 +142,7 @@ export const Perfil = () => {
                                             <p className="text-tercerColor text-2xl">Teléfono</p>
                                             
                                             <div className="border-4 border-tercerColor w-10/12 flex justify-around h-10 items-center">
-                                                <p>{telefono}</p>
+                                                <p>-----</p>
                                             </div>
                                             
                                         </div>
@@ -218,5 +160,9 @@ export const Perfil = () => {
 
             </div>
         </div>
+
+
      );
 }
+ 
+export default PerfilRelleno;

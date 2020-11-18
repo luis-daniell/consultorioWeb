@@ -59,15 +59,9 @@ const ModificarExpediente = ({props}) => {
         onSubmit: expediente => {
             try {
 
+                firebase.db.collection('expedientes').doc(expediente.id).update(expediente);
 
-
-                actualizarExpediente(expediente.nombre, 
-                    expediente.apellidos, expediente.domicilio, 
-                    expediente.telefono, expediente.sexo, 
-                    expediente.correo, expediente.antecedentes,
-                    expediente.estilos, expediente.diagnostico,
-                    expediente.presion, expediente.peso,
-                    expediente.talla, expediente.id);
+                history.push("/expediente");
                 
             } catch (error) {
                 console.log(error);
@@ -75,41 +69,6 @@ const ModificarExpediente = ({props}) => {
         }
 
     });
-
-
-
-
-    async function actualizarExpediente(nombre, apellidos, domicilio, telefono, sexo, correo, antecedentes, estilos, diagnostico, presion, peso, talla, id) {
-        try {
-            await firebase.db.collection('expedientes')
-                    .doc(id)
-                    .update({
-                        nombre: nombre, 
-                        apellidos: apellidos,
-                        domicilio: domicilio,
-                        telefono: telefono,
-                        sexo: sexo, 
-                        correo: correo, 
-                        antecedentes: antecedentes,
-                        estilos: estilos,
-                        diagnostico: diagnostico,
-                        presion: presion,
-                        peso: peso,
-                        talla: talla
-                });
-
-
-            history.push("/expediente");
-          
-        } catch (error) {
-          console.error('Hubo un error al actualizar el expediente', error.message);
-        }
-      }
-
-
-
-
-
 
 
 
@@ -159,7 +118,7 @@ const ModificarExpediente = ({props}) => {
                                     
                                 
                                     
-                                    <div className=" flex bg-gray-900 justify-around">
+                                    <div className=" flex justify-around">
                                         <label className="text-tercerColor text-2xl w-3/12">Nombre</label>
                                         <input 
                                             type="text" placeholder="Nombre" 
@@ -172,7 +131,7 @@ const ModificarExpediente = ({props}) => {
                                         />
                                     </div>
 
-                                    <div className="flex bg-red-500 justify-around">
+                                    <div className="flex justify-around mt-6">
                                         <label className="text-tercerColor text-2xl w-3/12">Apellidos</label>
                                         <input 
                                             type="text" placeholder="Nombre" 
@@ -186,7 +145,7 @@ const ModificarExpediente = ({props}) => {
 
 
 
-                                    <div className=" flex bg-green-700 justify-around">
+                                    <div className=" flex justify-around mt-6">
                                         <label htmlFor="descripcion" className="text-tercerColor text-2xl w-3/12">Domicilio: </label>
                                         <textarea
                                             className="w-8/12 shadow appearance-none border-2 py-2 px-3"
@@ -204,7 +163,7 @@ const ModificarExpediente = ({props}) => {
 
 
                                      
-                                    <div className="flex bg-orange-600 justify-around">
+                                    <div className="flex justify-around mt-6">
                                         <label className="text-tercerColor text-2xl w-3/12">Telefono: </label>
                                         <input 
                                             type="tel" placeholder="Telefono" 
@@ -219,7 +178,7 @@ const ModificarExpediente = ({props}) => {
 
 
 
-                                    <div className="flex bg-red-700 justify-around">
+                                    <div className="flex justify-around mt-6">
                                         <label className="text-tercerColor text-2xl w-3/12">Sexo: </label>
 
                                         <select
@@ -240,7 +199,7 @@ const ModificarExpediente = ({props}) => {
 
 
 
-                                    <div className="flex bg-orange-400 justify-around">
+                                    <div className="flex justify-around mt-6">
                                         <label htmlFor="descripcion" className="text-tercerColor text-2xl w-3/12">E-mail: </label>
                                         <input 
                                             type="Email" placeholder="Correo Electrónico" 
@@ -256,7 +215,7 @@ const ModificarExpediente = ({props}) => {
 
 
                                 
-                                    <div className="flex bg-blue-700 justify-around">
+                                    <div className="flex justify-around mt-6">
                                         <label htmlFor="descripcion" className="text-tercerColor text-2xl w-3/12">Antecedentes Familiares: </label>
                                         <textarea
                                             className="w-8/12 shadow appearance-none border-2 py-2 px-3"
@@ -272,7 +231,7 @@ const ModificarExpediente = ({props}) => {
 
 
 
-                                    <div className="flex bg-gray-800 justify-around">
+                                    <div className="flex justify-around mt-6">
                                         <label htmlFor="descripcion" className="text-tercerColor text-2xl w-3/12">Estilos de vida: </label>
                                         <textarea
                                             className="w-8/12 shadow appearance-none border-2 py-2 px-3"
@@ -289,7 +248,7 @@ const ModificarExpediente = ({props}) => {
 
 
 
-                                    <div className="flex bg-gray-500 justify-around">
+                                    <div className="flex justify-around mt-6">
                                         <label htmlFor="descripcion" className="text-tercerColor text-2xl w-3/12">Diagnóstico: </label>
                                         <textarea
                                             className="w-8/12 shadow appearance-none border-2 py-2 px-3"
@@ -307,7 +266,7 @@ const ModificarExpediente = ({props}) => {
 
 
                                     {presion2 === "" ? null : 
-                                    <div className="flex bg-red-500 justify-around">
+                                    <div className="flex justify-around mt-6">
                                         <label htmlFor="descripcion" className="text-tercerColor text-2xl w-3/12">Presion: </label>
                                         <input 
                                             type="text" placeholder="Presión" 
@@ -322,7 +281,7 @@ const ModificarExpediente = ({props}) => {
                                     }
                                     
                                    {peso2 === "" ? null : 
-                                    <div className="flex bg-green-400 justify-around">
+                                    <div className="flex justify-around mt-6">
                                         <label htmlFor="descripcion" className="text-tercerColor text-2xl w-3/12">Peso: </label>
                                         <input 
                                             type="text" placeholder="Presión" 
@@ -341,7 +300,7 @@ const ModificarExpediente = ({props}) => {
 
                                 
                                     {talla2 === "" ? null : 
-                                    <div className="flex bg-blue-900 justify-around">
+                                    <div className="flex justify-around mt-6">
                                         <label htmlFor="descripcion" className="text-tercerColor text-2xl w-3/12">Talla: </label>
                                         <input 
                                             type="text" placeholder="Presión" 

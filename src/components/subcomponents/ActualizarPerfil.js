@@ -1,19 +1,35 @@
 import React,{useContext, useState} from 'react';
-import {useHistory} from "react-router-dom";
+import {useLocation, useHistory} from "react-router-dom";
 import {FirebaseContext} from '../../firebase/Auth';
 import {useFormik} from 'formik';
-//import * as Yup from 'yup';
+import * as Yup from 'yup';
 import FileUploader from 'react-firebase-file-uploader';
 import Barra from '../ui/Barra';
 import Sidebar from '../ui/Sidebar';
 
-const ModificarPerfil = () => {
+const ActualizarPerfil = ({perfil}) => {
+    
 
 
     const history = useHistory();
+    const location = useLocation();
 
 
     const {firebase, currentUser} = useContext(FirebaseContext);
+
+
+    const {nombre, consultorio, cedula, telefono, direccion, especialidad, uid} = location.state.detail;
+
+    //console.log(location.state.detail);
+
+    let nombre2 = nombre;
+    let consultorio2 = consultorio;
+    let cedula2 = cedula;
+    let telefono2 = telefono;
+    let direccion2 = direccion;
+    let especialidad2 = especialidad;
+
+
 
 
    //console.log(currentUser.uid);
@@ -32,43 +48,43 @@ const ModificarPerfil = () => {
 
 
 
-
      //Validacion y leer los datos del formulario
      const formik = useFormik({
 
         initialValues: {
             uid: currentUser.uid,
-            nombre: '',
-            especialidad: '',
-            consultorio: '',
+            nombre: nombre2,
+            especialidad: especialidad2,
+            consultorio: consultorio2,
             imagenDoctor: '',
             imagenConsultorio: '',
-            cedula: '', 
-            telefono: '',
-            direccion: '',
+            cedula: cedula2, 
+            telefono: telefono2,
+            direccion: direccion2,
+
         },
 
 
-        onSubmit: perfil => {
+        onSubmit: perfill => {
             try {
                 
-                perfil.imagenDoctor = urlimagen;
-                perfil.imagenConsultorio = urlimagen2;
-                firebase.db.collection('usuarios').doc(currentUser.uid).set(perfil);
-                
+                perfill.imagenDoctor = urlimagen;
+                perfill.imagenConsultorio = urlimagen2;
+                firebase.db.collection('usuarios').doc(currentUser.uid).update(perfill);
+              
                 currentUser.updateProfile({
-                    displayName: perfil.nombre
+                    displayName: perfill.nombre
                   }).then(function() {
                     history.push("/perfil");
+
                   })
 
-
+                
             } catch (error) {
                 console.log(error);
             }
         }
      });
-
 
 
 
@@ -103,6 +119,12 @@ const ModificarPerfil = () => {
         guardarProgreso(progreso);
         //console.log(progreso);
     }
+
+
+
+
+
+
 
 
     //Todo sobre las imagen de consultorio
@@ -191,15 +213,17 @@ const ModificarPerfil = () => {
                         </div>
 
 
-                        <div className=" flex mt-6">
-                            <label htmlFor="descripcion" className="w-3/12 pl-12 text-tercerColor">Especialidad: </label>
+                        <div className="flex mt-10">
+
+                            <label className="w-3/12 pl-12 text-tercerColor">Especialidad: </label>
                             <input 
                                 type="text" placeholder="Especialidad de Doctor" 
-                                className="shadow appearance-none border-2 w-8/12 py-2 px-3"
+                                className="w-8/12 shadow appearance-none border-2 py-2 px-3"
                                 id="especialidad"
                                 value={formik.values.especialidad}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
+
                             />
 
                         </div>
@@ -219,10 +243,6 @@ const ModificarPerfil = () => {
                             />
 
                         </div>
-
-
-
-                        
 
 
                         <div className="flex mt-6">
@@ -357,4 +377,4 @@ const ModificarPerfil = () => {
      );
 }
  
-export default ModificarPerfil;
+export default ActualizarPerfil;
