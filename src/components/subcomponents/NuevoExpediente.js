@@ -17,13 +17,11 @@ const NuevoExpediente = props => {
     const {firebase} = useContext(FirebaseContext);
 
 
-    const guardarDatos = () => {
-
-        
+    /*const guardarDatos = () => {
         guardarPresion(true);
         guardarPeso(true);
         guardarTalla(true);
-    }
+    }*/
 
     const formik = useFormik({
         initialValues : {

@@ -8,7 +8,7 @@ export const Dashboard = props => {
 
   //const {currentUser } = AuthProvider;
   const {currentUser} = useContext(FirebaseContext);
-  console.log(currentUser);
+  //console.log(currentUser);
  
   return (
 

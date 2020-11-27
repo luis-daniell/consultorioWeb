@@ -9,20 +9,18 @@ import  {Citas}  from './components/paginas/Citas';
 import {Expediente} from "./components/paginas/Expediente";
 import {Historial} from './components/paginas/Historial';
 
-
-
 import NuevoExpediente from "./components/subcomponents/NuevoExpediente";
 import VisualizarExpediente from "./components/subcomponents/VisualizarExpediente";
 import ModificarExpediente from "./components/subcomponents/ModificarExpediente";
 import ModificarPerfil from "./components/subcomponents/ModificarPerfil";
 import ActualizarPerfil from "./components/subcomponents/ActualizarPerfil";
-
+import VisualizarCita from "./components/subcomponents/VisualizarCita";
+import NuevaCita from "./components/subcomponents/NuevaCita";
 
 import PrivateRoute from "./login/private.route";
 import { AuthProvider } from "./firebase/Auth";
 import { Route, Switch } from "react-router-dom";
 
-import firebase, { FirebaseContext } from "./firebase";
 
 
 const App = () => {
@@ -57,7 +55,9 @@ const App = () => {
               <PrivateRoute exact path="/visualizar-expediente" component={VisualizarExpediente}/> 
               <PrivateRoute exact path="/modificar-expediente" component={ModificarExpediente}/> 
               <PrivateRoute exact path="/modificar-perfil" component={ModificarPerfil}/> 
-              <PrivateRoute exact path="/actualizar-perfil" component={ActualizarPerfil}/> 
+              <PrivateRoute exact path="/actualizar-perfil" component={ActualizarPerfil}/>
+              <PrivateRoute exact path="/visualizar-citas" component={VisualizarCita}/> 
+              <PrivateRoute exact path="/nueva-cita" component={NuevaCita}/>
 
 
         </Switch>

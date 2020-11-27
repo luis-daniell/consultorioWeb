@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {useLocation, useHistory} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import { FirebaseContext } from "../../firebase/Auth";
 import Sidebar from "../ui/Sidebar";
 import Barra from "../ui/Barra";

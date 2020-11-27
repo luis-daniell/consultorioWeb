@@ -10,11 +10,7 @@ import receta from '../../img/receta.svg';
 
 
 
-
 const Sidebar = props => {
-
-
-
 
     return ( 
 
@@ -24,13 +20,9 @@ const Sidebar = props => {
                     <p className="uppercase text-white text-2xl tracking-wide text-center font-bold font-source">Consultorio</p>
                 </div>
                 
-
-                
-
                 <nav  className=" pl-4">
                     
-                    
-                    <NavLink className="p-1 text-white block hover:bg-yellow-500 hover:text-gray-900 font-source font-bold text-lg" exact to ="true" activeClassName="text-yellow-500"  to="/dashboard">
+                    <NavLink className="p-1 text-white block hover:bg-yellow-500 hover:text-gray-900 font-source font-bold text-lg" activeClassName="text-yellow-500"  to="/dashboard">
                     
                         <div className="flex content-center">
                             <div className="flex content-center">
@@ -48,7 +40,7 @@ const Sidebar = props => {
 
                     
                     
-                    <NavLink className="p-1 text-white block hover:bg-yellow-500 hover:text-gray-900 font-source font-bold text-lg mt-8" exact to ="true" activeClassName="text-yellow-500"  to="/estadisticas">
+                    <NavLink className="p-1 text-white block hover:bg-yellow-500 hover:text-gray-900 font-source font-bold text-lg mt-8" activeClassName="text-yellow-500"  to="/estadisticas">
                         
                         
                         <div className="flex content-center">
@@ -66,7 +58,7 @@ const Sidebar = props => {
 
 
 
-                    <NavLink className="p-1 text-white block hover:bg-yellow-500 hover:text-gray-900 font-source font-bold text-lg mt-8" exact to ="true" activeClassName="text-yellow-500"  to="/recetas">
+                    <NavLink className="p-1 text-white block hover:bg-yellow-500 hover:text-gray-900 font-source font-bold text-lg mt-8" activeClassName="text-yellow-500"  to="/recetas">
                         
                         <div className="flex content-center">
                             <div className="flex content-center">
@@ -85,7 +77,7 @@ const Sidebar = props => {
 
 
 
-                    <NavLink className="p-1 text-white block hover:bg-yellow-500 hover:text-gray-900 font-source font-bold text-lg mt-8" exact to ="true" activeClassName="text-yellow-500"  to="/perfil">
+                    <NavLink className="p-1 text-white block hover:bg-yellow-500 hover:text-gray-900 font-source font-bold text-lg mt-8" activeClassName="text-yellow-500"  to="/perfil">
 
                         <div className="flex content-center">
                             <div className="flex content-center">
@@ -102,7 +94,7 @@ const Sidebar = props => {
                     </NavLink>
 
 
-                    <NavLink className="p-1 text-white block hover:bg-yellow-500 hover:text-gray-900 font-source font-bold text-lg mt-8" exact to ="true" activeClassName="text-yellow-500"  to="/citas">
+                    <NavLink className="p-1 text-white block hover:bg-yellow-500 hover:text-gray-900 font-source font-bold text-lg mt-8" activeClassName="text-yellow-500"  to="/citas">
                         
                         <div className="flex content-center">
                             <div className="flex content-center">
@@ -117,7 +109,7 @@ const Sidebar = props => {
                         
                     </NavLink>
                     
-                    <NavLink className="p-1 text-white block hover:bg-yellow-500 hover:text-gray-900 font-source font-bold text-lg mt-8" exact to ="true" activeClassName="text-yellow-500"  to="/expediente">
+                    <NavLink className="p-1 text-white block hover:bg-yellow-500 hover:text-gray-900 font-source font-bold text-lg mt-8" activeClassName="text-yellow-500"  to="/expediente">
                         
                         <div className="flex content-center">
                             <div className="flex content-center">
@@ -133,7 +125,7 @@ const Sidebar = props => {
 
 
 
-                    <NavLink className="p-1 text-white block hover:bg-yellow-500 hover:text-gray-900 font-source font-bold text-lg mt-8" exact to ="true" activeClassName="text-yellow-500"  to="/historial">
+                    <NavLink className="p-1 text-white block hover:bg-yellow-500 hover:text-gray-900 font-source font-bold text-lg mt-8" activeClassName="text-yellow-500"  to="/historial">
                         <div className="flex content-center">
                             <div className="flex content-center">
                                 <img src={historial} width="20" height="20"/>

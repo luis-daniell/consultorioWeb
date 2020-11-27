@@ -2,7 +2,7 @@ import React from "react";
 import {useFormik} from 'formik';
 import firebase from '../firebase';
 import * as Yup from 'yup';
-import {NavLink} from 'react-router-dom';
+import {NavLink, Link} from 'react-router-dom';
 import user from '../img/user.svg'
 import candado from '../img/candado.svg'
 import userlog from '../img/userlog.svg'
@@ -149,7 +149,7 @@ export const Login = props => {
 
 
                     <div className="flex items-center justify-center pb-4 text-blue-700 pt-6">
-                      <NavLink className=""  exact="true" to="/registrar">Crear cuenta</NavLink>
+                      <Link className=""  exact="true" to="/registrar">Crear cuenta</Link>
                     </div>
                 </form>
 
