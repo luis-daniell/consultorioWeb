@@ -1,9 +1,9 @@
 import React from 'react';
 
 //Funcion para pbtener el access Token
-export function obtenerToken() {
+export function obtenerToken(accessToken) {
 
-    let accessToken= '';
+    //let accessToken;
     var gapi = window.gapi
     /* 
       Update with your own Client Id and Api key 
@@ -13,7 +13,7 @@ export function obtenerToken() {
     var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"]
     var SCOPES = "https://www.googleapis.com/auth/calendar"
   
-    const handleClick = () => {
+    
   
       gapi.load('client:auth2', () => {
         console.log('loaded client')
@@ -67,45 +67,24 @@ export function obtenerToken() {
             //console.log(event)
             const token = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse();
             accessToken = token.access_token;
-            console.log(accessToken);
-  
+            //console.log(accessToken);
+            
             //window.open(event.htmlLink)
           })
           
   
-          /*
-              Uncomment the following block to get events
-          */
-          /*
-          // get events
-            gapi.client.calendar.events.list({
-            'calendarId': 'primary',
-            'timeMin': (new Date()).toISOString(),
-            'showDeleted': false,
-            'singleEvents': true,
-            'maxResults': 10,
-            'orderBy': 'startTime'
-          }).then(response => {
-            const events = response.result.items
-            console.log('EVENTS: ', events);
-            window.location.href = `https://calendar.google.com/calendar/u/${events[0].creator.email}`;
-            
-          })*/
+
           
-          //window.location.href = 'https://calendar.google.com/calendar/';
-          //gapi.auth2.window.location.href = 'https://calendar.google.com/calendar/';
-  
+
         })//FIN DE ONCLICK
-  
+
+
         
-  
-       
       })
-  
-      
-    }
-    handleClick();
 
-
-    return accessToken;
+      //console.log(accessToken);
+      return accessToken;     
+      //console.log(accessToken);
+    //console.log(accessToken);
+    //return accessToken;
 }
