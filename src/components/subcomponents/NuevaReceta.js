@@ -66,11 +66,27 @@ const NuevaReceta = () => {
 
             const obtenerCitas = async () => {
 
-                const citasQ = await firebase.db.collection('citas').where('id', '==', dato );
-                const cita = await citasQ.get();
-                guardarDescripcion(cita.data().descripcion);
+                const citasQ = await firebase.db.collection('citas').where('id', '==', dato ).onSnapshot(manejarSnapshot2);
+                //const cita = await citasQ.get();
+                //guardarDescripcion(cita);
+                //console.log(cita);
 
             }
+
+
+            function manejarSnapshot2(snapshot) {
+                const cita = snapshot.docs.map(doc => {
+                    return{
+                        id: doc.id,
+                        ...doc.data()
+                    }
+                });
+        
+                //Almacenar los resultados en el state
+                guardarDescripcion(cita[0].descripcion);
+            }
+
+
             
             if(dato !== ''){
                 //console.log(dato);
@@ -82,12 +98,13 @@ const NuevaReceta = () => {
 
             if(cita === false ){
                 obtenerCitas();
+                
 
             }
 
 
             obtenerExpedientes();
-        },[firebase, dato]);
+        },[firebase, dato, cita]);
 
 
 
@@ -119,13 +136,15 @@ const NuevaReceta = () => {
 
 
             if(cita === false){
-
+                ///Se va a crear una nueva cita
                 receta.idPaciente = dato;
-                receta.nombre = expediente.nombre;
-                receta.apellidos = expediente.apellidos;
-                receta.telefono = expediente.telefono;
-                receta.diagnostico = expediente.diagnostico;
-                receta.descripcion = descripcion;
+                receta.nombrePaciente = expediente.nombre;
+                receta.apellidosPaciente = expediente.apellidos;
+                receta.telefonoPaciente = expediente.telefono;
+                receta.diagnosticoPaciente = expediente.diagnostico;
+                receta.descripcionCita = descripcion;
+                receta.correoPaciente = expediente.correo;
+                receta.nuevaCita= cita;
                 
 
 
@@ -139,10 +158,11 @@ const NuevaReceta = () => {
 
             }else{
                 receta.idPaciente = dato;
-                receta.nombre = expediente.nombre;
-                receta.apellidos = expediente.apellidos;
-                receta.telefono = expediente.telefono;
-                receta.diagnostico = expediente.diagnostico;
+                receta.nombrePaciente = expediente.nombre;
+                receta.apellidosPaciente = expediente.apellidos;
+                receta.telefonoPaciente = expediente.telefono;
+                receta.diagnosticoPaciente = expediente.diagnostico;
+                receta.nuevaCita = cita;
 
 
 
@@ -166,13 +186,6 @@ const NuevaReceta = () => {
         }
 
     });
-
-
-    
-
-
-
-
 
 
     return ( 

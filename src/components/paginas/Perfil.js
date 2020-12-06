@@ -30,6 +30,35 @@ export const Perfil = () => {
     const [direccion, guardarDireccion] = useState('');
     const [telefono, guardarTelefono] = useState('');
 
+
+    //State para las imagenes 
+    const [imagen, guardarImagen] = useState('');
+
+    const [logo, guardarLogo] = useState('');
+
+
+
+    let imagenPerfil = usuarioPerfil;
+    let imagenLogo = ordenador;
+
+    if(imagen === ''){
+        imagenPerfil = usuarioPerfil;
+
+    }else{
+        imagenPerfil= imagen;
+    }
+
+
+
+    if(logo === ''){
+        imagenLogo = ordenador;
+
+    }else{
+        imagenLogo= logo;
+    }
+
+
+
     const history = useHistory();
 
     const abrirPagina = () => {
@@ -54,6 +83,9 @@ export const Perfil = () => {
                    guardarNombre(currentUser.displayName);
                    guardarConsultorio(perfil.data().consultorio);
                    guardarEspecialidad(perfil.data().especialidad);
+
+                   guardarImagen(perfil.data().imagenDoctor);
+                   guardarLogo(perfil.data().imagenConsultorio);
 
                    guardarCedula(perfil.data().cedula);
                    guardarDireccion(perfil.data().direccion);
@@ -128,7 +160,7 @@ export const Perfil = () => {
 
                             <div className="bg-colorFondo flex content-center justify-center">
  
-                                <img src={usuarioPerfil} className="-mt-12" width="120" height="120"/>
+                                <img src={imagenPerfil} className="-mt-12" width="120" height="120"/>
                                 
                             </div>
 
@@ -153,7 +185,7 @@ export const Perfil = () => {
                                             </div>
 
                                             <div className="flex justify-center">
-                                                <img src={ordenador} className="pt-4" width="120" height="120"/>
+                                                <img src={imagenLogo} className="pt-4" width="120" height="120"/>
                                             </div>
                                             
 

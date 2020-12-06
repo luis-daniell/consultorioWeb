@@ -19,6 +19,8 @@ import NuevaCita from "./components/subcomponents/NuevaCita";
 import ModificarCita from "./components/subcomponents/ModificarCita";
 import NuevaReceta from "./components/subcomponents/NuevaReceta";
 import Previsualizacion from "./components/subcomponents/Previsualizacion";
+import ImprimirReceta from "./components/subcomponents/ImprimirReceta";
+import VisualizarHistorial from "./components/subcomponents/VisualizarHistorial";
 
 import PrivateRoute from "./login/private.route";
 import { AuthProvider } from "./firebase/Auth";
@@ -65,6 +67,9 @@ const App = () => {
 
               <PrivateRoute exact path="/nueva-receta" component={NuevaReceta}/>
               <PrivateRoute exact path="/previsualizacion" component={Previsualizacion}/>
+
+              <PrivateRoute exact path="/imprimir-receta" component={ImprimirReceta}/>
+              <PrivateRoute exact path="/visualizar-historial" component={VisualizarHistorial}/>
 
 
         </Switch>

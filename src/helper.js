@@ -1,6 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { PDFDownloadLink, Document, Page, Text, View, Image, StyleSheet } from '@react-pdf/renderer';
+import Imagen from './components/ui/Imagen';
 
 //Funcion para pbtener el access Token
+
+
+
+const styles = StyleSheet.create({
+  
+  title: {
+    fontSize: 24,
+    textAlign: 'center'
+  },
+
+  image: {
+    height: 120,
+    width: 120,
+    marginVertical: 30,
+    marginHorizontal: 100,
+  },
+});
+
+
 export function obtenerToken(accessToken) {
 
     //let accessToken;
@@ -87,4 +108,53 @@ export function obtenerToken(accessToken) {
       //console.log(accessToken);
     //console.log(accessToken);
     //return accessToken;
+}
+
+
+
+export function PdfDocument(props) {
+  console.log("pdf props", props.data.consultorioLogo);
+ // const data = nombre;
+  //const img = props.data.consultorioLogo;
+  const img ="https://ep01.epimg.net/elpais/imagenes/2019/10/30/album/1572424649_614672_1572453030_noticia_normal.jpg";
+  const metodo = 'GET';
+ 
+//Se configuro en google cloud
+ 
+  return (
+
+    <Document>
+      <Page size="A4" wrap >
+          <Text style={styles.title}>{props.data.nombreConsultorio}</Text>
+          <Image style={styles.image} src={{ uri: img, method: metodo, headers: {'Access-Control-Allow-Origin:' :'*'}, body: '' }} />
+          
+      </Page>
+    </Document>
+
+
+
+    /*
+    <Document>
+      <Page >
+        {data
+          ? data.map((a, index) => {
+              return (
+                <View key={index} >
+                  
+                  <View >
+                    <Text >{data}</Text>
+                     
+                     
+                  </View>
+                </View>
+              );
+            })
+          : ""}
+      </Page>
+    </Document>*/
+  );
+
+
+  
+  
 }

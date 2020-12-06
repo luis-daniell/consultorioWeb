@@ -249,6 +249,7 @@ const ActualizarPerfil = ({perfil}) => {
                             <label className="w-3/12 pl-12 text-tercerColor" htmlFor="imagen">Imagen del Doctor: </label>
                             <FileUploader
                                 accept="image/*"
+                                //accept=".svg"
                                 id="imagenDoctor"
                                 className="shadow appearance-none border-2 w-8/12 py-2 px-3"
                                 name="imagenDoctor"
@@ -285,6 +286,7 @@ const ActualizarPerfil = ({perfil}) => {
                             <label className="w-3/12 pl-12 text-tercerColor" htmlFor="imagen">Imagen del consultorio: </label>
                             <FileUploader
                                 accept="image/*"
+                                //accept=".svg"
                                 id="imagenConsultorio"
                                 className="shadow appearance-none border-2 w-8/12 py-2 px-3"
                                 name="imagenConsultorio"

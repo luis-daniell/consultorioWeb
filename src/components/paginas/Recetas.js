@@ -1,9 +1,11 @@
-import React from 'react';
+import React,{useState, useContext, useEffect} from 'react';
+import {FirebaseContext} from '../../firebase/Auth';
+import RecetasMostrar from '../ui/RecetasMostrar';
 import Barra from '../ui/Barra';
 import Sidebar from "../ui/Sidebar";
 import {useHistory} from "react-router-dom";
 
-export const Recetas = () => {
+export const Recetas = (props) => {
 
 
     const history = useHistory();
@@ -13,6 +15,36 @@ export const Recetas = () => {
         history.push("/nueva-receta");
     }
 
+
+    const {firebase} = useContext(FirebaseContext);
+
+
+    const [recetas, guardarRecetas] = useState([]);
+
+
+
+    useEffect(() => {
+        const obtenerRecetas =  () => {
+            firebase.db.collection('recetas').onSnapshot(manejarSnapshot);//Snapshot para ver los cambios en tiempo real y get para ver solamnente los cambios
+            
+        }
+        obtenerRecetas();
+
+    },[firebase]);
+
+
+    //Snapshop nos permite usar la base de datos en tiempo real de firestore
+    function manejarSnapshot(snapshot) {
+        const recetass = snapshot.docs.map(doc => {
+            return{
+                id: doc.id,
+                ...doc.data()
+            }
+        });
+
+        //Almacenar los resultados en el state
+        guardarRecetas(recetass);
+    }
 
 
 
@@ -61,15 +93,15 @@ export const Recetas = () => {
                                 
                             </div>
 
-                            <div className="w-2/12  border-black border-b-2 mb-4">
+                            <div className="w-2/12  border-black border-b-2 mb-4 flex justify-center">
                                 <p>Nombre</p>
                             </div>
 
-                            <div className="w-2/12  border-black border-b-2 mb-4">
+                            <div className="w-3/12  border-black border-b-2 mb-4 flex justify-center justify-items-center">
                                 <p>Teléfono</p>
                             </div>
 
-                            <div className="w-5/12  border-black border-b-2 mb-4">
+                            <div className="w-4/12  border-black border-b-2 mb-4">
                                 <p></p>
                             </div>
 
@@ -79,6 +111,16 @@ export const Recetas = () => {
                         </div>
                         
                         
+
+                        {recetas.map(receta => (
+                                <RecetasMostrar
+                                    key={receta.id}
+                                    receta={receta}
+                                    props = {props}
+                                /> 
+                            ))}
+                        
+
                         
                     </div>
                 </div>

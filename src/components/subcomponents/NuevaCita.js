@@ -114,14 +114,7 @@ const NuevaCita = () => {
 
     function agregarEvento (nombre, apellidos, correo, fecha, hora, descripcion ){
 
-        console.log(nombre);
-        console.log(apellidos);
-        console.log(correo);
-        console.log(fecha);
-        console.log(hora);
-        console.log(descripcion);
-
-        
+     
         var gapi = window.gapi
         
         //  Update with your own Client Id and Api key 

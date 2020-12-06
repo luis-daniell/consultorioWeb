@@ -109,7 +109,7 @@ const ModificarExpediente = ({props}) => {
 
                             <div className="bg-colorFondo flex content-center justify-center ">
  
-                                <img src={usuarioPerfil} className="-mt-12" width="120" height="120"/>
+                                <img src={usuarioPerfil} className="-mt-12" width="120" height="120" alt="paciente"/>
                                 
                             </div>
 
