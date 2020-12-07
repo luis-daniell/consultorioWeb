@@ -110,7 +110,7 @@ export const Perfil = () => {
             }
             obtenerPerfil();
         
-    }, []);
+    }, [currentUser, firebase]);
 
     //console.log(perfil);
 
@@ -160,7 +160,7 @@ export const Perfil = () => {
 
                             <div className="bg-colorFondo flex content-center justify-center">
  
-                                <img src={imagenPerfil} className="-mt-12" width="120" height="120"/>
+                                <img src={imagenPerfil} className="-mt-12" width="120" height="120" alt="imagenPerfil"/>
                                 
                             </div>
 
@@ -185,7 +185,7 @@ export const Perfil = () => {
                                             </div>
 
                                             <div className="flex justify-center">
-                                                <img src={imagenLogo} className="pt-4" width="120" height="120"/>
+                                                <img src={imagenLogo} className="pt-4" width="120" height="120" alt="imagenLogo"/>
                                             </div>
                                             
 

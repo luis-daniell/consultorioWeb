@@ -1,14 +1,16 @@
 import React, {useState, useContext, useEffect} from 'react';
 import {FirebaseContext} from '../../firebase/Auth';
+import MostrarDato from '../ui/MostrarDato';
 import {useLocation, useHistory} from "react-router-dom";
 import usuarioPerfil from '../../img/usuarioPerfil.svg';
 import Sidebar from '../ui/Sidebar';
+import MedicamentosRecetados from '../ui/MedicamentosRecetados';
 import Barra from '../ui/Barra';
+import ProximaCita from '../ui/ProximaCita';
 
-const VisualizarHistorial = () => {
+const VisualizarHistorial = ({props}) => {
 
     const location = useLocation();
-    const history = useHistory();
 
     const {firebase} = useContext(FirebaseContext);
     const {id} = location.state.detail;
@@ -20,6 +22,8 @@ const VisualizarHistorial = () => {
     const [receta, guardarReceta] = useState([]);
     //Citas
     const [cita, guardarCita] = useState([]);
+    //Citas No atendidas
+    const [citaNOATENDIDA, guardarCITANOATENDIDA] = useState([]);
 
 
 
@@ -50,7 +54,7 @@ const VisualizarHistorial = () => {
 
 
         const obtenerCitas = async () => {
-            const citaQ = await firebase.db.collection('citas').where('id','==', id).onSnapshot(manejarSnapshot3);  
+            await firebase.db.collection('citas').where('idPaciente','==', id).onSnapshot(manejarSnapshot3);  
         }
 
         function manejarSnapshot3(snapshot) {
@@ -65,17 +69,37 @@ const VisualizarHistorial = () => {
             guardarCita(cita);
         }
 
+
+
+
+
+
+
+        const obtenerCitasNoAtendidas = async () => {
+            const citaQ = await firebase.db.collection('citas').where('idPaciente','==', id).where('atendida','==', false).onSnapshot(manejarSnapshot4);  
+        }
+
+        function manejarSnapshot4(snapshot) {
+            const cita = snapshot.docs.map(doc => {
+                return{
+                    id: doc.id,
+                    ...doc.data()
+                }
+            });
+    
+            //Almacenar los resultados en el state
+            guardarCITANOATENDIDA(cita);
+        }
+
+
+
+
+        obtenerCitasNoAtendidas();
         obtenerExpedientes();
         obtenerRecetas();
         obtenerCitas();
 
     },[firebase]);
-
-
-    console.log("Datos Expediente: ",expediente);
-    console.log("Datos Recetas: ",receta);
-    console.log("Datos Citas: ",cita);
-
 
     return ( 
 
@@ -113,9 +137,79 @@ const VisualizarHistorial = () => {
 
 
                         
-                            <div className="bg-colorFondo pb-12 rounded-b-extra">
-                                <p>Hello</p>
+                            <div className="bg-colorFondo pt-4 flex justify-center justify-items-center items-center">
+
+                                <div className="border-2 border-black w-3/12 flex justify-center">
+                                    Fecha
+                                </div>
+
+                                <div className="border-2 border-black w-3/12 flex justify-center">
+                                    Hora
+                                </div>
+
+                                <div className="border-2 border-black w-3/12 flex justify-center">
+                                    Atendida
+                                
+                                </div>
+
                             </div>
+
+
+                            <div className="bg-colorFondo flex flex-col justify-center justify-items-center items-center">
+                                {cita.map(cita => (
+                                    <MostrarDato
+                                        key={cita.id}
+                                        cita={cita}
+                                        props = {props}
+                                    /> 
+                                ))}
+                            </div>
+
+
+
+                            <div className="bg-colorFondo pt-4 flex justify-center justify-items-center items-center">
+
+                               <p>Medicamentos Recetados:</p>
+
+                            </div>
+
+                            <div className="bg-colorFondo pt-5 ">
+                                
+                                
+                                {receta.map(receta => (
+                                    <MedicamentosRecetados
+                                        key={receta.id}
+                                        receta={receta}
+                                        props = {props}
+                                    /> 
+                                ))}
+                            </div>
+
+
+
+                            <div className="bg-colorFondo pt-4 flex justify-center justify-items-center items-center">
+
+                               <p>Proximas Citas:</p>
+
+                            </div>
+
+                            <div className="bg-colorFondo pt-5 pb-12 rounded-b-extra ">
+                                
+                                
+                                {citaNOATENDIDA.map(cita => (
+                                    <ProximaCita
+                                        key={cita.id}
+                                        cita={cita}
+                                        props = {props}
+                                    /> 
+                                ))}
+                            </div>
+
+
+                            
+
+
+
 
 
 

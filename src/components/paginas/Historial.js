@@ -9,7 +9,6 @@ import {FirebaseContext} from '../../firebase/Auth';
 
 export const Historial = props => {
 
-    const history = useHistory();
     //Definir el state para los expedientes 
     const [expedientes, guardarExpedientes] = useState([]);
 

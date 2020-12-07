@@ -1,16 +1,12 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext} from 'react';
 import {useHistory} from "react-router-dom";
-import Iframe from 'react-iframe'
-import {obtenerToken} from '../../../src/helper';
-import { FirebaseContext } from "../../firebase/Auth";
-import { v4 as uuidv4 } from 'uuid';
+import Iframe from 'react-iframe';
 import Sidebar from "../ui/Sidebar";
 import Barra from "../ui/Barra";
 
 export const Citas = () => {
 
 
-    const {firebase} = useContext(FirebaseContext);
 
     
     const history = useHistory();

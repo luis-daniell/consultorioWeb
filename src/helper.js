@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { PDFDownloadLink, Document, Page, Text, View, Image, StyleSheet } from '@react-pdf/renderer';
-import Imagen from './components/ui/Imagen';
+import React from 'react';
+import { Document, Page, Text,  Image, StyleSheet } from '@react-pdf/renderer';
+
 
 //Funcion para pbtener el access Token
 
