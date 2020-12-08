@@ -1,9 +1,7 @@
 import React, {useState, useContext, useEffect} from 'react';
-//import {FirebaseContext } from '../../firebase';
 import HistorialMostrar from '../ui/HistorialMostrar';
 import Barra from "../ui/Barra";
 import Sidebar from "../ui/Sidebar";
-import {useHistory} from "react-router-dom";
 import {FirebaseContext} from '../../firebase/Auth';
 
 

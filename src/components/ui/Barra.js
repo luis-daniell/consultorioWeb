@@ -1,6 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {useHistory} from "react-router-dom";
-import { makeStyles } from '@material-ui/core/styles';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import { FirebaseContext } from "../../firebase/Auth";
 import usuarioPerfil from '../../img/usuarioPerfil.svg';
@@ -39,7 +38,7 @@ const Barra = () => {
         }
         obtenerPerfil();
     
-}, []);
+    }, [firebase, currentUser]);
 
 
 
@@ -91,7 +90,7 @@ const Barra = () => {
                         
                         
 
-                        <a href="#" id="menu-btn" onClick={handleClick}><img src={imagenPerfil} width="30"/></a>
+                        <a href="# " id="menu-btn" onClick={handleClick}><img src={imagenPerfil} width="30" alt="Imagen de perfil"/></a>
                     
 
                     
@@ -101,8 +100,8 @@ const Barra = () => {
 
 
                             <div id="dropdown" className="flex bg-white flex-col absolute rounded mt-32 p-2 text-sm w-32 border-black border-2">
-                                <a href="#" className="px-2 py-1 hover:bg-segundoColor rounded">Configuración</a>
-                                <a href="#" className="px-2 py-1 hover:bg-segundoColor rounded" onClick={()=> cerrarSesion()}>Cerrar Sesión</a>
+                                <a href="# " className="px-2 py-1 hover:bg-segundoColor rounded">Configuración</a>
+                                <a href="# " className="px-2 py-1 hover:bg-segundoColor rounded" onClick={()=> cerrarSesion()}>Cerrar Sesión</a>
                             </div>
 
 

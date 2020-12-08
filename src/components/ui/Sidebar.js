@@ -26,7 +26,7 @@ const Sidebar = props => {
                     
                         <div className="flex content-center">
                             <div className="flex content-center">
-                                <img src={tablero} width="20" height="20"/>
+                                <img src={tablero} width="20" height="20" alt="tablero"/>
                             </div>
 
                             <div className="pl-6">
@@ -45,7 +45,7 @@ const Sidebar = props => {
                         
                         <div className="flex content-center">
                             <div className="flex content-center">
-                                <img src={estadistica} width="20" height="20"/>
+                                <img src={estadistica} width="20" height="20" alt="estadisticas"/>
                             </div>
 
                             <div className="pl-6">
@@ -62,7 +62,7 @@ const Sidebar = props => {
                         
                         <div className="flex content-center">
                             <div className="flex content-center">
-                                <img src={receta} width="20" height="20"/>
+                                <img src={receta} width="20" height="20" alt="receta"/>
                             </div>
 
                             <div className="pl-6">
@@ -81,7 +81,7 @@ const Sidebar = props => {
 
                         <div className="flex content-center">
                             <div className="flex content-center">
-                                <img src={usuario} width="20" height="20"/>
+                                <img src={usuario} width="20" height="20" alt="usuario"/>
                             </div>
 
                             <div className="pl-6">
@@ -98,7 +98,7 @@ const Sidebar = props => {
                         
                         <div className="flex content-center">
                             <div className="flex content-center">
-                                <img src={calendario} width="20" height="20"/>
+                                <img src={calendario} width="20" height="20" alt="calendario"/>
                             </div>
 
                             <div className="pl-6">
@@ -113,7 +113,7 @@ const Sidebar = props => {
                         
                         <div className="flex content-center">
                             <div className="flex content-center">
-                                <img src={expediente} width="20" height="20"/>
+                                <img src={expediente} width="20" height="20" alt="expediente"/>
                             </div>
 
                             <div className="pl-6">
@@ -128,7 +128,7 @@ const Sidebar = props => {
                     <NavLink className="p-1 text-white block hover:bg-yellow-500 hover:text-gray-900 font-source font-bold text-lg mt-8" activeClassName="text-yellow-500"  to="/historial">
                         <div className="flex content-center">
                             <div className="flex content-center">
-                                <img src={historial} width="20" height="20"/>
+                                <img src={historial} width="20" height="20" alt="historial"/>
                             </div>
 
                             <div className="pl-6">

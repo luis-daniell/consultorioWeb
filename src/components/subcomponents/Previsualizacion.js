@@ -1,6 +1,4 @@
 import React, {useContext, useEffect, useState} from 'react';
-import { PDFDownloadLink, Document, Page, Text, View} from '@react-pdf/renderer';
-import {PdfDocument} from '../../helper';
 import Pdf from "react-to-pdf";
 import {useLocation, useHistory} from "react-router-dom";
 import {FirebaseContext} from '../../firebase/Auth';
@@ -40,7 +38,7 @@ const Previsualizacion = () => {
 
 
         obtenerUsuario();
-    },[firebase]);
+    },[firebase, currentUser]);
 
 
     //sconsole.log(location.state.detail);
@@ -285,7 +283,7 @@ const Previsualizacion = () => {
 
                             <div className="w-2/12 ">
                             
-                                <img src={usuario.imagenConsultorio} className="pt-4" width="120" height="120"/>
+                                <img src={usuario.imagenConsultorio} className="pt-4" width="120" height="120" alt="ImagenConsultorio"/>
                                             
                             </div>
 

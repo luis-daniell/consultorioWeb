@@ -85,7 +85,7 @@ const NuevaCita = () => {
                /// console.log(getDoc.data().apellidos);
                 ///console.log(getDoc.data().correo); 
 
-                const egt = await firebase.db.collection('citas').add({
+                await firebase.db.collection('citas').add({
                     idPaciente: id,
                     nombre: getDoc.data().nombre,
                     apellido: getDoc.data().apellidos,

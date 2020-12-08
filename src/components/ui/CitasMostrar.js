@@ -26,7 +26,7 @@ const CitasMostrar = ({cita}) => {
         <div className="flex content-center items-center justify-items-center justify-center">
 
             <div className="w-1/12 h-12 flex items-center justify-items-center justify-center border-b-2 border-r-2 border-gray-500">
-                <img src={calendario} width="25" height=""/>
+                <img src={calendario} width="25" height="" alt="calendario"/>
             </div>
 
             <div className="pl-1 w-2/12 h-12 flex items-center border-b-2 border-gray-500">
@@ -53,7 +53,7 @@ const CitasMostrar = ({cita}) => {
                 onClick={() => abrirPagina(id)} 
                 
             >
-                <img src={vision} width="25" height="" />
+                <img src={vision} width="25" height="" alt="visualizar"/>
             </div>
 
             <div className="w-1/12 h-12 flex items-center border-b-2 border-gray-500">

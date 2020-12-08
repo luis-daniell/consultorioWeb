@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {useHistory} from "react-router-dom";
 import Iframe from 'react-iframe';
 import Sidebar from "../ui/Sidebar";
@@ -56,6 +56,7 @@ export const Citas = () => {
                         <div className="w-11/12 flex justify-items-center items-center justify-center ">
 
                           
+                          
                         <Iframe url="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FMexico_City&amp;src=bHVpcy5kYW5pZWxsLnRpY3NAZ21haWwuY29t&amp;color=%23039BE5"
                           //CONFIGURAR EN GOOGLE CALENDAR PARA EL CORREO OBTENER EL VINCULO AL CALENDARIO PARA COMPARTIRLO
                           width="1000px"
@@ -77,6 +78,25 @@ export const Citas = () => {
 }
  
 /**
+ * 
+ * 
+ * 
+ * https://calendar.google.com/calendar/embed?src=luisdanielcastro16%40gmail.com&ctz=America%2FMexico_City
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
  * Client ID:   657875948864-7lkf7vloqh74rnidjptjqkrr810tvcg9.apps.googleusercontent.com
  * Cliente Secret: XUSZ5sb8LZGBS8zx5C7JJRP_
  * API KEY: AIzaSyDsE0rQ8ORfmmU6OigypW-IQyjFUihvjhg

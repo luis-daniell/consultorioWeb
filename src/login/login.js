@@ -2,7 +2,7 @@ import React from "react";
 import {useFormik} from 'formik';
 import firebase from '../firebase';
 import * as Yup from 'yup';
-import {NavLink, Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import user from '../img/user.svg'
 import candado from '../img/candado.svg'
 import userlog from '../img/userlog.svg'
@@ -20,12 +20,9 @@ export const Login = props => {
 
     validationSchema: Yup.object({
       correo: Yup.string()
-                  .email("Correo Electronico invalido")
-                  .required('Campo requerido'),
-
+                  .email("Correo Electronico invalido"),
       password: Yup.string()
-                  .min(5, 'Minimo 5 caracteres')
-                  .required('Campo requerido'),
+                  .min(5, 'Minimo 5 caracteres'),
     }),
 
     onSubmit: values => {
@@ -59,7 +56,7 @@ export const Login = props => {
 
       <div className="-mt-16 flex content-center items-center justify-center">
 
-        <img src={userlog} className=""/>
+        <img src={userlog} className="" alt="Usuario"/>
       </div>
 
 
@@ -79,19 +76,20 @@ export const Login = props => {
                     <div className="flex w-full border-2 shadow appearance-none border-red rounded-full text-grey-darker">
                       
                        <div className="pl-2 flex content-center">
-                         <img src={user} width="20" height="20" className=""/>
+                         <img src={user} width="20" height="20" className="" alt="Imagen Usuario"/>
                        </div>
                        
                       
                       
-                        <input 
+                        <input
+                        required 
                         id="correo"
-                        placeholder="Tu Email"
                         name="correo"
                         value={formik.values.correo}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
-                        type="Email" placeholder="Correo Electrónico" 
+                        type="Email" 
+                        placeholder="Correo Electrónico" 
                         className="w-full py-2 px-3 focus:outline-none focus:bg-white rounded-r-full"/>
                     </div>
 
@@ -111,17 +109,18 @@ export const Login = props => {
                     <div className="mt-6 flex w-full border-2 shadow appearance-none border-red rounded-full text-grey-darker"> 
 
                       <div className="pl-2 flex content-center">
-                        <img src={candado} width="20" height="20" className=""/>
+                        <img src={candado} width="20" height="20" className="" alt="contraseña"/>
                       </div>
                         
                         <input
+                        required
                         id="password"
-                        placeholder="Tu Password"
                         name="password"
                         value={formik.values.password}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
-                        type="Password" placeholder="Contraseña" 
+                        type="Password" 
+                        placeholder="Contraseña" 
                         className="w-full py-2 px-3 focus:outline-none focus:bg-white rounded-r-full"/>
                     </div>
 
@@ -149,7 +148,7 @@ export const Login = props => {
 
 
                     <div className="flex items-center justify-center pb-4 text-blue-700 pt-6">
-                      <Link className=""  exact="true" to="/registrar">Crear cuenta</Link>
+                      <Link className="" to="/registrar">Crear cuenta</Link>
                     </div>
                 </form>
 

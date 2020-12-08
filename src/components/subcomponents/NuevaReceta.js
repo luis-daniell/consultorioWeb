@@ -66,7 +66,7 @@ const NuevaReceta = () => {
 
             const obtenerCitas = async () => {
 
-                const citasQ = await firebase.db.collection('citas').where('id', '==', dato ).onSnapshot(manejarSnapshot2);
+                await firebase.db.collection('citas').where('id', '==', dato ).onSnapshot(manejarSnapshot2);
                 //const cita = await citasQ.get();
                 //guardarDescripcion(cita);
                 //console.log(cita);

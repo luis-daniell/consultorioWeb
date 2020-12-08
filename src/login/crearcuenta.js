@@ -4,7 +4,7 @@ import firebase from '../firebase';
 import * as Yup from 'yup';
 import {useHistory} from "react-router-dom";
 
-export const Cuenta = ({props}) => {
+export const Cuenta = () => {
 
    const history = useHistory();
 
@@ -18,15 +18,12 @@ export const Cuenta = ({props}) => {
     
         validationSchema: Yup.object({
           nombre: Yup.string()
-                      .min(5, 'Minimo 5 caracteres')
-                      .required('Campo requerido'),
+                      .min(5, 'Minimo 5 caracteres'),
           correo: Yup.string()
-                      .email("Correo Electronico invalido")
-                      .required('Campo requerido'),
+                      .email("Correo Electronico invalido"),
     
           password: Yup.string()
-                      .min(5, 'Minimo 5 caracteres')
-                      .required('Campo requerido'),
+                      .min(5, 'Minimo 5 caracteres'),
         }),
     
         onSubmit: values => {
@@ -74,10 +71,10 @@ export const Cuenta = ({props}) => {
 
                 <div className="mb-4">
                     <label className="block text-sm font-bold mb-2">Nombre</label>
-                    <input 
+                    <input
+                        required 
                         className="shadow appearance-none border rounded w-full py-2 px-3"
                         id="nombre"
-                        placeholder="Tu Nombre"
                         name="nombre"
                         value={formik.values.nombre}
                         onChange={formik.handleChange}
@@ -96,15 +93,16 @@ export const Cuenta = ({props}) => {
     
                 <div className="mb-4">
                     <label className="block text-sm font-bold mb-2">Email</label>
-                    <input 
+                    <input
+                        required 
                         className="shadow appearance-none border rounded w-full py-2 px-3"
                         id="correo"
-                        placeholder="Tu Email"
                         name="correo"
                         value={formik.values.correo}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
-                        type="Email" placeholder="Correo Electrónico" 
+                        type="Email" 
+                        placeholder="Correo Electrónico" 
                     />
                 </div>
                 {formik.touched.correo && formik.errors.correo ? (
@@ -117,15 +115,16 @@ export const Cuenta = ({props}) => {
 
                 <div className="mb-4">
                     <label className="block text-sm font-bold mb-2">Password</label>
-                    <input 
+                    <input
+                        required 
                         className="shadow appearance-none border rounded w-full py-2 px-3"
                         id="password"
-                        placeholder="Tu Password"
                         name="password"
                         value={formik.values.password}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
-                        type="Password" placeholder="Contraseña" 
+                        type="Password" 
+                        placeholder="Contraseña" 
                     />
                 </div>
 

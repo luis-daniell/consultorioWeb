@@ -35,7 +35,7 @@ const ImprimirReceta = () => {
 
 
         obtenerUsuario();
-    },[firebase]);
+    },[firebase, currentUser]);
 
 
     const {apellidosPaciente, nombrePaciente, fechaHoy, medicamentosPaciente, nombreConsultorio} = location.state.detail;
@@ -109,7 +109,7 @@ const ImprimirReceta = () => {
 
                             <div className="w-2/12 ">
                             
-                                <img src={usuario.imagenConsultorio} className="pt-4" width="120" height="120"/>
+                                <img src={usuario.imagenConsultorio} className="pt-4" width="120" height="120" alt="Imagen Consultorio"/>
                                             
                             </div>
 

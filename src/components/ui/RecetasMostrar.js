@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext} from 'react';
 import {FirebaseContext} from '../../firebase/Auth';
 import {useHistory} from "react-router-dom";
 import recetaPaciente from '../../img/recetaPaciente.svg';
@@ -15,7 +15,7 @@ const RecetasMostrar = ({receta}) => {
 
 
 //console.log(receta);
-    const {id, nombrePaciente, telefonoPaciente, apellidosPaciente} = receta;
+    const {id, nombrePaciente, telefonoPaciente} = receta;
 
 
 
@@ -44,7 +44,7 @@ const RecetasMostrar = ({receta}) => {
         <div className="flex content-center items-center justify-items-center justify-center">
 
             <div className="w-1/12 h-12 flex items-center justify-items-center justify-center border-b-2 border-r-2 border-gray-500">
-                <img src={recetaPaciente} width="25"/>
+                <img src={recetaPaciente} width="25" alt="recetaPaciente"/>
             </div>
 
             <div className="pl-1 w-2/12 h-12 flex items-center border-b-2 border-gray-500 justify-center">
@@ -67,14 +67,14 @@ const RecetasMostrar = ({receta}) => {
             <div className="w-1/12 h-12 flex items-center border-b-2 border-gray-500 justify-items-center justify-around cursor-pointer"
                 onClick={() => abrirPaginaVisualizar(id)} 
             >
-                <img src={doc} width="25"/>
+                <img src={doc} width="25" alt="documento"/>
             </div>
 
             <div className="w-1/12 h-12 flex items-center border-b-2 border-gray-500 justify-items-center justify-around cursor-pointer"
                 onClick={() => eliminar(id)} 
             >
                 
-                <img src={delet} width="25"/>
+                <img src={delet} width="25" alt="Eliminar"/>
             </div>
 
 

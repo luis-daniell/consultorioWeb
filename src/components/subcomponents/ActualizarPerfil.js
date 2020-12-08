@@ -2,7 +2,6 @@ import React,{useContext, useState} from 'react';
 import {useLocation, useHistory} from "react-router-dom";
 import {FirebaseContext} from '../../firebase/Auth';
 import {useFormik} from 'formik';
-import * as Yup from 'yup';
 import FileUploader from 'react-firebase-file-uploader';
 import Barra from '../ui/Barra';
 import Sidebar from '../ui/Sidebar';
@@ -18,7 +17,7 @@ const ActualizarPerfil = ({perfil}) => {
     const {firebase, currentUser} = useContext(FirebaseContext);
 
 
-    const {nombre, consultorio, cedula, telefono, direccion, especialidad, uid} = location.state.detail;
+    const {nombre, consultorio, cedula, telefono, direccion, especialidad} = location.state.detail;
 
     //console.log(location.state.detail);
 

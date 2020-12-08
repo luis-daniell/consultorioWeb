@@ -1,7 +1,7 @@
 import React, {useState, useContext, useEffect} from 'react';
 import {FirebaseContext} from '../../firebase/Auth';
 import MostrarDato from '../ui/MostrarDato';
-import {useLocation, useHistory} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import usuarioPerfil from '../../img/usuarioPerfil.svg';
 import Sidebar from '../ui/Sidebar';
 import MedicamentosRecetados from '../ui/MedicamentosRecetados';
@@ -36,7 +36,7 @@ const VisualizarHistorial = ({props}) => {
         }
 
         const obtenerRecetas = async () => {
-            const recetaQ = await firebase.db.collection('recetas').where('pacienteId','==', id).onSnapshot(manejarSnapshot2);
+            await firebase.db.collection('recetas').where('pacienteId','==', id).onSnapshot(manejarSnapshot2);
 
         }
 
@@ -76,7 +76,7 @@ const VisualizarHistorial = ({props}) => {
 
 
         const obtenerCitasNoAtendidas = async () => {
-            const citaQ = await firebase.db.collection('citas').where('idPaciente','==', id).where('atendida','==', false).onSnapshot(manejarSnapshot4);  
+            await firebase.db.collection('citas').where('idPaciente','==', id).where('atendida','==', false).onSnapshot(manejarSnapshot4);  
         }
 
         function manejarSnapshot4(snapshot) {
@@ -99,7 +99,7 @@ const VisualizarHistorial = ({props}) => {
         obtenerRecetas();
         obtenerCitas();
 
-    },[firebase]);
+    },[firebase, id]);
 
     return ( 
 
@@ -131,7 +131,7 @@ const VisualizarHistorial = ({props}) => {
 
                             <div className="bg-colorFondo flex content-center justify-center ">
  
-                                <img src={usuarioPerfil} className="-mt-12" width="120" height="120"/>
+                                <img src={usuarioPerfil} className="-mt-12" width="120" height="120" alt="Usuario Perfil"/>
                                 
                             </div>
 

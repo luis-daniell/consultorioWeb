@@ -77,7 +77,7 @@ const VisualizarExpediente = () => {
 
                             <div className="bg-colorFondo flex content-center justify-center ">
  
-                                <img src={usuarioPerfil} className="-mt-12" width="120" height="120"/>
+                                <img src={usuarioPerfil} className="-mt-12" width="120" height="120" alt="Usuario Perfil"/>
                                 
                             </div>
 
@@ -169,11 +169,6 @@ const VisualizarExpediente = () => {
 
 
 
-
-
-
-
-                                    
 
 
                             </div>
