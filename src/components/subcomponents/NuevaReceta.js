@@ -66,7 +66,7 @@ const NuevaReceta = () => {
 
             const obtenerCitas = async () => {
 
-                await firebase.db.collection('citas').where('id', '==', dato ).onSnapshot(manejarSnapshot2);
+                await firebase.db.collection('citas').where('idPaciente', '==', dato ).onSnapshot(manejarSnapshot2);
                 //const cita = await citasQ.get();
                 //guardarDescripcion(cita);
                 //console.log(cita);
@@ -84,6 +84,7 @@ const NuevaReceta = () => {
         
                 //Almacenar los resultados en el state
                 guardarDescripcion(cita[0].descripcion);
+                
             }
 
 
@@ -121,7 +122,7 @@ const NuevaReceta = () => {
     }
 
 
-
+console.log(descripcion);
 
 
     const formik = useFormik({
@@ -197,6 +198,17 @@ const NuevaReceta = () => {
         <div className="bg-colorFondo w-4/5 box-border left-auto float-right h-screen">
             <Barra/>
 
+
+
+            <div className="flex justify-center">
+
+                    <form 
+                    className="w-11/12 pb-20"
+                   onSubmit={formik.handleSubmit}
+                    >
+
+
+
             <div className=" flex">
 
                 <div className=" w-1/2 flex justify-start items-center">
@@ -208,7 +220,7 @@ const NuevaReceta = () => {
                    
                     <button
                         className=" bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
-                        onClick={formik.handleSubmit}
+                        
                         type="submit"
                         //onClick={() => abrirNuevaCita()}
                     >
@@ -219,12 +231,9 @@ const NuevaReceta = () => {
             </div>
 
 
-            <div className="flex justify-center">
 
-                    <form 
-                    className="bg-white mt-10 w-11/12 pb-20"
-                   // onSubmit={handleSubmit}
-                    >
+            <div className="bg-white mt-8 pb-8">
+            
 
                         <div className="">
                             <p className="font-source font-bold text-xl pl-12 pt-3">Ingresa los datos para la receta</p>
@@ -241,6 +250,7 @@ const NuevaReceta = () => {
                                 //onChange={formik.handleChange}
                                 //onBlur={formik.handleBlur}
                                 onChange={e => guardarDato(e.target.value)}
+                                required
                                 //value={dato}
                             >
 
@@ -262,6 +272,7 @@ const NuevaReceta = () => {
                             <label className="w-3/12 font-source text-tercerColor pl-12">Motivo de consulta: </label>
 
                             <select
+                                required
                                 className="shadow appearance-none border-2 w-8/12 py-2 px-3"
                                 id="paciente"
                                 //value={formik.values.paciente}
@@ -282,6 +293,7 @@ const NuevaReceta = () => {
                         <div className=" flex mt-6">
                             <label htmlFor="descripcion" className="w-3/12 font-source text-tercerColor pl-12">Observaciones: </label>
                             <textarea
+                                required
                                 className="shadow appearance-none border-2 w-8/12 py-2 px-3"
                                 placeholder="Observaciones"
                                 id="observacion"
@@ -297,6 +309,7 @@ const NuevaReceta = () => {
                         <div className=" flex mt-6">
                             <label htmlFor="descripcion" className="w-3/12 font-source text-tercerColor pl-12">Medicamentos recetados: </label>
                             <textarea
+                                required
                                 className="shadow appearance-none border-2 w-8/12 py-2 px-3"
                                 placeholder="Medicamentos"
                                 id="medicamentos"
@@ -329,6 +342,7 @@ const NuevaReceta = () => {
 
                                 <label className="w-3/12 font-source text-tercerColor pl-12">Fecha</label>
                                 <input
+                                    required
                                     type="date"
                                     name="fecha"
                                     className="w-3/12 shadow appearance-none border-2 py-2 px-3"
@@ -339,6 +353,7 @@ const NuevaReceta = () => {
 
                                 <label className="w-2/12 font-source text-tercerColor pl-12">Hora</label>
                                 <input
+                                    required
                                     type="time"
                                     name="hora"
                                     className="shadow appearance-none border-2 w-3/12 py-2 px-3"
@@ -352,7 +367,7 @@ const NuevaReceta = () => {
 
                             }
 
-
+                        </div>
 
 
                     </form>

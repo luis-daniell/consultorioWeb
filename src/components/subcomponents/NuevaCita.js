@@ -1,4 +1,5 @@
 import React, {useEffect, useState, useContext} from 'react';
+import {agregarEvento} from '../../helper';
 import {useHistory} from "react-router-dom";
 import {useFormik} from 'formik';
 import Sidebar from '../ui/Sidebar';
@@ -49,6 +50,8 @@ const NuevaCita = () => {
             hora: '',
             descripcion: '',
         },
+
+
         onSubmit: cita => {
             try {
 
@@ -112,77 +115,7 @@ const NuevaCita = () => {
    
     }
 
-    function agregarEvento (nombre, apellidos, correo, fecha, hora, descripcion ){
-
-     
-        var gapi = window.gapi
-        
-        //  Update with your own Client Id and Api key 
-        
-        var CLIENT_ID = "529094084148-em988n3ck312m1g82k3ucm96vudp5ou2.apps.googleusercontent.com"
-        var API_KEY = "AIzaSyC5rozZvL1yXtj51_ThlbCFOxAMqDiXcIY"
-        var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"]
-        var SCOPES = "https://www.googleapis.com/auth/calendar"
-      
-        //https://www.youtube.com/watch?v=zrLf4KMs71E
-      
-          gapi.load('client:auth2', () => {
-            console.log('loaded client')
-      
-            gapi.client.init({
-              apiKey: API_KEY,
-              clientId: CLIENT_ID,
-              discoveryDocs: DISCOVERY_DOCS,
-              scope: SCOPES,
-            })
-      
-            gapi.client.load('calendar', 'v3', () => console.log('bam!'))
-            
-      
-            gapi.auth2.getAuthInstance().signIn()
-            .then(() => {
-              
-              var event = {
-                'summary': `Cita a: ${nombre} ${apellidos}`,
-                'description': `${descripcion}`,
-                'start': {
-                  'dateTime': `${fecha}T${hora}:00-06:00`,
-                  'timeZone': 'America/Mexico_City'
-                },
-                'end': {
-                  'dateTime': `${fecha}T${hora}:00-06:00`,
-                  'timeZone': 'America/Mexico_City'
-                },
-                'attendees': [
-                  {'email': `${correo}`}
-                ],
-                'reminders': {
-                  'useDefault': false,
-                  'overrides': [
-                    {'method': 'email', 'minutes': 24 * 60},
-                    {'method': 'popup', 'minutes': 10}
-                  ]
-                }
-              }
-              
-              var request = gapi.client.calendar.events.insert({
-                'calendarId': 'primary',
-                'resource': event,
-              })
-      
-              request.execute(event => {
-                console.log(event)
-                const token = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse();
-                console.log(token);
-                
-                //console.log(accessToken);
-                
-                //window.open(event.htmlLink)
-              })
-            })//FIN DE ONCLICK
-          })
-       
-      }
+    
 
 
 
@@ -190,8 +123,21 @@ const NuevaCita = () => {
         <div className="">
         <Sidebar/>
 
+
+
+
         <div className="bg-colorFondo w-4/5 box-border left-auto float-right h-screen">
             <Barra/>
+
+            <div className="flex justify-center">
+
+            <form 
+            className="w-11/12 pb-20"
+            // onSubmit={handleSubmit}
+            onSubmit={formik.handleSubmit}
+            >
+
+
 
             <div className=" flex">
 
@@ -204,7 +150,7 @@ const NuevaCita = () => {
                    
                     <button
                         className=" bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
-                        onClick={formik.handleSubmit}
+                        
                         type="submit"
                         //onClick={() => abrirNuevaCita()}
                     >
@@ -215,12 +161,11 @@ const NuevaCita = () => {
             </div>
 
 
-            <div className="flex justify-center">
 
-                    <form 
-                    className="bg-white mt-10 w-11/12 pb-20"
-                   // onSubmit={handleSubmit}
-                    >
+                     <div className="bg-white mt-8 pb-8">
+
+
+            
 
                         <div className="">
                             <p className="font-source font-bold text-xl pl-12 pt-3">Ingresa los datos para la cita</p>
@@ -233,6 +178,7 @@ const NuevaCita = () => {
                             <select
                                 className="shadow appearance-none border-2 w-8/12 py-2 px-3"
                                 id="paciente"
+                                required
                                 value={formik.values.paciente}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
@@ -251,6 +197,7 @@ const NuevaCita = () => {
 
                             <label className="w-3/12 font-source text-tercerColor pl-12">Fecha</label>
                             <input
+                                required
                                 type="date"
                                 name="fecha"
                                 className="shadow appearance-none border-2 w-8/12 py-2 px-3"
@@ -268,6 +215,7 @@ const NuevaCita = () => {
 
                             <label className="w-3/12 font-source text-tercerColor pl-12">Hora</label>
                             <input
+                                required
                                 type="time"
                                 name="hora"
                                 className="shadow appearance-none border-2 w-8/12 py-2 px-3"
@@ -282,6 +230,7 @@ const NuevaCita = () => {
                         <div className=" flex mt-6">
                             <label htmlFor="descripcion" className="w-3/12 font-source text-tercerColor pl-12">Descripción: </label>
                             <textarea
+                                required
                                 className="shadow appearance-none border-2 w-8/12 py-2 px-3"
                                 placeholder="Descripción"
                                 id="descripcion"
@@ -291,6 +240,7 @@ const NuevaCita = () => {
                                 
 
                             ></textarea>
+                        </div>
                         </div>
 
 
