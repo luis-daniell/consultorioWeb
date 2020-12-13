@@ -85,9 +85,6 @@ export function agregarEvento (nombre, apellidos, correo, fecha, hora, descripci
           const token = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse();
           console.log(token);
           
-          //console.log(accessToken);
-          
-          //window.open(event.htmlLink)
         })
       })//FIN DE ONCLICK
     })

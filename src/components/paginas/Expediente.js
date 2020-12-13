@@ -49,7 +49,6 @@ export const Expediente = props => {
 
 
 
-
     return ( 
         <div className="">
             <Sidebar/>

@@ -173,17 +173,6 @@ console.log(descripcion);
                 });
 
             }
-
-
-            
-            /*try {
-                firebase.db.collection('expedientes').add(expediente);
-                
-                
-
-            } catch (error) {
-                console.log(error);
-            }*/
         }
 
     });
