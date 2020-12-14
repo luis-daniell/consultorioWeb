@@ -52,7 +52,10 @@ const Previsualizacion = () => {
 
 
     const f = new Date();
+    const mes = (f.getMonth() +1);
+    const year =  f.getFullYear();
     const fech = f.getFullYear() + "/" + (f.getMonth() +1) + "/" + f.getDate();
+
     
 
 
@@ -73,6 +76,7 @@ const Previsualizacion = () => {
     
                 nombreConsultorio: usuario.consultorio,
                 fechaHoy: fech,
+
                 nombreDoctor: usuario.nombre,
                 
                 doctorEspecialidad: usuario.especialidad,
@@ -83,6 +87,8 @@ const Previsualizacion = () => {
                 medicamentosPaciente: medicamentos,
                 telefonoPaciente: telefonoPaciente, 
                 pacienteId: idPaciente,
+                mesReceta: mes.toString(),
+                yearReceta: year.toString(),
                 
     
             });
@@ -111,6 +117,8 @@ const Previsualizacion = () => {
                 medicamentosPaciente: medicamentos,
                 telefonoPaciente: telefonoPaciente, 
                 pacienteId: idPaciente,
+                mesReceta: mes.toString(),
+                yearReceta: year.toString(),
                 
     
             });
@@ -124,6 +132,8 @@ const Previsualizacion = () => {
                 hora: hora,
                 descripcion: descripcionCita,
                 atendida: false,
+                mesCita: mes.toString(),
+                yearCita: year.toString(),
 
             });
             

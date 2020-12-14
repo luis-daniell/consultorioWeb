@@ -1,5 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react';
 import Chart from "react-google-charts";
+import {obtenerDatosCitas, obtenerDatosRecetas,  obtenerDatosExpedientes, obtenerDiagnosticoExpedientes} from '../../helper';
 import {FirebaseContext} from '../../firebase/Auth';
 import Sidebar from "../ui/Sidebar";
 import Barra from "../ui/Barra";
@@ -7,19 +8,12 @@ import {useFormik} from 'formik';
 
 
 
-
-
-
 export const Estadisticas = () => {
-
-
 
     const [estado, guardarEstado] = useState(false);
     //const [yearr, guardarYear] = useState('');
 
     const {firebase} = useContext(FirebaseContext);
-
-    
 
 
     //Año en LocalStorage
@@ -29,11 +23,10 @@ export const Estadisticas = () => {
     }
 
 
-
-
     const [citas, guardarCitas] = useState([]);
-    
-    
+    const [expedientes, guardarExpedientes] = useState([]);
+    const [recetas, guardarRecetas] = useState([]);
+     
     
     useEffect(() => {
         if(year === ''){
@@ -49,6 +42,20 @@ export const Estadisticas = () => {
             
         }
         obtenerCitas();
+
+        const obtenerExpedientes =  () => {
+            firebase.db.collection('expedientes').where('yearExpediente','==',year.toString()).onSnapshot(manejarSnapshot2);//Snapshot para ver los cambios en tiempo real y get para ver solamnente los cambios
+            
+        }
+        obtenerExpedientes();
+
+
+        const obtenerRecetas =  () => {
+            firebase.db.collection('recetas').where('yearReceta','==',year.toString()).onSnapshot(manejarSnapshot3);//Snapshot para ver los cambios en tiempo real y get para ver solamnente los cambios
+            
+        }
+        obtenerRecetas();
+
 
 
         
@@ -70,133 +77,47 @@ export const Estadisticas = () => {
     }
 
 
+    //Snapshop nos permite usar la base de datos en tiempo real de firestore
+    function manejarSnapshot2(snapshot) {
+        const expedientess = snapshot.docs.map(doc => {
+            return{
+                id: doc.id,
+                ...doc.data()
+            }
+        });
 
-
-        let enero = 0;
-        let febrero = 0;
-        let marzo = 0;
-        let abril = 0;
-        let mayo = 0;
-        let junio = 0;
-        let julio = 0;
-        let agosto = 0;
-        let septiembre = 0;
-        let octubre = 0;
-        let noviembre = 0;
-        let diciembre = 0;
-    //console.log(citas);
-
-    citas.forEach(logArrayElements);
-    
-
-    function logArrayElements(element, index, array) {
-
-        
-
-        if(element.mesCita === "01"){
-            enero = enero + 1;
-
-        }else if(element.mesCita === "02"){
-            febrero = febrero + 1;
-
-        }else if(element.mesCita === "03"){
-            marzo = marzo + 1;
-
-        }else if(element.mesCita === "04"){
-            abril = abril + 1;
-
-        }else if(element.mesCita === "05"){
-            mayo = mayo + 1;
-
-        }else if(element.mesCita === "06"){
-            junio = junio + 1;
-
-        }else if(element.mesCita === "07"){
-            julio = julio + 1;
-
-        }else if(element.mesCita === "08"){
-            agosto = agosto + 1;
-
-        }else if(element.mesCita === "09"){
-            septiembre = septiembre + 1;
-
-        }else if(element.mesCita === "10"){
-            octubre = octubre + 1;
-
-        }else if(element.mesCita === "11"){
-            noviembre = noviembre + 1;
-
-        }else{
-            diciembre = diciembre + 1;
-        }
-
+        //Almacenar los resultados en el state
+        guardarExpedientes(expedientess);
     }
 
-    const meses = [{
-        mes: 'Enero',
-        cantidad: enero
-        },{
-        mes: 'Febrero',
-        cantidad: febrero
-        }, {
-        mes: 'Marzo',
-        cantidad: marzo
-        },
-        {
-        mes: 'Abril',
-        cantidad: abril
-        },
-        {
-        mes: 'Mayo',
-        cantidad: mayo
-        }, {
-        mes: 'Junio',
-        cantidad: junio
-        }, {
-        mes: 'Julio',
-        cantidad: julio
-        }, {
-        mes: 'Agosto',
-        cantidad: agosto
-        }, {
-        mes: 'Septiembre',
-        cantidad: septiembre
-        }, {
-        mes: 'Octubre',
-        cantidad: octubre
-        }, {
-        mes: 'Noviembre',
-        cantidad: noviembre
-        }, {
-        mes: 'Diciembre',
-        cantidad: diciembre
-        }
 
+    //Snapshop nos permite usar la base de datos en tiempo real de firestore
+    function manejarSnapshot3(snapshot) {
+        const recetass = snapshot.docs.map(doc => {
+            return{
+                id: doc.id,
+                ...doc.data()
+            }
+        });
 
-    ];
-
-
-   // console.log(meses);
-    const returnedArray = [['citas', '']];
-    for(let i=0; i<meses.length; i++) {
-
-        if(meses[i].cantidad >= 1){
-            returnedArray[i+1] = [meses[i].mes, meses[i].cantidad];
-
-
-        }
-            
-    } 
-
-
-    var filtered = returnedArray.filter(function (el) {
-        return el != null;
-      });
-    
-    console.log(filtered);
+        //Almacenar los resultados en el state
+        guardarRecetas(recetass);
+    }
 
 
 
+
+
+
+
+    const graficaCitas = obtenerDatosCitas(citas, 'Citas');
+    const graficaExpedientes = obtenerDatosExpedientes(expedientes, 'Expedientes');
+    const graficaRecetas = obtenerDatosRecetas(recetas, 'Recetas');
+    const diagnosticos = obtenerDiagnosticoExpedientes(expedientes, 'Expedientes');
+    //console.log(diagnosticos);    
+
+
+ 
     const formik = useFormik({
         initialValues : {
             year: '',
@@ -211,15 +132,6 @@ export const Estadisticas = () => {
         }
 
     });
-
-
-
-    
-
-
-
-
-
 
 
 
@@ -239,8 +151,7 @@ export const Estadisticas = () => {
                     
                 </div>
 
-
-                
+            
                 
                 {estado ? 
                 <div className="w-11/12 flex justify-items-center items-center justify-center mt-10">
@@ -287,25 +198,17 @@ export const Estadisticas = () => {
                         </div>
                         
 
-
-
-
-
                         <button
                             className="bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"  
                             onClick={() => guardarEstado(true)}
                         >
                         Cambiar Año</button>
-
                     </div>
                 </div>
-
-                
                 }
 
 
-
-                <div className=" bg-orange-500 flex justify-center items-center justify-items-center ">
+                <div className="flex justify-center items-center justify-items-center ">
                     <div className="bg-red-700 flex">
 
                         <Chart
@@ -313,7 +216,7 @@ export const Estadisticas = () => {
                             height={300}
                             chartType="ColumnChart"
                             loader={<div>Loading Chart</div>}
-                            data={filtered}
+                            data={graficaCitas}
                             options={{
                             title: 'Citas Atendidas',
                             chartArea: { width: '80%' },
@@ -322,61 +225,73 @@ export const Estadisticas = () => {
                                 minValue: 0,
                             },
                             vAxis: {
-                                title: 'City',
+                                title: 'Citas',
                             },
                             }}
                             legendToggle
                         />
                     </div>
 
-
-
-                    <div className="bg-gray-700 flex">
-                            
+                    <div className="bg-gray-700 flex">    
+                    
                     <Chart
-                            width={500}
-                            height={300}
-                            chartType="ColumnChart"
-                            loader={<div>Loading Chart</div>}
-                            data={[
-                            ['City', '2010 Population'],
-                            ['Enero', 10],
-                            ['Febrero', 20],
-                            ['Marzo', 25],
-                            ['Abril', 30],
-                            ['Mayo', 15],
-                            ['Junio', 23],
-                            ['Julio', 10],
-                            ['Agosto', 32],
-                            ['Septiembre', 40],
-                            ['Octubre', 29],
-                            ['Noviembre', 21],
-                            ['Diciembre', 19],
+                        width={'500px'}
+                        height={'300px'}
+                        chartType="AreaChart"
+                        loader={<div>Loading Chart</div>}
+                        data={graficaExpedientes}
+                        options={{
+                            title: 'Expedientes Registrados',
+                            hAxis: { title: 'Expedientes', titleTextStyle: { color: '#333' } },
+                            vAxis: { minValue: 0 },
+                            // For the legend to fit, we make the chart area smaller
+                            chartArea: { width: '80%', height: '70%' },
+                            // lineWidth: 25
+                        }}
+                        // For tests
+                        rootProps={{ 'data-testid': '1' }}
+                    />
+                    </div>
 
-                            ]}
-                            options={{
-                            title: 'Population of Largest U.S. Cities',
-                            chartArea: { width: '80%' },
-                            hAxis: {
-                                title: 'Total Population',
-                                minValue: 0,
-                            },
-                            vAxis: {
-                                title: 'City',
-                            },
-                            }}
-                            legendToggle
+                </div>
+
+
+                <div className="flex justify-center items-center justify-items-center ">
+                    <div className="bg-red-700 flex">
+
+                    <Chart
+                        width={'500px'}
+                        height={'300px'}
+                        chartType="PieChart"
+                        loader={<div>Loading Chart</div>}
+                        data={graficaRecetas}
+                        options={{
+                            title: 'Recetas Creadas',
+                        }}
+                        rootProps={{ 'data-testid': '1' }}
                         />
                     </div>
 
+                    <div className="bg-gray-700 flex">    
+                    
+                        <Chart
+                            width={'500px'}
+                            height={'300px'}
+                            chartType="PieChart"
+                            loader={<div>Loading Chart</div>}
+                            data={diagnosticos}
+                            options={{
+                                title: 'Diagnósticos',
+                            }}
+                            rootProps={{ 'data-testid': '1' }}
+                        />
 
+                    </div>
 
                 </div>
 
 
                 
-
-
             </div>
         </div>
   );

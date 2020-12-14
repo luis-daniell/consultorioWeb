@@ -103,7 +103,6 @@ export function PdfDocument(props) {
 //Se configuro en google cloud
  
   return (
-
     <Document>
       <Page size="A4" wrap >
           <Text style={styles.title}>{props.data.nombreConsultorio}</Text>
@@ -111,31 +110,419 @@ export function PdfDocument(props) {
           
       </Page>
     </Document>
-
-
-
-    /*
-    <Document>
-      <Page >
-        {data
-          ? data.map((a, index) => {
-              return (
-                <View key={index} >
-                  
-                  <View >
-                    <Text >{data}</Text>
-                     
-                     
-                  </View>
-                </View>
-              );
-            })
-          : ""}
-      </Page>
-    </Document>*/
   );
-
-
-  
-  
 }
+
+export function obtenerDatosCitas(citas, titulo){
+  let enero = 0;
+        let febrero = 0;
+        let marzo = 0;
+        let abril = 0;
+        let mayo = 0;
+        let junio = 0;
+        let julio = 0;
+        let agosto = 0;
+        let septiembre = 0;
+        let octubre = 0;
+        let noviembre = 0;
+        let diciembre = 0;
+    //console.log(citas);
+
+    citas.forEach(logArrayElements);
+    
+
+    function logArrayElements(element, index, array) {
+
+        
+
+        if(element.mesCita === "01"){
+            enero = enero + 1;
+
+        }else if(element.mesCita === "02"){
+            febrero = febrero + 1;
+
+        }else if(element.mesCita === "03"){
+            marzo = marzo + 1;
+
+        }else if(element.mesCita === "04"){
+            abril = abril + 1;
+
+        }else if(element.mesCita === "05"){
+            mayo = mayo + 1;
+
+        }else if(element.mesCita === "06"){
+            junio = junio + 1;
+
+        }else if(element.mesCita === "07"){
+            julio = julio + 1;
+
+        }else if(element.mesCita === "08"){
+            agosto = agosto + 1;
+
+        }else if(element.mesCita === "09"){
+            septiembre = septiembre + 1;
+
+        }else if(element.mesCita === "10"){
+            octubre = octubre + 1;
+
+        }else if(element.mesCita === "11"){
+            noviembre = noviembre + 1;
+
+        }else{
+            diciembre = diciembre + 1;
+        }
+
+    }
+
+    const meses = [{
+        mes: 'Enero',
+        cantidad: enero
+        },{
+        mes: 'Febrero',
+        cantidad: febrero
+        }, {
+        mes: 'Marzo',
+        cantidad: marzo
+        },
+        {
+        mes: 'Abril',
+        cantidad: abril
+        },
+        {
+        mes: 'Mayo',
+        cantidad: mayo
+        }, {
+        mes: 'Junio',
+        cantidad: junio
+        }, {
+        mes: 'Julio',
+        cantidad: julio
+        }, {
+        mes: 'Agosto',
+        cantidad: agosto
+        }, {
+        mes: 'Septiembre',
+        cantidad: septiembre
+        }, {
+        mes: 'Octubre',
+        cantidad: octubre
+        }, {
+        mes: 'Noviembre',
+        cantidad: noviembre
+        }, {
+        mes: 'Diciembre',
+        cantidad: diciembre
+        }
+
+
+    ];
+
+
+   // console.log(meses);
+    const returnedArray = [[titulo, '']];
+    for(let i=0; i<meses.length; i++) {
+
+        if(meses[i].cantidad >= 1){
+            returnedArray[i+1] = [meses[i].mes, meses[i].cantidad];
+
+
+        }
+            
+    } 
+
+
+    var filtered = returnedArray.filter(function (el) {
+        return el != null;
+      });
+
+
+      return filtered;
+}
+
+
+export function obtenerDatosExpedientes(expedientes, titulo){
+  let enero = 0;
+        let febrero = 0;
+        let marzo = 0;
+        let abril = 0;
+        let mayo = 0;
+        let junio = 0;
+        let julio = 0;
+        let agosto = 0;
+        let septiembre = 0;
+        let octubre = 0;
+        let noviembre = 0;
+        let diciembre = 0;
+    //console.log(expedientes);
+
+    expedientes.forEach(logArrayElements);
+    
+
+    function logArrayElements(element, index, array) {
+
+        
+
+        if(element.mesExpediente === "01"){
+            enero = enero + 1;
+
+        }else if(element.mesExpediente === "02"){
+            febrero = febrero + 1;
+
+        }else if(element.mesExpediente === "03"){
+            marzo = marzo + 1;
+
+        }else if(element.mesExpediente === "04"){
+            abril = abril + 1;
+
+        }else if(element.mesExpediente === "05"){
+            mayo = mayo + 1;
+
+        }else if(element.mesExpediente === "06"){
+            junio = junio + 1;
+
+        }else if(element.mesExpediente === "07"){
+            julio = julio + 1;
+
+        }else if(element.mesExpediente === "08"){
+            agosto = agosto + 1;
+
+        }else if(element.mesExpediente === "09"){
+            septiembre = septiembre + 1;
+
+        }else if(element.mesExpediente === "10"){
+            octubre = octubre + 1;
+
+        }else if(element.mesExpediente === "11"){
+            noviembre = noviembre + 1;
+
+        }else{
+            diciembre = diciembre + 1;
+        }
+
+    }
+
+    const meses = [{
+        mes: 'Enero',
+        cantidad: enero
+        },{
+        mes: 'Febrero',
+        cantidad: febrero
+        }, {
+        mes: 'Marzo',
+        cantidad: marzo
+        },
+        {
+        mes: 'Abril',
+        cantidad: abril
+        },
+        {
+        mes: 'Mayo',
+        cantidad: mayo
+        }, {
+        mes: 'Junio',
+        cantidad: junio
+        }, {
+        mes: 'Julio',
+        cantidad: julio
+        }, {
+        mes: 'Agosto',
+        cantidad: agosto
+        }, {
+        mes: 'Septiembre',
+        cantidad: septiembre
+        }, {
+        mes: 'Octubre',
+        cantidad: octubre
+        }, {
+        mes: 'Noviembre',
+        cantidad: noviembre
+        }, {
+        mes: 'Diciembre',
+        cantidad: diciembre
+        }
+
+
+    ];
+
+
+   // console.log(meses);
+    const returnedArray = [[titulo, '']];
+    for(let i=0; i<meses.length; i++) {
+
+        if(meses[i].cantidad >= 1){
+            returnedArray[i+1] = [meses[i].mes, meses[i].cantidad];
+
+
+        }
+            
+    } 
+
+
+    var filtered = returnedArray.filter(function (el) {
+        return el != null;
+      });
+
+
+      return filtered;
+}
+
+
+export function obtenerDatosRecetas(recetas, titulo){
+  let enero = 0;
+        let febrero = 0;
+        let marzo = 0;
+        let abril = 0;
+        let mayo = 0;
+        let junio = 0;
+        let julio = 0;
+        let agosto = 0;
+        let septiembre = 0;
+        let octubre = 0;
+        let noviembre = 0;
+        let diciembre = 0;
+    //console.log(recetas);
+
+    recetas.forEach(logArrayElements);
+    
+
+    function logArrayElements(element, index, array) {
+
+        
+
+        if(element.mesReceta === "01"){
+            enero = enero + 1;
+
+        }else if(element.mesReceta === "02"){
+            febrero = febrero + 1;
+
+        }else if(element.mesReceta === "03"){
+            marzo = marzo + 1;
+
+        }else if(element.mesReceta === "04"){
+            abril = abril + 1;
+
+        }else if(element.mesReceta === "05"){
+            mayo = mayo + 1;
+
+        }else if(element.mesReceta === "06"){
+            junio = junio + 1;
+
+        }else if(element.mesReceta === "07"){
+            julio = julio + 1;
+
+        }else if(element.mesReceta === "08"){
+            agosto = agosto + 1;
+
+        }else if(element.mesReceta === "09"){
+            septiembre = septiembre + 1;
+
+        }else if(element.mesReceta === "10"){
+            octubre = octubre + 1;
+
+        }else if(element.mesReceta === "11"){
+            noviembre = noviembre + 1;
+
+        }else{
+            diciembre = diciembre + 1;
+        }
+
+    }
+
+    const meses = [{
+        mes: 'Enero',
+        cantidad: enero
+        },{
+        mes: 'Febrero',
+        cantidad: febrero
+        }, {
+        mes: 'Marzo',
+        cantidad: marzo
+        },
+        {
+        mes: 'Abril',
+        cantidad: abril
+        },
+        {
+        mes: 'Mayo',
+        cantidad: mayo
+        }, {
+        mes: 'Junio',
+        cantidad: junio
+        }, {
+        mes: 'Julio',
+        cantidad: julio
+        }, {
+        mes: 'Agosto',
+        cantidad: agosto
+        }, {
+        mes: 'Septiembre',
+        cantidad: septiembre
+        }, {
+        mes: 'Octubre',
+        cantidad: octubre
+        }, {
+        mes: 'Noviembre',
+        cantidad: noviembre
+        }, {
+        mes: 'Diciembre',
+        cantidad: diciembre
+        }
+
+
+    ];
+
+
+   // console.log(meses);
+    const returnedArray = [[titulo, '']];
+    for(let i=0; i<meses.length; i++) {
+
+        if(meses[i].cantidad >= 1){
+            returnedArray[i+1] = [meses[i].mes, meses[i].cantidad];
+        }    
+    } 
+    var filtered = returnedArray.filter(function (el) {
+        return el != null;
+      });
+
+
+      return filtered;
+}
+
+
+export function obtenerDiagnosticoExpedientes(expedientes, titulo){
+ 
+  const returnedArray = [[titulo, '']];  
+  const arreglo = [];
+  expedientes.forEach(logArrayElements);
+    
+    function logArrayElements(element, index, array) {
+
+      arreglo.push(element.diagnostico);
+
+    }
+    
+    var repetidos = {};
+
+    arreglo.forEach(function(numero){
+      repetidos[numero] = (repetidos[numero] || 0) + 1;
+    });
+
+    const llaves = Object.keys(repetidos);
+    const valores = Object.values(repetidos);
+
+    for(let i=0; i<llaves.length; i++) {
+
+      returnedArray[i+1] = [llaves[i], valores[i]];
+      
+  }
+      return returnedArray;
+}
+
+
+
+
+
+
+
+
+

@@ -15,7 +15,9 @@ const NuevoExpediente = props => {
     //Context con las operaciones de firebase
     const {firebase} = useContext(FirebaseContext);
 
-
+    const f = new Date();
+    const year = f.getFullYear().toString();
+    const mes =  (f.getMonth() +1).toString();
 
     const formik = useFormik({
         initialValues : {
@@ -31,6 +33,8 @@ const NuevoExpediente = props => {
             presion: '',
             peso: '',
             talla: '',
+            yearExpediente: year,
+            mesExpediente: mes,
         },
 
 
