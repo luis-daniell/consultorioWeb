@@ -106,10 +106,6 @@ export const Estadisticas = () => {
 
 
 
-
-
-
-
     const graficaCitas = obtenerDatosCitas(citas, 'Citas');
     const graficaExpedientes = obtenerDatosExpedientes(expedientes, 'Expedientes');
     const graficaRecetas = obtenerDatosRecetas(recetas, 'Recetas');
@@ -287,11 +283,7 @@ export const Estadisticas = () => {
                         />
 
                     </div>
-
                 </div>
-
-
-                
             </div>
         </div>
   );

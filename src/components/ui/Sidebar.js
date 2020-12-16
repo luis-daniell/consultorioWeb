@@ -14,13 +14,13 @@ const Sidebar = props => {
 
     return ( 
 
-        <aside className="w-1/5 fixed h-screen bg-gray-800 float-left">
+        <aside className="hidden lg:flex lg:w-1/5 lg:fixed lg:h-screen lg:bg-gray-800 lg:float-left">
             <div className="w-full">
                 <div className="w-full pt-3 bg-gray-900">
                     <p className="uppercase text-white text-2xl tracking-wide text-center font-bold font-source">Consultorio</p>
                 </div>
                 
-                <nav  className=" pl-4">
+                <nav className="pl-4">
                     
                     <NavLink className="p-1 text-white block hover:bg-yellow-500 hover:text-gray-900 font-source font-bold text-lg" activeClassName="text-yellow-500"  to="/dashboard">
                     
@@ -38,11 +38,8 @@ const Sidebar = props => {
                     </NavLink> 
 
 
-                    
-                    
                     <NavLink className="p-1 text-white block hover:bg-yellow-500 hover:text-gray-900 font-source font-bold text-lg mt-8" activeClassName="text-yellow-500"  to="/estadisticas">
-                        
-                        
+                       
                         <div className="flex content-center">
                             <div className="flex content-center">
                                 <img src={estadistica} width="20" height="20" alt="estadisticas"/>
@@ -51,12 +48,9 @@ const Sidebar = props => {
                             <div className="pl-6">
                             <span className="">Estadísticas</span>
                             </div>
-                            
                         </div>
                         
-                        </NavLink>
-
-
+                    </NavLink>
 
                     <NavLink className="p-1 text-white block hover:bg-yellow-500 hover:text-gray-900 font-source font-bold text-lg mt-8" activeClassName="text-yellow-500"  to="/recetas">
                         
@@ -68,14 +62,9 @@ const Sidebar = props => {
                             <div className="pl-6">
                             <span className="">Recetas</span>
                             </div>
-                            
                         </div>
                         
                     </NavLink>
-
-
-
-
 
                     <NavLink className="p-1 text-white block hover:bg-yellow-500 hover:text-gray-900 font-source font-bold text-lg mt-8" activeClassName="text-yellow-500"  to="/perfil">
 
@@ -85,14 +74,11 @@ const Sidebar = props => {
                             </div>
 
                             <div className="pl-6">
-                            <span className="">Perfil</span>
+                                <span className="">Perfil</span>
                             </div>
-                            
                         </div>
                         
-                        
                     </NavLink>
-
 
                     <NavLink className="p-1 text-white block hover:bg-yellow-500 hover:text-gray-900 font-source font-bold text-lg mt-8" activeClassName="text-yellow-500"  to="/citas">
                         
@@ -102,9 +88,8 @@ const Sidebar = props => {
                             </div>
 
                             <div className="pl-6">
-                            <span className="">Citas</span>
+                                <span className="">Citas</span>
                             </div>
-                            
                         </div>
                         
                     </NavLink>
@@ -117,33 +102,27 @@ const Sidebar = props => {
                             </div>
 
                             <div className="pl-6">
-                            <span className="">Expediente</span>
+                                <span className="">Expediente</span>
                             </div>
-                            
                         </div>
+
                     </NavLink>
 
-
-
                     <NavLink className="p-1 text-white block hover:bg-yellow-500 hover:text-gray-900 font-source font-bold text-lg mt-8" activeClassName="text-yellow-500"  to="/historial">
+                        
                         <div className="flex content-center">
                             <div className="flex content-center">
                                 <img src={historial} width="20" height="20" alt="historial"/>
                             </div>
 
                             <div className="pl-6">
-                            <span className="">Historial</span>
+                                <span className="">Historial</span>
                             </div>
-                            
                         </div>
                         
                     </NavLink>
-                    
+
                 </nav>
-
-                
-                
-
             </div>
         </aside>
 

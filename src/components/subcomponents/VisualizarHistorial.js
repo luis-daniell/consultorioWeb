@@ -203,22 +203,9 @@ const VisualizarHistorial = ({props}) => {
                                         props = {props}
                                     /> 
                                 ))}
+                                
                             </div>
-
-
-                            
-
-
-
-
-
-
-
-
-                           
                         </div>
-
-                        
                     </div>
                 </div>
             </div>

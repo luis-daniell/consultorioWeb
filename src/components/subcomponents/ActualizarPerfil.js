@@ -13,7 +13,6 @@ const ActualizarPerfil = ({perfil}) => {
     const history = useHistory();
     const location = useLocation();
 
-
     const {firebase, currentUser} = useContext(FirebaseContext);
 
 
@@ -28,17 +27,12 @@ const ActualizarPerfil = ({perfil}) => {
     let direccion2 = direccion;
     let especialidad2 = especialidad;
 
-
-
-
    //console.log(currentUser.uid);
 
      //State para las imagen de doctor
     const [subiendo, guardarSubiendo] = useState(false);
     const [progreso, guardarProgreso] = useState(0);
     const [urlimagen, guardarUrlimagen] = useState('');
-
-
 
     //State para las imagen de consultorio
     const [subiendo2, guardarSubiendo2] = useState(false);
@@ -66,7 +60,6 @@ const ActualizarPerfil = ({perfil}) => {
 
         onSubmit: perfill => {
             try {
-                
                 perfill.imagenDoctor = urlimagen;
                 perfill.imagenConsultorio = urlimagen2;
                 firebase.db.collection('usuarios').doc(currentUser.uid).update(perfill);
@@ -75,18 +68,13 @@ const ActualizarPerfil = ({perfil}) => {
                     displayName: perfill.nombre
                   }).then(function() {
                     history.push("/perfil");
-
                   })
-
                 
             } catch (error) {
                 console.log(error);
             }
         }
      });
-
-
-
 
      //Todo sobre las imagenes
     const handleUploadStart = () => {
@@ -118,13 +106,6 @@ const ActualizarPerfil = ({perfil}) => {
         guardarProgreso(progreso);
         //console.log(progreso);
     }
-
-
-
-
-
-
-
 
     //Todo sobre las imagen de consultorio
     const handleUploadStart2 = () => {
@@ -161,19 +142,15 @@ const ActualizarPerfil = ({perfil}) => {
     return ( 
         <div className="">
             
-                <Sidebar/>
-            
-            
+            <Sidebar/>
             
             <div className="bg-colorFondo w-4/5 box-border left-auto float-right h-auto">
                 <Barra/>
-
                 <div className="flex">
 
                     <div className="flex w-1/2 justify-start items-center">
                         <p className="font-source content-center text-2xl font-bold pl-12 pt-6">Modificar Perfil</p>
                     </div>
-                    
                     <div className=" w-1/2 flex justify-end items-center pr-12 pt-6">
                         <button
                             className="bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
@@ -191,7 +168,6 @@ const ActualizarPerfil = ({perfil}) => {
                     className="bg-white mt-10 w-11/12 pb-20 h-full mb-12"
                    // onSubmit={handleSubmit}
                     >
-
                         <div className="">
                             <p className="font-source font-bold text-xl pl-12 pt-3">Ingresa los campos a modificar</p>
                         </div>
@@ -228,8 +204,6 @@ const ActualizarPerfil = ({perfil}) => {
                         </div>
 
 
-
-
                         <div className=" flex mt-6">
                             <label htmlFor="descripcion" className="w-3/12 pl-12 text-tercerColor">Nombre del consultorio: </label>
                             <input 
@@ -261,8 +235,6 @@ const ActualizarPerfil = ({perfil}) => {
                             />
                         </div>
 
-
-
                         {subiendo && (
                             <div className="h-12 relative w-full border">
                                 <div className="bg-green-500 absolute left-0 top-0 text-white px-2 text-sm h-12 flex items-center" style={{width: `${progreso}%`}}>
@@ -276,10 +248,6 @@ const ActualizarPerfil = ({perfil}) => {
                                La imagen se subió correctamente
                            </p> 
                         )}
-
-
-
-
 
                         <div className="flex mt-6">
                             <label className="w-3/12 pl-12 text-tercerColor" htmlFor="imagen">Imagen del consultorio: </label>
@@ -312,7 +280,6 @@ const ActualizarPerfil = ({perfil}) => {
                            </p> 
                         )}
 
-
                         <div className="flex mt-10">
 
                             <label className="w-3/12 pl-12 text-tercerColor">Cédula Profesional: </label>
@@ -323,11 +290,8 @@ const ActualizarPerfil = ({perfil}) => {
                                 value={formik.values.cedula}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
-
                             />
-
                         </div>
-
 
                         <div className="flex mt-10">
 
@@ -339,13 +303,8 @@ const ActualizarPerfil = ({perfil}) => {
                                 value={formik.values.telefono}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
-
                             />
-
                         </div>
-
-
-
 
                         <div className=" flex mt-6">
                             <label htmlFor="descripcion" className="w-3/12 pl-12 text-tercerColor">Dirección: </label>
@@ -356,24 +315,12 @@ const ActualizarPerfil = ({perfil}) => {
                                 value={formik.values.direccion}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
-                                
-
                             ></textarea>
                         </div>
-
-
-
-
-
-
-                       
-
+                        
                     </form>
                 </div>
-
             </div>
-            
-
         </div>
      );
 }

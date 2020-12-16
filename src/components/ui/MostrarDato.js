@@ -19,7 +19,6 @@ const MostrarDato = ({cita}) => {
     
         <div className="flex justify-items-center items-center justify-center w-full">
             
-
                     <div className="border-2 border-black w-3/12 flex justify-center">{cita.fecha}</div>
 
                     <div className="border-2 border-black w-3/12 flex justify-center">{cita.hora}</div>

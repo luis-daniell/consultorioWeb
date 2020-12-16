@@ -1,11 +1,6 @@
 import React from 'react';
 import { Document, Page, Text,  Image, StyleSheet } from '@react-pdf/renderer';
 
-
-//Funcion para pbtener el access Token
-
-
-
 const styles = StyleSheet.create({
   
   title: {
@@ -81,17 +76,14 @@ export function agregarEvento (nombre, apellidos, correo, fecha, hora, descripci
         })
 
         request.execute(event => {
-          console.log(event)
-          const token = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse();
-          console.log(token);
+          //console.log(event)
+        gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse();
+          //console.log(token);
           
         })
       })//FIN DE ONCLICK
     })
- 
 }
-
-
 
 export function PdfDocument(props) {
   console.log("pdf props", props.data.consultorioLogo);
@@ -114,26 +106,23 @@ export function PdfDocument(props) {
 }
 
 export function obtenerDatosCitas(citas, titulo){
-  let enero = 0;
-        let febrero = 0;
-        let marzo = 0;
-        let abril = 0;
-        let mayo = 0;
-        let junio = 0;
-        let julio = 0;
-        let agosto = 0;
-        let septiembre = 0;
-        let octubre = 0;
-        let noviembre = 0;
-        let diciembre = 0;
-    //console.log(citas);
+    let enero = 0;
+    let febrero = 0;
+    let marzo = 0;
+    let abril = 0;
+    let mayo = 0;
+    let junio = 0;
+    let julio = 0;
+    let agosto = 0;
+    let septiembre = 0;
+    let octubre = 0;
+    let noviembre = 0;
+    let diciembre = 0;
 
     citas.forEach(logArrayElements);
     
 
     function logArrayElements(element, index, array) {
-
-        
 
         if(element.mesCita === "01"){
             enero = enero + 1;
@@ -217,31 +206,25 @@ export function obtenerDatosCitas(citas, titulo){
 
     ];
 
-
    // console.log(meses);
     const returnedArray = [[titulo, '']];
     for(let i=0; i<meses.length; i++) {
 
         if(meses[i].cantidad >= 1){
             returnedArray[i+1] = [meses[i].mes, meses[i].cantidad];
-
-
         }
             
     } 
-
 
     var filtered = returnedArray.filter(function (el) {
         return el != null;
       });
 
-
       return filtered;
 }
 
-
 export function obtenerDatosExpedientes(expedientes, titulo){
-  let enero = 0;
+        let enero = 0;
         let febrero = 0;
         let marzo = 0;
         let abril = 0;
@@ -260,8 +243,7 @@ export function obtenerDatosExpedientes(expedientes, titulo){
 
     function logArrayElements(element, index, array) {
 
-        
-
+      
         if(element.mesExpediente === "01"){
             enero = enero + 1;
 
@@ -343,29 +325,20 @@ export function obtenerDatosExpedientes(expedientes, titulo){
 
 
     ];
-
-
-   // console.log(meses);
     const returnedArray = [[titulo, '']];
     for(let i=0; i<meses.length; i++) {
 
         if(meses[i].cantidad >= 1){
             returnedArray[i+1] = [meses[i].mes, meses[i].cantidad];
-
-
         }
             
     } 
-
-
     var filtered = returnedArray.filter(function (el) {
         return el != null;
       });
 
-
       return filtered;
 }
-
 
 export function obtenerDatosRecetas(recetas, titulo){
   let enero = 0;
@@ -383,11 +356,8 @@ export function obtenerDatosRecetas(recetas, titulo){
     //console.log(recetas);
 
     recetas.forEach(logArrayElements);
-    
 
     function logArrayElements(element, index, array) {
-
-        
 
         if(element.mesReceta === "01"){
             enero = enero + 1;
@@ -467,12 +437,7 @@ export function obtenerDatosRecetas(recetas, titulo){
         mes: 'Diciembre',
         cantidad: diciembre
         }
-
-
     ];
-
-
-   // console.log(meses);
     const returnedArray = [[titulo, '']];
     for(let i=0; i<meses.length; i++) {
 
@@ -483,8 +448,6 @@ export function obtenerDatosRecetas(recetas, titulo){
     var filtered = returnedArray.filter(function (el) {
         return el != null;
       });
-
-
       return filtered;
 }
 
@@ -517,12 +480,3 @@ export function obtenerDiagnosticoExpedientes(expedientes, titulo){
   }
       return returnedArray;
 }
-
-
-
-
-
-
-
-
-

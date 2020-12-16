@@ -5,23 +5,14 @@ import Sidebar from "../ui/Sidebar";
 import Barra from "../ui/Barra";
 
 export const Citas = () => {
-
-
-
     
     const history = useHistory();
 
     const abrirCita = () => {     
         history.push({
             pathname: "/visualizar-citas",
-            //state: { detail: perfil }
         });
      }
-
-     //Utilizar uuid para generar id aleatorias
-     /*const token = obtenerToken();
-     console.log(token);*/
-    // console.log(uuidv4());
 
     return ( 
         <div className="">
@@ -76,7 +67,7 @@ export const Citas = () => {
         </div>
      );
 }
- 
+
 /**
  * 
  * 
@@ -109,109 +100,4 @@ export const Citas = () => {
  */
 
 
- /*useEffect(() => {  
-      const obtenerPerfil = async () => {
-          const citaQ = await firebase.db.collection('token');
-          let query = citaQ.get()
-          
-          .then(snapshot => {
-            if (snapshot.empty) {
-             // console.log('No matching documents.');
-              obtenerToken();
-              return;
-            }
-
-            snapshot.forEach(doc => {
-              console.log(doc.id, '=>', doc.data());
-            });
-          })
-          .catch(err => {
-            console.log('Error getting documents', err);
-          });
-
-      }
-      obtenerPerfil();
-  
-    }, []);
-
-
-
-
-
-    function obtenerToken() {
-
-      var gapi = window.gapi
-      
-        Update with your own Client Id and Api key 
-      
-      var CLIENT_ID = "529094084148-em988n3ck312m1g82k3ucm96vudp5ou2.apps.googleusercontent.com"
-      var API_KEY = "AIzaSyC5rozZvL1yXtj51_ThlbCFOxAMqDiXcIY"
-      var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"]
-      var SCOPES = "https://www.googleapis.com/auth/calendar"
-    
-      //https://www.youtube.com/watch?v=zrLf4KMs71E
-    
-        gapi.load('client:auth2', () => {
-          console.log('loaded client')
-    
-          gapi.client.init({
-            apiKey: API_KEY,
-            clientId: CLIENT_ID,
-            discoveryDocs: DISCOVERY_DOCS,
-            scope: SCOPES,
-          })
-    
-          gapi.client.load('calendar', 'v3', () => console.log('bam!'))
-          
-    
-          gapi.auth2.getAuthInstance().signIn()
-          .then(() => {
-            
-            var event = {
-              'summary': 'Acceso al calendario',
-              'description': 'Se ha agregado este evento como prueba, lo puedes elimianr',
-              'start': {
-                'dateTime': '2020-11-27T09:00:00-07:00',
-                'timeZone': 'America/Los_Angeles'
-              },
-              'end': {
-                'dateTime': '2020-11-27T09:15:00-07:00',
-                'timeZone': 'America/Los_Angeles'
-              },
-              'recurrence': [
-                'RRULE:FREQ=DAILY;COUNT=2'
-              ],
-              'attendees': [
-                {'email': 'lpage@example.com'},
-                {'email': 'sbrin@example.com'}
-              ],
-              'reminders': {
-                'useDefault': false,
-                'overrides': [
-                  {'method': 'email', 'minutes': 24 * 60},
-                  {'method': 'popup', 'minutes': 10}
-                ]
-              }
-            }
-            
-            var request = gapi.client.calendar.events.insert({
-              'calendarId': 'primary',
-              'resource': event,
-            })
-    
-            request.execute(event => {
-              //console.log(event)
-              const token = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse();
-              console.log(token);
-              firebase.db.collection('token').doc(uuidv4()).set({
-                userToken: token.access_token,
-
-              });
-              //console.log(accessToken);
-              
-              //window.open(event.htmlLink)
-            })
-          })//FIN DE ONCLICK
-        })
-  }
-*/
+ 

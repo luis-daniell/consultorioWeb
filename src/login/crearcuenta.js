@@ -48,7 +48,7 @@ export const Cuenta = () => {
         
           console.error('Hubo un error al crear el usuario ', error.message);
         }
-      }
+    }
 
     
 
@@ -56,12 +56,12 @@ export const Cuenta = () => {
 
     return ( 
     
-    <div className="h-screen overflow-hidden flex items-center justify-center bg-cuartoColor">
+        <div className="h-screen overflow-hidden flex items-center justify-center bg-cuartoColor">
         
-          <div className="bg-white shadow-2xl rounded-extra h-login px-24 pt-6 pb-8 mb-4 flex flex-col  w-5/6 xl:w-1/3 sm:w-3/5 lg:w-2/5 md:w-1/2">
+          <div className="bg-white shadow-2xl rounded-extra px-12 pb-8 mb-4 flex flex-col sm:w-6/12  md:w-5/12 lg:w-4/12 xl:w-3/12 xl:px-12">
             
             <div className="flex items-center justify-center">
-                <h1 className="font-bold text-3xl mb-4">Crear Cuenta</h1>
+                <h1 className="font-bold text-lg mb-4 mt-4">Crear Cuenta</h1>
             </div>
 
             <form
@@ -105,6 +105,7 @@ export const Cuenta = () => {
                         placeholder="Correo Electrónico" 
                     />
                 </div>
+                
                 {formik.touched.correo && formik.errors.correo ? (
                             <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-2 mb-5" role="alert">
                                 <p>{formik.errors.correo}</p>

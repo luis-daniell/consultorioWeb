@@ -9,8 +9,6 @@ import ordenador from '../../img/ordenador.svg';
 
 export const Perfil = () => {
 
-
-
     const {currentUser, firebase} = useContext(FirebaseContext);
 
     //Definir el state para el perdil 
@@ -37,7 +35,6 @@ export const Perfil = () => {
     const [logo, guardarLogo] = useState('');
 
 
-
     let imagenPerfil = usuarioPerfil;
     let imagenLogo = ordenador;
 
@@ -49,14 +46,12 @@ export const Perfil = () => {
     }
 
 
-
     if(logo === ''){
         imagenLogo = ordenador;
 
     }else{
         imagenLogo= logo;
     }
-
 
 
     const history = useHistory();
@@ -92,7 +87,6 @@ export const Perfil = () => {
                    guardarTelefono(perfil.data().telefono);
                    
                    guardarEstado(true);
-                   //guardarConsultarDB(false);
                 } else {
                     guardarEstado(false);
                     console.log("No existe");
@@ -104,15 +98,11 @@ export const Perfil = () => {
                     guardarCedula('----------');
                    guardarDireccion('----------');
                    guardarTelefono('----------');
-                    //guardarError( true );
-                    //guardarConsultarDB(false);
                 }
             }
             obtenerPerfil();
         
     }, [currentUser, firebase]);
-
-    //console.log(perfil);
 
     return ( 
         <div className="">
@@ -128,8 +118,6 @@ export const Perfil = () => {
                     </div>
                     
                     <div className="w-1/2 flex justify-end items-center pr-12 pt-6">
-
-                       
                         {estado ? 
                             <button
                             className=" bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
@@ -157,7 +145,6 @@ export const Perfil = () => {
                                 <p>{nombre}</p>
                             </div>
 
-
                             <div className="bg-colorFondo flex content-center justify-center">
  
                                 <img src={imagenPerfil} className="-mt-12" width="120" height="120" alt="imagenPerfil"/>
@@ -167,32 +154,17 @@ export const Perfil = () => {
 
                             <div className="bg-colorFondo pb-12 rounded-b-extra border-r-2 border-b-2 border-l-2">
                                     
-                                  
-                                
-
-
-
                                 <div className="flex flex-wrap justify-around">
 
-
-
-
-                                    
-                                        <div className="w-11/12 flex flex-col content-center justify-center ">
-                                            
-                                            <div className="flex justify-center pt-3">
-                                                <p className="font-source text-2xl">{consultorio}</p>
-                                            </div>
-
-                                            <div className="flex justify-center">
-                                                <img src={imagenLogo} className="pt-4" width="120" height="120" alt="imagenLogo"/>
-                                            </div>
-                                            
-
+                                    <div className="w-11/12 flex flex-col content-center justify-center ">
+                                        <div className="flex justify-center pt-3">
+                                            <p className="font-source text-2xl">{consultorio}</p>
                                         </div>
 
-
-
+                                        <div className="flex justify-center">
+                                            <img src={imagenLogo} className="pt-4" width="120" height="120" alt="imagenLogo"/>
+                                        </div>
+                                    </div>
 
 
                                     <div className="w-11/12 flex items-center content-center justify-around">
@@ -218,7 +190,6 @@ export const Perfil = () => {
                                     </div> 
 
 
-
                                     <div className="w-11/12 flex items-center content-center justify-around h-32">
                                         <div className="w-6/12">
                                             <p className="text-tercerColor text-2xl">Dirección</p>
@@ -238,16 +209,11 @@ export const Perfil = () => {
                                         </div>
                                     </div>
 
-                                
                                 </div>
-
                             </div>
-
                         </div>
-
                     </div>
                 </div>
-
             </div>
         </div>
      );

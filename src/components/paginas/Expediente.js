@@ -47,8 +47,6 @@ export const Expediente = props => {
     }
 
 
-
-
     return ( 
         <div className="">
             <Sidebar/>
@@ -71,9 +69,6 @@ export const Expediente = props => {
                     </div>
                 </div>
                 
-                
-
-               
                 <div className="flex justify-center ">
                     <div className="bg-white w-11/12 mt-10 pb-20">
 
@@ -110,9 +105,6 @@ export const Expediente = props => {
                                 
                             </div>
                         </div>
-                        
-
-                        
 
                         {expedientes.map(expediente => (
                                 <ExpedientesMostrar
@@ -122,19 +114,10 @@ export const Expediente = props => {
                                 /> 
                             ))}
                         
-                        
                     </div>
                 </div>
-                    
-               
-                
-
             </div>
-            
-
         </div>
-        
-        
      );
 }
  

@@ -40,9 +40,6 @@ export const Historial = props => {
     }
 
 
-
-
-
     return ( 
         <div className="">
             <Sidebar/>
@@ -58,8 +55,6 @@ export const Historial = props => {
                     
                 </div>
                 
-                
-
                
                 <div className="flex justify-center ">
                     <div className="bg-white w-11/12 mt-10 pb-20">
@@ -99,9 +94,6 @@ export const Historial = props => {
                             </div>
                         </div>
                         
-
-                        
-
                         {expedientes.map(expediente => (
                                 <HistorialMostrar
                                     key={expediente.id}
@@ -110,19 +102,10 @@ export const Historial = props => {
                                 /> 
                             ))}
                         
-                        
                     </div>
                 </div>
-                    
-               
-                
-
             </div>
-            
-
         </div>
-        
-        
      );
 }
  

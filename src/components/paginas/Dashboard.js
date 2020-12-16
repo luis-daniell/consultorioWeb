@@ -13,9 +13,7 @@ import perfil from '../../img/perfil.svg';
 export const Dashboard = props => {
 
 
-  //const {currentUser } = AuthProvider;
   const {currentUser} = useContext(FirebaseContext);
-  //console.log(currentUser);
 
   //Documentos en expedientes
 
@@ -37,9 +35,9 @@ export const Dashboard = props => {
             const size = snap.size // will return the collection size
             guardarDocExpedientes(size);
 
-        });
-          
-      }
+          });
+
+        }
 
 
 
@@ -49,9 +47,9 @@ export const Dashboard = props => {
           const size = snap.size // will return the collection size
           guardarDocCitas(size);
 
-      });
+        });
         
-    }
+      }
 
 
 
@@ -64,9 +62,6 @@ export const Dashboard = props => {
     });
       
   }
-
-
-
 
       obtenerExpedientes();
       obtenerCitas();
@@ -84,41 +79,29 @@ export const Dashboard = props => {
     <div className="">
             <Sidebar/>
             
-            <div className="bg-colorFondo w-4/5 box-border left-auto float-right h-screen">
+            <div className="bg-colorFondo lg:w-4/5 lg:box-border lg:left-auto lg:float-right lg:h-screen">
                 <Barra/>
 
-                <div className=" flex">
-
-                    <div className=" w-1/2 flex justify-start items-center">
-                        <p className="font-source content-center text-2xl font-bold pl-12 pt-6">Dashboard</p>
-                    </div>
-                    
+                <div className=" flex justify-items-center items-center justify-center">
+                  <div className="w-8/12 flex justify-start sm:w-10/12 lg:w-11/12 xl:w-11/12">
+                    <p className="font-source content-center text-2xl font-bold lg:pl-8 xl:pl-10 pt-6">Dashboard</p>
+                  </div>
                 </div>
                 
                 
-                <div className="flex">
-                  <div className=" w-1/2 flex justify-start items-center">
-                    <p className="font-source content-center text-2xl font-bold pl-12 pt-6">Bienvenido {currentUser.displayName}</p>
+                <div className="flex justify-center items-center justify-items-center">
+                  <div className="w-8/12 flex justify-start lg:w-11/12 sm:w-10/12 xl:w-11/12">
+                    <p className="sm:pl-0 font-source font-bold text-sm content-center lg:text-2xl lg:font-bold lg:pl-8 pt-6 xl:pl-10">Bienvenido {currentUser.displayName}</p>
                   </div>
                 </div>
                
-
-
-
                 <div className="flex justify-center ">
 
-                      
+                    <div className="bg-white w-8/12 mt-10 pb-20 lg:flex lg:flex-wrap sm:flex-wrap sm:flex sm:w-10/12 md:w-10/12">
 
-
-                    <div className="bg-white w-11/12 mt-10 pb-20 flex flex-wrap">
-
-                      
-
-
-                      <div className="bg-tercerColor w-3/12 h-24 rounded-lg flex justify-center items-center justify-items-center">
+                      <div className="bg-tercerColor sm:w-5/12 lg:w-3/12 md:w-4/12 h-24 rounded-lg flex justify-center items-center justify-items-center sm:flex-wrap">
 
                         <div className="">
-                          
                           <div className="flex justify-end">
                             <p className="font-source text-4xl font-bold text-white">{docExpedientes}</p>
                           </div>
@@ -126,75 +109,49 @@ export const Dashboard = props => {
                           <div>
                             <p className="font-source text-lg text-white">Pacientes</p>
                           </div>
-
                         </div>
 
-
-
                         <div className="flex justify-end ml-6">
-                          
-                            <img src={paciente} width="70" height="70" alt="paciente"/>
-                          
+                          <img src={paciente} width="70" height="70" alt="paciente"/>
                         </div>
                         
                       </div>
 
 
+                      <div className="bg-cuartoColor mt-3 sm:ml-3 sm:mt-0 sm:w-5/12 lg:mt-0 lg:w-3/12 md:w-4/12 h-24 rounded-lg lg:ml-3 flex justify-center items-center justify-items-center">
 
+                        <div className="">
+                          <div className="flex justify-end">
+                            <p className="font-source text-4xl font-bold text-white">{docCitas}</p>
+                          </div>
 
-                      <div className="bg-cuartoColor w-3/12 h-24 rounded-lg ml-3 flex justify-center items-center justify-items-center">
-
-
-                      <div className="">
-                          
-                        <div className="flex justify-end">
-                          <p className="font-source text-4xl font-bold text-white">{docCitas}</p>
+                          <div>
+                            <p className="font-source text-lg text-white">Citas</p>
+                          </div>
                         </div>
-
-                        <div>
-                          <p className="font-source text-lg text-white">Citas</p>
-                        </div>
-
-                      </div>
-
-
 
                         <div className="flex justify-end ml-6">
                           <img src={cita} width="70" height="70" alt="cita" />
                         </div>
 
-
                       </div>
 
 
-
-
-
-
-
-                      <div className="bg-segundoColor w-3/12 h-24 rounded-lg ml-3 flex justify-center items-center justify-items-center">
+                      <div className="bg-segundoColor mt-3 sm:w-5/12 lg:mt-0 lg:w-3/12 md:w-4/12 h-24 rounded-lg lg:ml-3 flex justify-center items-center justify-items-center">
                         <div className="">
-                          
-                         
                           <div>
                             <p className="font-source text-lg text-black">Perfil</p>
                           </div>
-  
                         </div>
-
-
+                        
                         <div className="flex justify-end ml-6">
                           <img src={perfil} width="70" height="70" alt="perfil"/>
                         </div>
+
                       </div>
 
-
-
-
-
-                      <div className="bg-primeroColor w-3/12 h-24 rounded-lg border-black border-2 mt-3 flex justify-center items-center justify-items-center">
+                      <div className="bg-primeroColor sm:ml-3 sm:w-5/12 lg:w-3/12 lg:ml-0 md:w-4/12 xl:ml-0 h-24 rounded-lg border-black border-2 mt-3 flex justify-center items-center justify-items-center">
                         
-
                         <div className="">
                           
                           <div className="flex justify-end">
@@ -212,19 +169,9 @@ export const Dashboard = props => {
                           <img src={recetaDoc} width="70" height="70" alt="receta"/>
                         </div>
 
-
                       </div>
 
-                        
-                        
                     </div>
-
-
-                    
-
-
-
-
                 </div>
             </div>
         </div>

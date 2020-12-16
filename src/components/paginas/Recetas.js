@@ -7,31 +7,23 @@ import {useHistory} from "react-router-dom";
 
 export const Recetas = (props) => {
 
-
     const history = useHistory();
-
 
     const redireccionar = () => {
         history.push("/nueva-receta");
     }
 
-
     const {firebase} = useContext(FirebaseContext);
-
-
     const [recetas, guardarRecetas] = useState([]);
-
 
 
     useEffect(() => {
         const obtenerRecetas =  () => {
-            firebase.db.collection('recetas').onSnapshot(manejarSnapshot);//Snapshot para ver los cambios en tiempo real y get para ver solamnente los cambios
-            
+            firebase.db.collection('recetas').onSnapshot(manejarSnapshot);//Snapshot para ver los cambios en tiempo real y get para ver solamnente los cambios            
         }
         obtenerRecetas();
 
     },[firebase]);
-
 
     //Snapshop nos permite usar la base de datos en tiempo real de firestore
     function manejarSnapshot(snapshot) {
@@ -47,11 +39,10 @@ export const Recetas = (props) => {
     }
 
 
-
     return ( 
         <div className="">
             <Sidebar/>
-            
+
             <div className="bg-colorFondo w-4/5 box-border left-auto float-right h-screen">
                 <Barra/>
 
@@ -70,9 +61,7 @@ export const Recetas = (props) => {
                     </div>
                 </div>
                 
-                
 
-               
                 <div className="flex justify-center ">
                     <div className="bg-white w-11/12 mt-10 pb-20">
 
@@ -85,8 +74,8 @@ export const Recetas = (props) => {
                                 <input placeholder="Buscar..." className="w-40 h-10 bg-colorFondo text-black"/>
                             </div>
 
-
                         </div>
+
 
                         <div className="text-colorBoton flex justify-center">
                             <div className="w-1/12  border-black border-b-2 mb-4">
@@ -110,8 +99,6 @@ export const Recetas = (props) => {
                             </div>
                         </div>
                         
-                        
-
                         {recetas.map(receta => (
                                 <RecetasMostrar
                                     key={receta.id}
@@ -120,17 +107,9 @@ export const Recetas = (props) => {
                                 /> 
                             ))}
                         
-
-                        
                     </div>
                 </div>
-                    
-               
-                
-
             </div>
-            
-
         </div>
      );
 }
