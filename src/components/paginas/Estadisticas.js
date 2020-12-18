@@ -8,7 +8,9 @@ import {useFormik} from 'formik';
 
 
 
+
 export const Estadisticas = () => {
+
 
     const [estado, guardarEstado] = useState(false);
     //const [yearr, guardarYear] = useState('');
@@ -29,6 +31,8 @@ export const Estadisticas = () => {
      
     
     useEffect(() => {
+
+
         if(year === ''){
             guardarEstado(true);
         }else{
@@ -56,9 +60,6 @@ export const Estadisticas = () => {
         }
         obtenerRecetas();
 
-
-
-        
     },[year, firebase]);
 
 
@@ -135,13 +136,13 @@ export const Estadisticas = () => {
         <div className="">
             <Sidebar/>
             
-            <div className="bg-colorFondo w-4/5 box-border left-auto float-right h-screen">
+            <div className="bg-colorFondo lg:w-4/5 lg:box-border lg:left-auto lg:float-right lg:h-screen">
                 <Barra/>
 
-                <div className=" flex">
+                <div className="content-center">
 
-                    <div className=" w-1/2 flex justify-start items-center">
-                        <p className="font-source content-center text-2xl font-bold pl-12 pt-6">Estadísticas</p>
+                    <div className="ml-4 flex sm:pl-4 md:pl-5 w-11/12 lg:ml-0 lg:pl-0 lg:justify-start items-center">
+                        <p className="font-source content-center md:text-xl lg:text-2xl font-bold lg:pl-12 pt-6">Estadísticas</p>
                     </div>
 
                     
@@ -150,129 +151,125 @@ export const Estadisticas = () => {
             
                 
                 {estado ? 
-                <div className="w-11/12 flex justify-items-center items-center justify-center mt-10">
+                    <div className="w-11/12 flex justify-items-center items-center justify-center mt-10">
 
-                    <form 
-                        className="w-11/12 items-center"
-                        //onSubmit={handleSubmit}
-                        onSubmit={formik.handleSubmit}
-                        >
-                        <label className="w-2/4 text-tercerColor font-bold font-source text-3xl">Año: </label>
-                        <select
-                            className="ml-4 shadow appearance-none border rounded w-3/12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            id="year"
-                            required
-                            value={formik.values.year}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                        >
-                            <option value="">-- Seleccione el año --</option>
-                            <option value="2020">2020</option>
-                            <option value="2021">2021</option>
+                        <form 
+                            className="w-11/12 flex lg:justify-start items-center justify-items-center"
+                            //onSubmit={handleSubmit}
+                            onSubmit={formik.handleSubmit}
+                            >
+                            <label className="text-base w-1/12 sm:font-bold lg:w-1/12 text-tercerColor lg:font-bold font-source sm:text-xl lg:text-3xl">Año: </label>
+                            <select
+                                className="lg:ml-4 w-5/12 ml-4 md:w-4/12 md:ml-0 text-xs sm:text-lg lg:text-lg shadow appearance-none border rounded lg:w-3/12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="year"
+                                required
+                                value={formik.values.year}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                            >
+                                <option value="">-- Seleccione el año --</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
 
-                        </select>
+                            </select>
 
 
 
-                        <button
-                            className="ml-4 bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"  
-                            type="submit"
-                        >
-                        Guardar</button>
+                            <button
+                                className="ml-2 lg:ml-4 sm:text-lg sm:px-5 bg-tercerColor hover:bg-blue-dark text-white px-2 lg:text-xl text-xs rounded-full cursor-pointer font-source lg:w-40 h-8"  
+                                type="submit"
+                            >
+                            Guardar</button>
 
-                    </form>
-                </div>
+                        </form>
+                    </div>
                 : 
 
 
-                <div className="w-11/12 flex justify-items-center items-center justify-center mt-10">
+                    <div className="flex justify-items-center items-center justify-center mt-10">
 
-                    <div className="w-11/12 flex items-center">
+                        <div className="w-11/12 flex lg:items-center lg:justify-start">
 
-                        <div className="w-3/12 flex justify-center items-center justify-items-center">
-                            <p className="text-tercerColor font-source text-3xl font-bold">{year} </p>
+                            <div className="w-2/12 flex md:w-1/12">
+                                <p className="text-tercerColor font-source text-xl lg:text-3xl font-bold">{year}</p>
+                            </div>
+
+                            <div>
+                                <button
+                                    className="bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source lg:w-40 h-8"  
+                                    onClick={() => guardarEstado(true)}
+                                >
+                                Cambiar Año</button>
+                            </div>
+
                         </div>
                         
-
-                        <button
-                            className="bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"  
-                            onClick={() => guardarEstado(true)}
-                        >
-                        Cambiar Año</button>
                     </div>
-                </div>
                 }
 
 
-                <div className="flex justify-center items-center justify-items-center ">
-                    <div className="bg-red-700 flex">
-
+                <div className="mt-4 flex flex-col justify-center justify-items-center items-center md:flex-row md:justify-around lg:flex-row lg:justify-around lg:items-center lg:justify-items-center ">
+                   
+                    <div className="w-11/12 md:w-5/12 lg:w-5/12">
                         <Chart
-                            width={500}
-                            height={300}
                             chartType="ColumnChart"
                             loader={<div>Loading Chart</div>}
                             data={graficaCitas}
                             options={{
-                            title: 'Citas Atendidas',
-                            chartArea: { width: '80%' },
-                            hAxis: {
                                 title: 'Citas Atendidas',
-                                minValue: 0,
-                            },
-                            vAxis: {
-                                title: 'Citas',
-                            },
+                                chartArea: { width: '80%' },
+                                hAxis: {
+                                    title: 'Citas Atendidas',
+                                    minValue: 0,
+                                },
+                                vAxis: {
+                                    title: 'Citas',
+                                },
                             }}
                             legendToggle
                         />
                     </div>
 
-                    <div className="bg-gray-700 flex">    
+                    <div className="mt-3 w-11/12 md:mt-0 md:w-5/12 lg:w-5/12 lg:mt-0">    
                     
-                    <Chart
-                        width={'500px'}
-                        height={'300px'}
-                        chartType="AreaChart"
-                        loader={<div>Loading Chart</div>}
-                        data={graficaExpedientes}
-                        options={{
-                            title: 'Expedientes Registrados',
-                            hAxis: { title: 'Expedientes', titleTextStyle: { color: '#333' } },
-                            vAxis: { minValue: 0 },
-                            // For the legend to fit, we make the chart area smaller
-                            chartArea: { width: '80%', height: '70%' },
-                            // lineWidth: 25
-                        }}
-                        // For tests
-                        rootProps={{ 'data-testid': '1' }}
-                    />
+                        <Chart
+                            chartType="AreaChart"
+                            loader={<div>Loading Chart</div>}
+                            data={graficaExpedientes}
+                            options={{
+                                title: 'Expedientes Registrados',
+                                hAxis: { title: 'Expedientes', titleTextStyle: { color: '#333' } },
+                                vAxis: { minValue: 0 },
+                                // For the legend to fit, we make the chart area smaller
+                                chartArea: { width: '80%', height: '70%' },
+                                // lineWidth: 25
+                            }}
+                            // For tests
+                            rootProps={{ 'data-testid': '1' }}
+                        />
                     </div>
 
                 </div>
 
 
-                <div className="flex justify-center items-center justify-items-center ">
-                    <div className="bg-red-700 flex">
+                <div className="flex flex-col justify-center justify-items-center items-center md:flex-row md:justify-around lg:flex lg:flex-row lg:justify-around lg:items-center lg:justify-items-center ">
+                    
+                    <div className="w-11/12 mt-3 md:w-5/12 lg:w-5/12">
 
-                    <Chart
-                        width={'500px'}
-                        height={'300px'}
-                        chartType="PieChart"
-                        loader={<div>Loading Chart</div>}
-                        data={graficaRecetas}
-                        options={{
-                            title: 'Recetas Creadas',
-                        }}
-                        rootProps={{ 'data-testid': '1' }}
+                        <Chart
+                            chartType="PieChart"
+                            loader={<div>Loading Chart</div>}
+                            data={graficaRecetas}
+                            options={{
+                                title: 'Recetas Creadas',
+                            }}
+                            rootProps={{ 'data-testid': '1' }}
                         />
                     </div>
 
-                    <div className="bg-gray-700 flex">    
+                    <div className="w-11/12 mt-3 md:w-5/12 lg:w-5/12">    
                     
                         <Chart
-                            width={'500px'}
-                            height={'300px'}
                             chartType="PieChart"
                             loader={<div>Loading Chart</div>}
                             data={diagnosticos}

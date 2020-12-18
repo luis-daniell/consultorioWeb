@@ -36,19 +36,15 @@ export const Dashboard = props => {
             guardarDocExpedientes(size);
 
           });
-
         }
 
 
 
       const obtenerCitas =  () => {
-        
         firebase.db.collection('citas').get().then(snap => {
           const size = snap.size // will return the collection size
           guardarDocCitas(size);
-
         });
-        
       }
 
 
@@ -68,10 +64,6 @@ export const Dashboard = props => {
       obtenerRecetas();
 
     },[firebase]);
-
-
- 
-
 
 
   return (
@@ -97,7 +89,7 @@ export const Dashboard = props => {
                
                 <div className="flex justify-center ">
 
-                    <div className="bg-white w-8/12 mt-10 pb-20 lg:flex lg:flex-wrap sm:flex-wrap sm:flex sm:w-10/12 md:w-10/12">
+                    <div className="lg:bg-white w-8/12 mt-10 pb-20 lg:flex lg:flex-wrap sm:flex-wrap sm:flex sm:w-10/12 md:w-10/12">
 
                       <div className="bg-tercerColor sm:w-5/12 lg:w-3/12 md:w-4/12 h-24 rounded-lg flex justify-center items-center justify-items-center sm:flex-wrap">
 
@@ -193,17 +185,10 @@ export const Dashboard = props => {
         </button>
       </div>
 
-
-
       <div className="">
       <Sidebar/>
-
       <div className="bg-colorFondo w-4/5 box-border left-auto float-right">
         <h2>Bienvenido {currentUser.displayName}</h2>
-        
       </div>
-      
     </div>
-
-
 */

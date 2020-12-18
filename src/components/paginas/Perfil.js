@@ -108,7 +108,7 @@ export const Perfil = () => {
         <div className="">
             <Sidebar/>
 
-            <div className="bg-colorFondo w-4/5 box-border left-auto float-right h-auto">
+            <div className="bg-colorFondo lg:w-4/5 lg:box-border lg:left-auto lg:float-right lg:h-auto">
                 <Barra/>
 
                 <div className=" flex">
@@ -141,36 +141,34 @@ export const Perfil = () => {
 
                         <div className="w-10/12">
 
-                            <div className="bg-tercerColor border-1 border-black h-32 flex justify-center pt-6 rounded-t-extra text-white font-source font-bold text-3xl mt-6">
+                            <div className="bg-tercerColor border-1 border-black h-32 flex justify-center pt-6 rounded-t-extra text-white font-source font-bold sm:text-2xl md:text-3xl lg:text-3xl mt-6">
                                 <p>{nombre}</p>
                             </div>
 
                             <div className="bg-colorFondo flex content-center justify-center">
- 
-                                <img src={imagenPerfil} className="-mt-12" width="120" height="120" alt="imagenPerfil"/>
-                                
+                                <img src={imagenPerfil} className="-mt-12 w-20 sm:w-24 md:w-32" alt="imagenPerfil"/>
                             </div>
 
 
                             <div className="bg-colorFondo pb-12 rounded-b-extra border-r-2 border-b-2 border-l-2">
                                     
-                                <div className="flex flex-wrap justify-around">
+                                <div className="lg:flex lg:flex-wrap lg:justify-around">
 
-                                    <div className="w-11/12 flex flex-col content-center justify-center ">
-                                        <div className="flex justify-center pt-3">
-                                            <p className="font-source text-2xl">{consultorio}</p>
+                                    <div className="flex flex-col content-center justify-center">
+                                        <div className="flex justify-center pt-3 ">
+                                            <p className="font-source text-xl lg:text-2xl lg:font-bold">{consultorio}</p>
                                         </div>
 
                                         <div className="flex justify-center">
-                                            <img src={imagenLogo} className="pt-4" width="120" height="120" alt="imagenLogo"/>
+                                            <img src={imagenLogo} className="pt-4 w-20 sm:w-24 md:w-32" alt="imagenLogo"/>
                                         </div>
                                     </div>
 
 
-                                    <div className="w-11/12 flex items-center content-center justify-around">
+                                    <div className=" sm:flex sm:items-center sm:content-center sm:justify-around lg:w-11/12 lg:flex lg:items-center lg:content-center lg:justify-around">
 
-                                        <div className="w-6/12 flex flex-col">
-                                            <p className="text-tercerColor text-2xl">Especialidad</p>
+                                        <div className="flex flex-col pt-6 items-center justify-items-center justify-center sm:w-6/12 sm:flex sm:flex-col lg:w-6/12 lg:flex lg:flex-col">
+                                            <p className="text-tercerColor sm:text-2xl lg:text-2xl">Especialidad</p>
                                             
                                             <div className=" border-4 border-tercerColor w-10/12 flex justify-around h-10 items-center">
                                                 <p>{especialidad}</p>
@@ -178,8 +176,8 @@ export const Perfil = () => {
                                             
                                         </div>
 
-                                        <div className="w-6/12 flex flex-col justify-end pl-10">
-                                            <p className="text-tercerColor text-2xl">Cédula Profesional</p>
+                                        <div className="flex flex-col pt-6 items-center justify-items-center justify-center sm:w-6/12 sm:flex sm:flex-col sm:justify-end lg:w-6/12 lg:flex lg:flex-col lg:justify-end lg:pl-10">
+                                            <p className="text-tercerColor sm:text-2xl lg:text-2xl">Cédula Profesional</p>
 
                                             <div className=" border-4 border-tercerColor w-10/12 flex justify-around h-10 items-center">
                                                 <p>{cedula}</p>
@@ -190,17 +188,18 @@ export const Perfil = () => {
                                     </div> 
 
 
-                                    <div className="w-11/12 flex items-center content-center justify-around h-32">
-                                        <div className="w-6/12">
-                                            <p className="text-tercerColor text-2xl">Dirección</p>
+                                    <div className="pt-4 sm:flex sm:items-center sm:content-center sm:justify-around sm:h-32 lg:w-11/12 lg:flex lg:items-center lg:content-center lg:justify-around lg:h-32">
+                                        
+                                        <div className="sm:w-6/12 lg:w-6/12 flex flex-col items-center justify-items-center justify-center">
+                                            <p className="text-tercerColor sm:text-2xl lg:text-2xl">Dirección</p>
                                             
                                             <div className="border-4 border-tercerColor w-10/12 flex justify-around h-10 items-center">
                                                 <p>{direccion}</p>
                                             </div>
                                         </div>
 
-                                        <div className="w-6/12 pl-10">
-                                            <p className="text-tercerColor text-2xl">Teléfono</p>
+                                        <div className="sm:w-6/12 sm:pt-0 lg:w-6/12 lg:pl-10 lg:pt-0 flex flex-col pt-6 items-center justify-items-center justify-center">
+                                            <p className="text-tercerColor sm:text-2xl lg:text-2xl">Teléfono</p>
                                             
                                             <div className="border-4 border-tercerColor w-10/12 flex justify-around h-10 items-center">
                                                 <p>{telefono}</p>
