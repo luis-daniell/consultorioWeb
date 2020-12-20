@@ -51,13 +51,13 @@ export const Expediente = props => {
         <div className="">
             <Sidebar/>
             
-            <div className="bg-colorFondo w-4/5 box-border left-auto float-right h-screen">
+            <div className="bg-colorFondo lg:w-4/5 lg:box-border lg:left-auto lg:float-right lg:h-screen">
                 <Barra/>
 
                 <div className=" flex">
 
                     <div className=" w-1/2 flex justify-start items-center">
-                        <p className="font-source content-center text-2xl font-bold pl-12 pt-6">Expediente</p>
+                        <p className="font-source content-center lg:text-2xl font-bold pl-12 pt-6">Expediente</p>
                     </div>
                     
                     <div className="w-1/2 flex justify-end items-center pr-12 pt-6">
@@ -72,32 +72,32 @@ export const Expediente = props => {
                 <div className="flex justify-center ">
                     <div className="bg-white w-11/12 mt-10 pb-20">
 
-                        <div className="flex">
-                            <div className=" flex w-1/2 justify-start items-center">
-                                <p className="font-source font-bold text-xl pl-12 pt-3">Pacientes</p>
+                        <div className="flex items-center justify-end">
+
+                            <div className="hidden sm:flex sm:w-1/2 sm:justify-start sm:items-center">
+                                <p className="font-source font-bold text-xl sm:pl-10 lg:pl-12 pt-3">Pacientes</p>
                             </div>
 
-                            <div className=" flex w-1/2 justify-end items-center pr-12 pt-6">
-                                <input placeholder="Buscar..." className="w-40 h-10 bg-colorFondo text-black"/>
+                            <div className="mr-6 sm:flex sm:w-1/2 sm:justify-end sm:items-center sm:pr-12 pt-6">
+                                <input placeholder="Buscar..." className="w-full sm:w-40 lg:w-40 h-10 bg-colorFondo text-black"/>
                             </div>
-
 
                         </div>
 
-                        <div className="text-colorBoton flex justify-center">
+                        <div className="text-colorBoton hidden sm:flex sm:justify-center lg:flex lg:justify-center">
                             <div className="w-1/12  border-black border-b-2 mb-4">
                                 
                             </div>
 
-                            <div className="w-2/12  border-black border-b-2 mb-4">
+                            <div className="w-2/12 sm:w-3/12 md:w-2/12 border-black border-b-2 mb-4">
                                 <p>Nombre</p>
                             </div>
 
-                            <div className="w-2/12  border-black border-b-2 mb-4">
+                            <div className="w-2/12 sm:w-6/12 md:w-2/12 border-black border-b-2 mb-4">
                                 <p>Teléfono</p>
                             </div>
 
-                            <div className="w-5/12  border-black border-b-2 mb-4">
+                            <div className="hidden md:w-5/12 md:flex md:border-black md:border-b-2 md:mb-4 lg:w-5/12 lg:flex  lg:border-black lg:border-b-2 lg:mb-4">
                                 <p>Correo</p>
                             </div>
 

@@ -29,6 +29,7 @@ module.exports = {
 
       height: {
         login: '80%'
+
       },
 
       width: {

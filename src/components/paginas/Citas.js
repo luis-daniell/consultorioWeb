@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {useHistory} from "react-router-dom";
+import {useFormik} from 'formik';
+import Barra from "../ui/Barra";
 import Iframe from 'react-iframe';
 import Sidebar from "../ui/Sidebar";
-import Barra from "../ui/Barra";
 
 export const Citas = () => {
+
+    const [estado, guardarEstado] = useState(false);
     
     const history = useHistory();
 
@@ -12,13 +15,48 @@ export const Citas = () => {
         history.push({
             pathname: "/visualizar-citas",
         });
-     }
+    }
+
+    let calendarioLocal = localStorage.getItem('calendario');
+    if(!calendarioLocal){
+        calendarioLocal = '';
+    }
+
+    useEffect(() => {
+        if(calendarioLocal === ''){
+            guardarEstado(true);
+        }else{
+            //guardarYear(year);
+            guardarEstado(false);
+        }
+    }, [calendarioLocal])
+
+
+    const formik = useFormik({
+        initialValues : {
+            calendario: '',
+        },
+
+
+        onSubmit: dato => {
+            
+            localStorage.setItem('calendario',(dato.calendario.toString()));
+            guardarEstado(false);
+
+        }
+
+    });
+
+    //const urlCalendario = devolverCalendario(<iframe src="https://calendar.google.com/calendar/embed?src=luisdanielcastro16%40gmail.com&ctz=America%2FMexico_City" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>);
+    //console.log(urlCalendario);
+
+
 
     return ( 
         <div className="">
             <Sidebar/>
 
-            <div className="bg-colorFondo w-4/5 box-border left-auto float-right h-screen">
+            <div className="bg-colorFondo lg:w-4/5 lg:box-border lg:left-auto lg:float-right h-screen">
                 <Barra/>
 
                 <div className=" flex">
@@ -42,24 +80,62 @@ export const Citas = () => {
 
 
                 <div className="flex justify-center ">
-                    <div className="bg-white w-11/12 mt-10 pb-20 flex justify-center">
-                            
-                        <div className="w-11/12 flex justify-items-center items-center justify-center ">
+                    <div className="bg-white w-11/12 mt-10 flex justify-center">
+                        {estado ?
+                        <div>
+                            <form 
+                                className="w-11/12 flex lg:justify-start items-center justify-items-center"
+                                //onSubmit={handleSubmit}
+                                onSubmit={formik.handleSubmit}
+                                >
+                                <label className="bg-red-700 text-base w-1/12 sm:font-bold lg:w-3/12 text-tercerColor lg:font-bold font-source sm:text-xl lg:text-3xl">Calendario</label>
+                                
+                                <input
+                                    required
+                                    id="calendario" 
+                                    type="text" placeholder="Incorporar codigo de calendario" 
+                                    className="bg-orange-300 lg:ml-4 w-5/12 ml-4 md:w-4/12 md:ml-0 text-xs sm:text-lg lg:text-lg shadow appearance-none border rounded lg:w-5/12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    value={formik.values.calendario}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                />
 
-                          
-                          
-                        <Iframe url="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FMexico_City&amp;src=bHVpcy5kYW5pZWxsLnRpY3NAZ21haWwuY29t&amp;color=%23039BE5"
-                          //CONFIGURAR EN GOOGLE CALENDAR PARA EL CORREO OBTENER EL VINCULO AL CALENDARIO PARA COMPARTIRLO
-                          width="1000px"
-                          height="450px"
-                          id="myId"
-                          className="w-5/6 justify-center flex justify-items-center items-center "
-                          display="initial"
-                          position="relative"
-                        />
-                        
+
+                                <button
+                                    className="ml-2 lg:ml-4 sm:text-lg sm:px-5 bg-tercerColor hover:bg-blue-dark text-white px-2 lg:text-xl text-xs rounded-full cursor-pointer font-source lg:w-40 h-8"  
+                                    type="submit"
+                                >
+                                Guardar</button>
+
+                            </form>
+                            <div>
+                                <ol>
+                                    <li>Dirijase al calendario de google Calendar</li>
+                                    <li>Seleccione configuracion</li>
+                                    <li>Seleccione el calendario</li>
+                                    <li>Seleccione Integrar Calendario</li>
+                                    <li>Copie la URL publica del calendario</li>
+                                    <li>Pegue el codigo la caja de texto</li>
+                                </ol>
+                            </div>
                         </div>
-                        
+
+                        :
+                            <div className="bg-orange-600 w-full flex items-center justify-center">
+                                <div className="w-full flex items-center justify-center">
+                                    <Iframe 
+                                        url={calendarioLocal}
+                                        //CONFIGURAR EN GOOGLE CALENDAR PARA EL CORREO OBTENER EL VINCULO AL CALENDARIO PARA COMPARTIRLO
+                                        
+                                        id="myId"
+                                        className="bg-red-600 h-68 w-11/12"
+                                        display="initial"
+                                        position="relative"
+                                    />
+                                </div>
+                            
+                            </div>
+                    }    
                     </div>
                 </div>
 
@@ -69,24 +145,7 @@ export const Citas = () => {
 }
 
 /**
- * 
- * 
- * 
  * https://calendar.google.com/calendar/embed?src=luisdanielcastro16%40gmail.com&ctz=America%2FMexico_City
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
  * 
  * Client ID:   657875948864-7lkf7vloqh74rnidjptjqkrr810tvcg9.apps.googleusercontent.com
  * Cliente Secret: XUSZ5sb8LZGBS8zx5C7JJRP_

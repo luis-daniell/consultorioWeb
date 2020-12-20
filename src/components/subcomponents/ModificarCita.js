@@ -337,31 +337,13 @@ const ModificarCita = () => {
                             : null
                             }
 
-
-
-
-
-
-
-
-
                         </div>
-
                     </div>
-
-
-
                 </div>
             </div>
-
-
-
-
         </div>
-
     </div>
-    
-     );
+    );
 }
  
 export default ModificarCita;

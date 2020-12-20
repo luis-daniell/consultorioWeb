@@ -11001,6 +11001,10 @@ video {
   height: 16rem;
 }
 
+.h-68{
+  height: 25rem;
+}
+
 .h-auto{
   height: auto;
 }

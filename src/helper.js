@@ -480,3 +480,7 @@ export function obtenerDiagnosticoExpedientes(expedientes, titulo){
   }
       return returnedArray;
 }
+
+export function devolverCalendario(url){
+
+}

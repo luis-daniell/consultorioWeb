@@ -43,7 +43,7 @@ export const Recetas = (props) => {
         <div className="">
             <Sidebar/>
 
-            <div className="bg-colorFondo w-4/5 box-border left-auto float-right h-screen">
+            <div className="bg-colorFondo lg:w-4/5 lg:box-border lg:left-auto lg:float-right lg:h-screen">
                 <Barra/>
 
                 <div className=" flex">
@@ -65,36 +65,37 @@ export const Recetas = (props) => {
                 <div className="flex justify-center ">
                     <div className="bg-white w-11/12 mt-10 pb-20">
 
-                        <div className="flex">
-                            <div className=" flex w-1/2 justify-start items-center">
+                        <div className="flex items-center justify-end">
+                            <div className="hidden lg:flex lg:w-1/2 lg:justify-start lg:items-center">
                                 <p className="font-source font-bold text-xl pl-12 pt-3"></p>
                             </div>
 
-                            <div className=" flex w-1/2 justify-end items-center pr-12 pt-6">
-                                <input placeholder="Buscar..." className="w-40 h-10 bg-colorFondo text-black"/>
+                            <div className="mr-6 lg:flex lg:w-1/2 lg:justify-end lg:items-center lg:pr-12 pt-6">
+                                <input placeholder="Buscar..." className="w-full lg:w-40 h-10 bg-colorFondo text-black"/>
                             </div>
 
                         </div>
 
 
-                        <div className="text-colorBoton flex justify-center">
-                            <div className="w-1/12  border-black border-b-2 mb-4">
+                        <div className="text-colorBoton hidden sm:flex sm:justify-center lg:flex lg:justify-center">
+                            
+                            <div className="w-1/12 border-black border-b-2 mb-4">
                                 
                             </div>
 
-                            <div className="w-2/12  border-black border-b-2 mb-4 flex justify-center">
+                            <div className="w-2/12 sm:w-4/12 md:w-3/12 lg:w-2/12 border-black border-b-2 mb-4 flex justify-center">
                                 <p>Nombre</p>
                             </div>
 
-                            <div className="w-3/12  border-black border-b-2 mb-4 flex justify-center justify-items-center">
+                            <div className="w-3/12 sm:w-3/12 md:w-3/12 lg:justify-center border-black border-b-2 mb-4 flex justify-items-center">
                                 <p>Teléfono</p>
                             </div>
 
-                            <div className="w-4/12  border-black border-b-2 mb-4">
+                            <div className="w-4/12 sm:w-2/12 md:w-3/12 lg:w-4/12 border-black border-b-2 mb-4">
                                 <p></p>
                             </div>
 
-                            <div className="w-1/12  border-black border-b-2 mb-4">
+                            <div className="w-1/12 border-black border-b-2 mb-4">
                                 
                             </div>
                         </div>

@@ -174,7 +174,6 @@ export const Estadisticas = () => {
                             </select>
 
 
-
                             <button
                                 className="ml-2 lg:ml-4 sm:text-lg sm:px-5 bg-tercerColor hover:bg-blue-dark text-white px-2 lg:text-xl text-xs rounded-full cursor-pointer font-source lg:w-40 h-8"  
                                 type="submit"
@@ -184,7 +183,6 @@ export const Estadisticas = () => {
                         </form>
                     </div>
                 : 
-
 
                     <div className="flex justify-items-center items-center justify-center mt-10">
 
