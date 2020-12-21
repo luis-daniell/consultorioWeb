@@ -28,8 +28,8 @@ module.exports = {
       },
 
       height: {
-        login: '80%'
-
+        login: '80%',
+        cita: '28rem',
       },
 
       width: {

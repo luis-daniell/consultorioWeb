@@ -62,14 +62,14 @@ export const Citas = () => {
                 <div className=" flex">
 
                     <div className=" w-1/2 flex justify-start items-center">
-                        <p className="font-source content-center text-2xl font-bold pl-12 pt-6">Calendario de Citas</p>
+                        <p className="font-source content-center sm:text-lg md:text-xl lg:text-2xl font-bold pl-12 pt-6">Calendario de Citas</p>
                     </div>
                     
                     <div className="w-1/2 flex justify-end items-center pr-12 pt-6">
 
                        
                         <button
-                            className=" bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
+                            className=" bg-tercerColor hover:bg-blue-dark text-white px-3 lg:px-4 rounded-full cursor-pointer font-source w-40 h-8"
                             onClick={() => abrirCita()}
                         >
                         Ver Citas</button>
@@ -88,7 +88,7 @@ export const Citas = () => {
                                 //onSubmit={handleSubmit}
                                 onSubmit={formik.handleSubmit}
                                 >
-                                <label className="bg-red-700 text-base w-1/12 sm:font-bold lg:w-3/12 text-tercerColor lg:font-bold font-source sm:text-xl lg:text-3xl">Calendario</label>
+                                <label className="text-base w-1/12 sm:font-bold lg:w-3/12 text-tercerColor lg:font-bold font-source sm:text-xl lg:text-3xl">Calendario</label>
                                 
                                 <input
                                     required
@@ -128,7 +128,7 @@ export const Citas = () => {
                                         //CONFIGURAR EN GOOGLE CALENDAR PARA EL CORREO OBTENER EL VINCULO AL CALENDARIO PARA COMPARTIRLO
                                         
                                         id="myId"
-                                        className="bg-red-600 h-68 w-11/12"
+                                        className="h-96 w-11/12"
                                         display="initial"
                                         position="relative"
                                     />
@@ -138,7 +138,6 @@ export const Citas = () => {
                     }    
                     </div>
                 </div>
-
             </div>
         </div>
      );
