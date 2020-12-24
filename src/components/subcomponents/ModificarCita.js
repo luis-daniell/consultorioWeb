@@ -10,26 +10,16 @@ import Barra from '../ui/Barra';
 
 const ModificarCita = () => {
 
-
-
-
     const location = useLocation();
     const history = useHistory();
 
     const {firebase} = useContext(FirebaseContext);
-
-
     const {nombre, apellido, fecha, hora, correo, descripcion, id} = location.state.detail;
-
-
-    //console.log(location.state.detail);
 
     let nombre1 = nombre;
     let apellido1 = apellido;
     let descripcion1 = descripcion;
     let correo1 = correo;
-
-
 
     //Cambiar el valor de la fecha 
     const [dato, guardarDato] = useState('');
@@ -37,13 +27,11 @@ const ModificarCita = () => {
     //Cambia el valor a pospuesta, muestra calendario
     const [calendario, guardarCalendario] = useState(false);
 
-
     const valor = [
         {codigo: 'noatendida', nombre:'No atendida'},
         {codigo: 'atendida', nombre:'Atendida'},
         {codigo: 'pospuesta', nombre:'Pospuesta'}
     ]
-
 
     useEffect(() => {
         if(dato === 'pospuesta'){
@@ -55,9 +43,6 @@ const ModificarCita = () => {
         }
         
     }, [dato]);
-
-
-
 
     const formik = useFormik({
         initialValues : {
@@ -73,9 +58,7 @@ const ModificarCita = () => {
 
         onSubmit: cita => {
             try {
-
                 if(dato === 'pospuesta'){
-
 
                     firebase.db.collection('citas').add({
                         nombre: cita.nombre,
@@ -89,14 +72,7 @@ const ModificarCita = () => {
                     });
 
                     agregarEvento(cita.nombre, cita.apellido, cita.correo, cita.fecha, cita.hora, cita.descripcion);
-
                     history.push("/visualizar-citas");
-
-
-
-                   
-                  // console.log(dato);
-
 
                 }else if (dato === 'atendida'){
 
@@ -113,10 +89,6 @@ const ModificarCita = () => {
                    //console.log(dato);
                 }
                 
-
-                
-                
-
             } catch (error) {
                 console.log(error);
             }
@@ -126,14 +98,6 @@ const ModificarCita = () => {
 
     function agregarEvento (nombre, apellidos, correo, fecha, hora, descripcion ){
 
-        console.log(nombre);
-        console.log(apellidos);
-        console.log(correo);
-        console.log(fecha);
-        console.log(hora);
-        console.log(descripcion);
-
-        
         var gapi = window.gapi
         
         //  Update with your own Client Id and Api key 
@@ -200,148 +164,147 @@ const ModificarCita = () => {
               })
             })//FIN DE ONCLICK
           })
-       
+
       }
     
-
     return ( 
             
-    
-    
         <div className="">
-        <Sidebar/>
+            <Sidebar/>
 
-        <div className="bg-colorFondo w-4/5 box-border left-auto float-right h-auto">
-            <Barra/>
+            <div className="bg-colorFondo flex-col lg:w-4/5 lg:box-border lg:left-auto lg:float-right lg:h-auto">
+                <Barra/>
 
-            <div className=" flex">
+                <div className=" flex">
 
-                <div className=" w-1/2 flex justify-start items-center">
-                    <p className="font-source content-center text-2xl font-bold pl-12 pt-6">Cita de paciente</p>
-                </div>
-                
-                <div className="w-1/2 flex justify-end items-center pr-12 pt-6">
-                    <button
-                        className=" bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
-                        onClick={formik.handleSubmit}
-                        type="submit"
-                    >
-                    Modificar</button>
-                </div>
-            </div>
-
-
-            <div className="flex justify-center ">
-                <div className="bg-white w-11/12 mt-10 pb-20 flex justify-center h-full mb-12">
-
-
-                    <div className="w-10/12">
-
-                        <div className="bg-tercerColor border-1 border-black h-32 flex justify-center pt-6 rounded-t-extra text-white font-source font-bold text-3xl mt-6">
-                            <p>{nombre +" " + apellido}</p>
-                        </div>
-
-
-                        <div className="bg-colorFondo flex content-center justify-center ">
-
-                            <img src={usuarioPerfil} className="-mt-12" width="120" height="120" alt="UsuarioPerfil"/>
-                            
-                        </div>
-
-
-                        <div className="bg-colorFondo pb-12 rounded-b-extra">
-                                
-                            <div className=" flex h-auto content-center justify-center items-center justify-items-center">
-                                <div className="flex flex-col w-1/6">
-                                    <p className="text-tercerColor text-2xl">Fecha</p>
-                                    
-                                </div>
-
-                                <div className=" w-1/6 text-tercerColor text-2xl">
-                                    <p>{fecha}</p>
-                                </div>
-
-                            
-                            </div>   
-                            
-
-
-
-                            <div className=" flex h-auto content-center justify-center items-center justify-items-center pt-4">
-                                <div className="flex flex-col w-1/6 h-auto">
-                                    <p className="text-tercerColor text-2xl">Hora</p>
-                                    
-                                </div>
-
-                                <div className="w-1/6 h-auto text-tercerColor text-2xl">
-                                    <p>{hora}</p>
-                                </div>
-
-                            
-                            </div>
-
-
-
-
-
-                            <div className=" flex h-auto content-center justify-center items-center justify-items-center pt-4">
-                                <div className="flex flex-col w-2/6 h-auto">
-
-                                <select
-                                    onChange={e => guardarDato(e.target.value)}
-                                    value={dato}
-                                >
-                                    
-                                    {valor.map(opcion => (
-                                        <option key={uuidv4()} value={opcion.codigo}>{opcion.nombre}</option>
-                                    ))}
-                                </select>
-                                    
-                                </div>
-                            </div>
-
-                            { calendario ?
-                            <div className="flex justify-items-center items-center justify-center">
-                                <div className="w-3/6 flex mt-6 justify-items-center items-center justify-center">
-
-                                    
-                                    <input
-                                        type="date"
-                                        name="fecha"
-                                        className="shadow appearance-none border-2 w-8/12 py-2 px-3"
-                                        value={formik.values.fecha}
-                                        onChange={formik.handleChange}
-                                        onBlur={formik.handleBlur}
-                                        
-                                    
-                                    />
-        
-                                </div>
-    
-    
-                                <div className="w-3/6 flex mt-6 justify-items-center items-center justify-center">
-        
-                                    <input
-                                        type="time"
-                                        name="hora"
-                                        className="shadow appearance-none border-2 w-8/12 py-2 px-3"
-                                        value={formik.values.hora}
-                                        onChange={formik.handleChange}
-                                        onBlur={formik.handleBlur}
-                                        
-                                    />
-                                </div>
-                            </div>
-
-
-                            : null
-                            }
-
-                        </div>
+                    <div className=" w-11/12 sm:w-1/2 flex justify-start items-center">
+                        <p className="font-source content-center text-base sm:text-2xl font-bold pl-12 pt-6">Cita de paciente</p>
+                    </div>
+                    
+                    <div className="hidden sm:w-1/2 sm:flex sm:justify-end sm:items-center sm:pr-12 sm:pt-6">
+                        <button
+                            className=" bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
+                            onClick={formik.handleSubmit}
+                            type="submit"
+                        >
+                        Modificar</button>
                     </div>
                 </div>
+
+
+                <div className="flex justify-center flex-wrap">
+                    <div className="bg-white w-11/12 mt-10 pb-20 flex justify-center h-full mb-12">
+
+
+                        <div className="w-10/12">
+
+                            <div className="bg-tercerColor border-1 border-black h-32 flex justify-center pt-6 rounded-t-extra text-white font-source font-bold text-lg sm:text-3xl mt-6">
+                                <p>{nombre +" " + apellido}</p>
+                            </div>
+
+
+                            <div className="bg-colorFondo flex content-center justify-center ">
+
+                                <img src={usuarioPerfil} className="-mt-12" width="120" height="120" alt="UsuarioPerfil"/>
+                                
+                            </div>
+
+
+                            <div className="bg-colorFondo pb-12 rounded-b-extra">
+                                    
+                                <div className="flex h-auto content-center justify-center items-center justify-items-center">
+                                    
+                                    <div className="flex justify-end pr-4 w-6/12">
+                                        <p className="text-tercerColor text-lg lg:text-2xl">Fecha</p>
+                                    </div>
+
+                                    <div className="flex justify-start sm:pl-4 w-6/12 text-tercerColor text-2xl">
+                                        <p className="text-tercerColor text-lg lg:text-2xl">{fecha}</p>
+                                    </div>
+
+                                
+                                </div>   
+                                
+                                <div className="flex h-auto content-center justify-center items-center justify-items-center pt-4">
+                                    <div className="flex justify-end pr-4 w-6/12 lg:w-1/6 h-auto">
+                                        <p className="text-tercerColor text-lg lg:text-2xl">Hora</p>
+                                    </div>
+
+                                    <div className="flex justify-start sm:pl-4 w-6/12 lg:w-1/6 h-auto text-tercerColor text-2xl">
+                                        <p className="text-tercerColor text-lg lg:text-2xl">{hora}</p>
+                                    </div>
+                                </div>
+
+                                <div className="flex h-auto content-center justify-center items-center justify-items-center pt-4">
+                                    
+                                    <div className="flex justify-center w-11/12 h-auto">
+
+                                    <select
+                                        onChange={e => guardarDato(e.target.value)}
+                                        value={dato}
+                                        className="shadow appearance-none border-2 w-10/12 sm:w-5/12 py-2 px-3"
+                                    >
+                                        
+                                        {valor.map(opcion => (
+                                            <option key={uuidv4()} value={opcion.codigo}>{opcion.nombre}</option>
+                                        ))}
+                                    </select>
+                                        
+                                    </div>
+                                </div>
+
+                                { calendario ?
+                                <div className="flex justify-items-center items-center justify-center">
+                                    <div className="w-3/6 flex mt-6 justify-items-center items-center justify-center">
+
+                                        
+                                        <input
+                                            type="date"
+                                            name="fecha"
+                                            className="shadow appearance-none border-2 w-8/12 py-2 px-3"
+                                            value={formik.values.fecha}
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            
+                                        
+                                        />
+            
+                                    </div>
+        
+        
+                                    <div className="w-3/6 flex mt-6 justify-items-center items-center justify-center">
+            
+                                        <input
+                                            type="time"
+                                            name="hora"
+                                            className="shadow appearance-none border-2 w-8/12 py-2 px-3"
+                                            value={formik.values.hora}
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            
+                                        />
+                                    </div>
+                                </div>
+
+
+                                : null
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="w-11/12 flex justify-center pb-10 sm:hidden ">
+                        <button
+                            className=" bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
+                            onClick={formik.handleSubmit}
+                            type="submit"
+                        >
+                        Modificar</button>
+                    </div>
+
+                </div>
             </div>
-        </div>
     </div>
     );
 }

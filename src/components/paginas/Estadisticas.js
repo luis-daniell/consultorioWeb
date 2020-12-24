@@ -142,7 +142,7 @@ export const Estadisticas = () => {
                 <div className="content-center">
 
                     <div className="ml-4 flex sm:pl-4 md:pl-5 w-11/12 lg:ml-0 lg:pl-0 lg:justify-start items-center">
-                        <p className="font-source content-center md:text-xl lg:text-2xl font-bold lg:pl-12 pt-6">Estadísticas</p>
+                        <p className="font-source content-center text-base sm:text-lg md:text-xl lg:text-2xl font-bold lg:pl-12 pt-6">Estadísticas</p>
                     </div>
 
                     

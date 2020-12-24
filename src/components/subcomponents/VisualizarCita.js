@@ -56,7 +56,7 @@ const VisualizarCita = (props) => {
         <div className="">
         <Sidebar/>
 
-        <div className="bg-colorFondo w-4/5 box-border left-auto float-right h-auto">
+        <div className="bg-colorFondo lg:w-4/5 lg:box-border lg:left-auto lg:float-right lg:h-auto">
             <Barra/>
 
             <div className=" flex">
@@ -82,7 +82,7 @@ const VisualizarCita = (props) => {
             <div className="flex justify-center ">
                     <div className="bg-white w-11/12 mt-10 pb-20">
 
-                        <div className="flex">
+                        <div className="hidden sm:flex">
                             <div className=" flex w-1/2 justify-start items-center">
                                 <p className="font-source font-bold text-xl pl-12 pt-3">Citas</p>
                             </div>
@@ -99,19 +99,19 @@ const VisualizarCita = (props) => {
                                 
                             </div>
 
-                            <div className="w-2/12  border-black border-b-2 mb-4">
+                            <div className="w-3/12 sm:w-2/12  border-black border-b-2 mb-4">
                                 <p>Paciente</p>
                             </div>
 
-                            <div className="w-2/12  border-black border-b-2 mb-4">
+                            <div className="w-4/12 sm:w-2/12  border-black border-b-2 mb-4">
                                 <p>Fecha</p>
                             </div>
 
-                            <div className="w-5/12  border-black border-b-2 mb-4">
+                            <div className="w-3/12 sm:w-6/12  border-black border-b-2 mb-4">
                                 <p>Hora</p>
                             </div>
 
-                            <div className="w-1/12  border-black border-b-2 mb-4">
+                            <div className="hidden sm:w-1/12  border-black border-b-2 mb-4">
                                 
                             </div>
                         </div>

@@ -49,7 +49,7 @@ export const Recetas = (props) => {
                 <div className=" flex">
 
                     <div className=" w-1/2 flex justify-start items-center">
-                        <p className="font-source content-center text-2xl font-bold pl-12 pt-6">Recetas</p>
+                        <p className="font-source content-center text-sm sm:text-base md:text-lg lg:text-2xl font-bold pl-12 pt-6">Recetas</p>
                     </div>
                     
                     <div className="w-1/2 flex justify-end items-center pr-12 pt-6">
