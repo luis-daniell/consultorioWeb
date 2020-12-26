@@ -12,7 +12,6 @@ const VisualizarExpediente = () => {
 
     const {nombre, apellidos, antecedentes, correo, diagnostico, domicilio, estilos, id, peso, presion, sexo, talla, telefono} = location.state.detail;
 
-    
     const expediente = {
         nombre2: nombre, 
         apellidos2: apellidos,
@@ -46,14 +45,13 @@ const VisualizarExpediente = () => {
 
             <div className="bg-colorFondo lg:w-4/5 lg:box-border lg:left-auto lg:float-right lg:h-auto">
                 <Barra/>
+                <div className=" flex justify-center">
 
-                <div className=" flex">
-
-                    <div className=" w-1/2 flex justify-start items-center">
-                        <p className="font-source content-center text-2xl font-bold pl-12 pt-6">Expediente</p>
+                    <div className="w-11/12 sm:w-1/2 flex justify-start items-center">
+                        <p className="font-source content-center text-2xl font-bold sm:pl-12 pt-6">Expediente</p>
                     </div>
                     
-                    <div className="w-1/2 flex justify-end items-center pr-12 pt-6">
+                    <div className="hidden sm:flex sm:w-1/2 sm:justify-end sm:items-center sm:pr-12 sm:pt-6">
                         <button
                             className=" bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
                             onClick={() => abrirPagina()}
@@ -62,12 +60,12 @@ const VisualizarExpediente = () => {
                     </div>
                 </div>
 
-                <div className="flex justify-center ">
-                    <div className="bg-white w-11/12 mt-10 pb-20 flex justify-center h-full mb-12">
+                <div className="flex justify-center items-center flex-col sm:flex-row">
+                    <div className="bg-white w-11/12 mt-10 pb-20 flex justify-center h-full mb-10">
 
                         <div className="w-10/12">
 
-                            <div className="bg-tercerColor border-1 border-black h-32 flex justify-center pt-6 rounded-t-extra text-white font-source font-bold text-3xl mt-6">
+                            <div className="bg-tercerColor border-1 border-black h-32 flex justify-center pt-6 rounded-t-extra text-white font-source font-bold text-base sm:text-3xl mt-6">
                                 <p>{nombre +" " + apellidos}</p>
                             </div>
 
@@ -78,83 +76,98 @@ const VisualizarExpediente = () => {
 
                             <div className="bg-colorFondo pb-12 rounded-b-extra">
                                     
-                                <div className=" flex flex-col sm:flex-row h-auto content-center justify-around">
-                                    <div className="w-3/12 flex flex-col">
-                                        <p className="text-tercerColor text-2xl">Domicilio</p>
-                                        <p>{domicilio}</p>
+                                <div className=" flex flex-col justify-center items-center sm:flex-row h-auto content-center sm:justify-around">
+                                    
+                                    <div className="w-11/12 sm:w-3/12 flex items-center flex-col pt-4 ">
+                                        <p className="text-tercerColor text-lg">Domicilio</p>
+                                        <p className="break-words pt-2 font-bold ">{domicilio}</p>
                                     </div>
 
-                                    <div className="w-3/12">
-                                        <p className="text-tercerColor text-2xl">Teléfono</p>
-                                       <p>{telefono}</p>
+                                    <div className="w-11/12 sm:w-3/12 flex items-center flex-col pt-4">
+                                        <p className="text-tercerColor text-lg">Teléfono</p>
+                                       <p className="pt-2 font-bold ">{telefono}</p>
                                     </div>
 
-                                    <div className="w-3/12">
-                                        <p className="text-tercerColor text-2xl">Sexo</p>
-                                        <p>{sexo}</p>
+                                    <div className="w-11/12 sm:w-3/12 flex items-center flex-col pt-4">
+                                        <p className="text-tercerColor text-lg">Sexo</p>
+                                        <p className="pt-2 font-bold ">{sexo}</p>
                                     </div>
                                 
                                 </div>   
                                 
-                                <div className="bg-colorFondo flex flex-col sm:flex-row h-auto justify-around mt-4">       
-                                    <div className="w-3/12">
-                                        <p className="text-tercerColor text-2xl">Diagnóstico</p>
-                                        <p>{diagnostico}</p>
+                                <div className="bg-colorFondo flex flex-col items-center sm:flex-row h-auto justify-around mt-4">       
+                                    
+                                    <div className="w-11/12 sm:w-3/12 flex items-center flex-col pt-4">
+                                        <p className="text-tercerColor text-lg">Diagnóstico</p>
+                                        <p className="pt-2 font-bold break-words ">{diagnostico}</p>
                                     </div>
 
-                                    <div className="w-3/12">
+                                    <div className="w-11/12 sm:w-3/12 flex items-center flex-col pt-4">
                                         <p className="text-tercerColor text-lg">Antecedentes Familiares</p>
-                                        <p className="break-words">{antecedentes}</p>
+                                        <p className="break-words pt-2 font-bold">{antecedentes}</p>
                                     </div>
 
-                                    <div className="w-3/12">
-                                        <p className="text-tercerColor text-2xl">Estilos de Vida</p>
-                                        <p className="break-words">{estilos}</p>
+                                    <div className="w-11/12 sm:w-3/12 flex items-center flex-col pt-4">
+                                        <p className="text-tercerColor text-lg">Estilos de Vida</p>
+                                        <p className="break-words pt-2 font-bold">{estilos}</p>
                                     </div>
                                 </div>
 
-                                <div className="flex h-24 flex-col sm:flex-row content-center justify-around">
+                                <div className="flex flex-col items-center sm:flex-row content-center justify-around mt-4">
 
-                                    <div className="w-3/12">
-                                        <p className="text-tercerColor text-2xl">E-mail</p>
-                                        <p>{correo}</p>
+                                    <div className="w-11/12 sm:w-3/12 flex items-center flex-col pt-4">
+                                        <p className="text-tercerColor text-lg">Correo Electrónico</p>
+                                        <p className="break-words pt-2 font-bold">{correo}</p>
                                     </div>
 
                                     {presion === "" ? null : 
-                                        <div className="w-3/12">
-                                            <p className="text-tercerColor text-2xl">Presión</p>
-                                            <p>{presion}</p>
+                                        <div className="w-11/12 sm:w-3/12 flex items-center flex-col pt-4">
+                                            <p className="text-tercerColor text-lg">Presión</p>
+                                            <p className="break-words pt-2 font-bold">{presion}</p>
                                         </div>
                                     }
                                     
                                    {peso === "" ? null : 
-                                   <div className="w-3/12">
-                                        <p className="text-tercerColor text-2xl">Peso</p>
-                                        <p>{peso}</p>
+                                   <div className="w-11/12 sm:w-3/12 flex items-center flex-col pt-4">
+                                        <p className="text-tercerColor text-lg">Peso</p>
+                                        <p className="break-words pt-2 font-bold">{peso}</p>
                                     </div>}
 
                                 </div> 
 
-                                <div className="flex h-24 sm:flex-row flex-col content-center justify-around">
+                                <div className="flex sm:flex-row flex-col items-center content-center justify-around mt-4">
 
                                     {talla === "" ? null : 
-                                        <div className="w-3/12">
-                                            <p className="text-tercerColor text-2xl">Talla</p>
-                                            <p>{talla}</p>
+                                        <div className="w-11/12 sm:w-3/12 flex items-center flex-col pt-4">
+                                            <p className="text-tercerColor text-lg">Talla</p>
+                                            <p className="break-words pt-2 font-bold">{talla}</p>
                                         </div>
                                     }
 
-                                    <div className="w-3/12">
+                                    <div className="w-11/12 sm:w-3/12">
                                     </div>
 
-                                    <div className="w-3/12">
+                                    <div className="w-11/12 sm:w-3/12">
                                     </div>
 
                                 </div>
 
                             </div>
                         </div>
+
+
+                        
                     </div>
+
+                    <div className="flex sm:hidden mb-10">
+                        <button
+                            className=" bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
+                            onClick={() => abrirPagina()}
+                        >
+                        Modificar</button>
+                    </div>
+
+
                 </div>
             </div>
         </div>
