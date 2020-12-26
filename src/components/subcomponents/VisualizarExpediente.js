@@ -3,7 +3,6 @@ import {useLocation, useHistory} from "react-router-dom";
 import Sidebar from '../ui/Sidebar';
 import Barra from '../ui/Barra';
 import usuarioPerfil from '../../img/usuarioPerfil.svg';
-//import history from '../../history';
 
 
 const VisualizarExpediente = () => {
@@ -45,7 +44,7 @@ const VisualizarExpediente = () => {
         <div className="">
             <Sidebar/>
 
-            <div className="bg-colorFondo w-4/5 box-border left-auto float-right h-auto">
+            <div className="bg-colorFondo lg:w-4/5 lg:box-border lg:left-auto lg:float-right lg:h-auto">
                 <Barra/>
 
                 <div className=" flex">
@@ -63,10 +62,8 @@ const VisualizarExpediente = () => {
                     </div>
                 </div>
 
-
                 <div className="flex justify-center ">
                     <div className="bg-white w-11/12 mt-10 pb-20 flex justify-center h-full mb-12">
-
 
                         <div className="w-10/12">
 
@@ -74,17 +71,14 @@ const VisualizarExpediente = () => {
                                 <p>{nombre +" " + apellidos}</p>
                             </div>
 
-
                             <div className="bg-colorFondo flex content-center justify-center ">
- 
-                                <img src={usuarioPerfil} className="-mt-12" width="120" height="120" alt="Usuario Perfil"/>
-                                
+                                <img src={usuarioPerfil} className="-mt-12" width="120" height="120" alt="Usuario Perfil"/>                             
                             </div>
 
 
                             <div className="bg-colorFondo pb-12 rounded-b-extra">
                                     
-                                <div className=" flex h-auto content-center justify-around">
+                                <div className=" flex flex-col sm:flex-row h-auto content-center justify-around">
                                     <div className="w-3/12 flex flex-col">
                                         <p className="text-tercerColor text-2xl">Domicilio</p>
                                         <p>{domicilio}</p>
@@ -102,10 +96,7 @@ const VisualizarExpediente = () => {
                                 
                                 </div>   
                                 
-
-
-
-                                <div className="bg-colorFondo flex h-auto justify-around mt-4">       
+                                <div className="bg-colorFondo flex flex-col sm:flex-row h-auto justify-around mt-4">       
                                     <div className="w-3/12">
                                         <p className="text-tercerColor text-2xl">Diagnóstico</p>
                                         <p>{diagnostico}</p>
@@ -122,10 +113,7 @@ const VisualizarExpediente = () => {
                                     </div>
                                 </div>
 
-
-
-                                <div className="flex h-24 flex-wrap items-center content-center justify-around">
-
+                                <div className="flex h-24 flex-col sm:flex-row content-center justify-around">
 
                                     <div className="w-3/12">
                                         <p className="text-tercerColor text-2xl">E-mail</p>
@@ -133,10 +121,10 @@ const VisualizarExpediente = () => {
                                     </div>
 
                                     {presion === "" ? null : 
-                                    <div className="w-3/12">
-                                        <p className="text-tercerColor text-2xl">Presión</p>
-                                        <p>{presion}</p>
-                                    </div>
+                                        <div className="w-3/12">
+                                            <p className="text-tercerColor text-2xl">Presión</p>
+                                            <p>{presion}</p>
+                                        </div>
                                     }
                                     
                                    {peso === "" ? null : 
@@ -145,48 +133,32 @@ const VisualizarExpediente = () => {
                                         <p>{peso}</p>
                                     </div>}
 
-                                   
-
                                 </div> 
 
-                                <div className="flex h-24 flex-wrap items-center content-center justify-around">
+                                <div className="flex h-24 sm:flex-row flex-col content-center justify-around">
 
                                     {talla === "" ? null : 
-                                   <div className="w-3/12">
-                                        <p className="text-tercerColor text-2xl">Talla</p>
-                                        <p>{talla}</p>
-                                    </div>}
+                                        <div className="w-3/12">
+                                            <p className="text-tercerColor text-2xl">Talla</p>
+                                            <p>{talla}</p>
+                                        </div>
+                                    }
 
                                     <div className="w-3/12">
-
                                     </div>
+
                                     <div className="w-3/12">
-
                                     </div>
-
 
                                 </div>
 
-
-
-
-
                             </div>
-
                         </div>
-
-
-
                     </div>
                 </div>
-
-
-
-
             </div>
-
         </div>
-     );
+    );
 }
  
 export default VisualizarExpediente;
