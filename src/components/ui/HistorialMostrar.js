@@ -15,7 +15,7 @@ const ExpedientesMostrar = ({expediente}) => {
 
    //console.log(props);
 
-   //QUEDA PENDIENTE LA ELIMINACION!!!!!!!!!!!!
+   //QUEDA PENDIENTE LA ELIMINACION!!!!!!!!!!!! porque se eliminaran todos los datos desde aqui
 
     const redireccionar = () => {
 
@@ -30,13 +30,13 @@ const ExpedientesMostrar = ({expediente}) => {
     }
 
     return ( 
-        <div className="flex content-center items-center justify-items-center justify-center">
+        <div className="flex content-center items-center justify-items-center justify-center" >
 
-            <div className="w-1/12 h-12 flex items-center justify-center border-b-2 border-r-2 border-gray-500">
+            <div className="w-1/12 h-12 flex items-center justify-center border-b-2 border-r-2 border-gray-500 cursor-pointer" onClick={() => redireccionar()}>
                 <img src={expedienteUser} width="25" alt="Usuario"/>
             </div>
 
-            <div className="pl-1 w-3/12 sm:w-2/12 lg:w-1/12 h-12 flex items-center border-b-2 border-gray-500">
+            <div className="pl-1 w-3/12 sm:w-2/12 lg:w-1/12 h-12 flex items-center border-b-2 border-gray-500 cursor-pointer" onClick={() => redireccionar()}>
                 <p className="text-tercerColor">{nombre}</p>
             </div>
 
@@ -51,7 +51,7 @@ const ExpedientesMostrar = ({expediente}) => {
             </div>
 
 
-            <div className="pl-4 w-6/12 sm:w-4/12 lg:w-3/12 h-12 justify-items-center flex items-center border-b-2 border-gray-500 ">
+            <div className="pl-4 w-6/12 sm:w-4/12 lg:w-3/12 h-12 justify-items-center flex items-center border-b-2 border-gray-500 cursor-pointer" onClick={() => redireccionar()}>
                 <p className="text-tercerColor overflow-ellipsis">{diagnostico}</p>
                 
             </div>

@@ -65,12 +65,12 @@ const VisualizarExpediente = () => {
 
                         <div className="w-10/12">
 
-                            <div className="bg-tercerColor border-1 border-black h-32 flex justify-center pt-6 rounded-t-extra text-white font-source font-bold text-base sm:text-3xl mt-6">
+                            <div className="bg-tercerColor border-1 border-black h-24 sm:h-32 flex justify-center pt-6 rounded-t-extra text-white font-source font-bold text-xl sm:text-2xl mt-6">
                                 <p>{nombre +" " + apellidos}</p>
                             </div>
 
                             <div className="bg-colorFondo flex content-center justify-center ">
-                                <img src={usuarioPerfil} className="-mt-12" width="120" height="120" alt="Usuario Perfil"/>                             
+                                <img src={usuarioPerfil} className=" -mt-10 sm:-mt-12 w-20 sm:w-28" alt="Usuario Perfil"/>                             
                             </div>
 
 

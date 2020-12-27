@@ -54,13 +54,13 @@ export const Expediente = props => {
             <div className="bg-colorFondo lg:w-4/5 lg:box-border lg:left-auto lg:float-right lg:h-screen">
                 <Barra/>
 
-                <div className=" flex">
+                <div className=" flex justify-center">
 
-                    <div className=" w-1/2 flex justify-start items-center">
-                        <p className="font-source content-center lg:text-2xl font-bold pl-12 pt-6">Expediente</p>
+                    <div className="w-6/12 flex justify-start items-center">
+                        <p className="font-source content-center text-xl lg:text-2xl font-bold pt-6">Expediente</p>
                     </div>
                     
-                    <div className="w-1/2 flex justify-end items-center pr-12 pt-6">
+                    <div className="w-5/12 flex justify-end items-center pr-12 pt-6">
                         <button
                             className=" bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
                             onClick={() => redireccionar()}
@@ -68,9 +68,13 @@ export const Expediente = props => {
                         Nuevo</button>
                     </div>
                 </div>
+
+                <div className="flex justify-center sm:hidden mt-4">
+                    <input placeholder="Buscar..." className="flex w-11/12 justify-center  border-white border-4 lg:w-40 h-10 bg-colorFondo text-black"/>
+                </div>
                 
                 <div className="flex justify-center ">
-                    <div className="bg-white w-11/12 mt-10 pb-20">
+                    <div className="bg-white w-11/12 mt-10 pb-20 pt-6 sm:pt-0">
 
                         <div className="flex items-center justify-end">
 
@@ -78,7 +82,7 @@ export const Expediente = props => {
                                 <p className="font-source font-bold text-xl sm:pl-10 lg:pl-12 pt-3">Pacientes</p>
                             </div>
 
-                            <div className="mr-6 sm:flex sm:w-1/2 sm:justify-end sm:items-center sm:pr-12 pt-6">
+                            <div className="hidden mr-6 sm:flex sm:w-1/2 sm:justify-end sm:items-center sm:pr-12 pt-6">
                                 <input placeholder="Buscar..." className="w-full sm:w-40 lg:w-40 h-10 bg-colorFondo text-black"/>
                             </div>
 

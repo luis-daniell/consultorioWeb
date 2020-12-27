@@ -47,31 +47,35 @@ export const Historial = props => {
             <div className="bg-colorFondo lg:w-4/5 lg:box-border lg:left-auto lg:float-right lg:h-screen">
                 <Barra/>
 
-                <div className=" flex">
+                <div className=" flex justify-center">
 
-                    <div className=" w-1/2 flex justify-start items-center">
-                        <p className="font-source content-center sm:text-lg md:text-xl lg:text-2xl font-bold pl-12 pt-6">Historial</p>
+                    <div className=" w-11/12 flex justify-start items-center">
+                        <p className="font-source content-center text-xl sm:text-2xl font-bold  pt-6">Historial</p>
                     </div>
                     
+                </div>
+
+                <div className="flex justify-center sm:hidden mt-4">
+                    <input placeholder="Buscar..." className="flex w-11/12 justify-center  border-white border-4 lg:w-40 h-10 bg-colorFondo text-black"/>
                 </div>
                 
                
                 <div className="flex justify-center ">
-                    <div className="bg-white w-11/12 mt-10 pb-20">
+                    <div className="bg-white w-11/12 mt-10 pb-20 pt-6 sm:pt-0">
 
                         <div className="flex">
                             <div className=" hidden sm:flex sm:w-1/2 sm:justify-start sm:items-center lg:flex lg:w-1/2 lg:justify-start lg:items-center">
                                 <p className="font-source font-bold text-xl pl-12 pt-3">Pacientes</p>
                             </div>
 
-                            <div className=" flex w-full lg:w-1/2 justify-end items-center lg:pr-12 pr-4 pt-6">
+                            <div className=" hidden sm:flex sm:w-1/2 justify-end items-center lg:pr-12 pr-4 pt-6">
                                 <input placeholder="Buscar..." className="w-40 h-10 bg-colorFondo text-black"/>
                             </div>
 
 
                         </div>
 
-                        <div className="text-colorBoton flex justify-center">
+                        <div className="text-colorBoton hidden sm:flex justify-center">
                             
                             <div className="w-1/12  border-black border-b-2 mb-4">
                                 

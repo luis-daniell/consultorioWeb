@@ -1,4 +1,6 @@
 import React, {useContext, useState, useEffect} from "react";
+
+import {useHistory} from "react-router-dom";
 import {FirebaseContext} from '../../firebase/Auth';
 import Sidebar from "../ui/Sidebar";
 import Barra from "../ui/Barra";
@@ -12,7 +14,7 @@ import perfil from '../../img/perfil.svg';
 
 export const Dashboard = props => {
 
-
+  const history = useHistory();
   const {currentUser} = useContext(FirebaseContext);
 
   //Documentos en expedientes
@@ -65,18 +67,23 @@ export const Dashboard = props => {
 
     },[firebase]);
 
+    
+
+    const abrirPerfil = () => {
+      history.push("/perfil");
+    }
 
   return (
 
     <div className="">
             <Sidebar/>
             
-            <div className="bg-colorFondo lg:w-4/5 lg:box-border lg:left-auto lg:float-right lg:h-screen">
+            <div className="bg-colorFondo lg:w-4/5 lg:box-border lg:left-auto lg:float-right h-screen">
                 <Barra/>
 
                 <div className=" flex justify-items-center items-center justify-center">
                   <div className="w-8/12 flex justify-start sm:w-10/12 lg:w-11/12 xl:w-11/12">
-                    <p className="font-source content-center text-2xl font-bold lg:pl-8 xl:pl-10 pt-6">Dashboard</p>
+                    <p className="font-source content-center text-xl sm:text-2xl font-bold lg:pl-8 xl:pl-10 pt-6">Dashboard</p>
                   </div>
                 </div>
                 
@@ -89,75 +96,76 @@ export const Dashboard = props => {
                
                 <div className="flex justify-center ">
 
-                    <div className="lg:bg-white w-8/12 mt-10 pb-20 lg:flex lg:flex-wrap sm:flex-wrap sm:flex sm:w-10/12 md:w-10/12">
+                    <div className="w-8/12 mt-10 pb-20 lg:flex lg:flex-wrap sm:flex-wrap sm:flex sm:w-10/12 md:w-10/12">
 
                       <div className="bg-tercerColor sm:w-5/12 lg:w-3/12 md:w-4/12 h-24 rounded-lg flex justify-center items-center justify-items-center sm:flex-wrap">
 
-                        <div className="">
+                        <div className="w-6/12 sm:w-5/12">
+
                           <div className="flex justify-end">
                             <p className="font-source text-4xl font-bold text-white">{docExpedientes}</p>
                           </div>
-
-                          <div>
+                          <div className="flex justify-end">
                             <p className="font-source text-lg text-white">Pacientes</p>
                           </div>
+
                         </div>
 
-                        <div className="flex justify-end ml-6">
+                        <div className="flex justify-start ml-6 w-5/12">
                           <img src={paciente} width="70" height="70" alt="paciente"/>
                         </div>
                         
                       </div>
 
-
                       <div className="bg-cuartoColor mt-3 sm:ml-3 sm:mt-0 sm:w-5/12 lg:mt-0 lg:w-3/12 md:w-4/12 h-24 rounded-lg lg:ml-3 flex justify-center items-center justify-items-center">
 
-                        <div className="">
+                        <div className="w-6/12 sm:w-5/12">
                           <div className="flex justify-end">
                             <p className="font-source text-4xl font-bold text-white">{docCitas}</p>
                           </div>
 
-                          <div>
+                          <div className="flex justify-end">
                             <p className="font-source text-lg text-white">Citas</p>
                           </div>
                         </div>
 
-                        <div className="flex justify-end ml-6">
+                        <div className="justify-start w-5/12 flex ml-6">
                           <img src={cita} width="70" height="70" alt="cita" />
                         </div>
 
                       </div>
 
 
-                      <div className="bg-segundoColor mt-3 sm:w-5/12 lg:mt-0 lg:w-3/12 md:w-4/12 h-24 rounded-lg lg:ml-3 flex justify-center items-center justify-items-center">
-                        <div className="">
-                          <div>
+                      <div className="bg-segundoColor hover:bg-tercerColor cursor-pointer mt-3 sm:w-5/12 lg:mt-0 lg:w-3/12 md:w-4/12 h-24 rounded-lg lg:ml-3 flex justify-center items-center justify-items-center" onClick={() => abrirPerfil()}>
+                        
+                        <div className="w-6/12 sm:w-5/12">
+                          <div className="flex justify-end">
                             <p className="font-source text-lg text-black">Perfil</p>
                           </div>
                         </div>
                         
-                        <div className="flex justify-end ml-6">
-                          <img src={perfil} width="70" height="70" alt="perfil"/>
+                        <div className="flex justify-start w-5/12 ml-6">
+                          <img src={perfil} width="70"  alt="perfil"/>
                         </div>
 
                       </div>
 
                       <div className="bg-primeroColor sm:ml-3 sm:w-5/12 lg:w-3/12 lg:ml-0 md:w-4/12 xl:ml-0 h-24 rounded-lg border-black border-2 mt-3 flex justify-center items-center justify-items-center">
                         
-                        <div className="">
+                        <div className="w-6/12 sm:w-5/12">
                           
                           <div className="flex justify-end">
                             <p className="font-source text-4xl font-bold text-black">{docRecetas}</p>
                           </div>
   
-                          <div>
+                          <div className="flex justify-end">
                             <p className="font-source text-lg text-black">Recetas</p>
                           </div>
   
                         </div>
 
 
-                        <div className="flex justify-end ml-6">
+                        <div className="flex justify-start w-5/12 ml-6">
                           <img src={recetaDoc} width="70" height="70" alt="receta"/>
                         </div>
 

@@ -142,13 +142,11 @@ export const Estadisticas = () => {
                 <div className="content-center">
 
                     <div className="ml-4 flex sm:pl-4 md:pl-5 w-11/12 lg:ml-0 lg:pl-0 lg:justify-start items-center">
-                        <p className="font-source content-center text-base sm:text-lg md:text-xl lg:text-2xl font-bold lg:pl-12 pt-6">Estadísticas</p>
+                        <p className="font-source content-center text-xl sm:text-2xl font-bold lg:pl-12 pt-6">Estadísticas</p>
                     </div>
 
-                    
                 </div>
 
-            
                 
                 {estado ? 
                     <div className="w-11/12 flex justify-items-center items-center justify-center mt-10">
@@ -158,7 +156,7 @@ export const Estadisticas = () => {
                             //onSubmit={handleSubmit}
                             onSubmit={formik.handleSubmit}
                             >
-                            <label className="text-base w-1/12 sm:font-bold lg:w-1/12 text-tercerColor lg:font-bold font-source sm:text-xl lg:text-3xl">Año: </label>
+                            <label className="text-lg w-1/12 sm:font-bold lg:w-1/12 text-tercerColor font-source sm:text-2xl ">Año: </label>
                             <select
                                 className="lg:ml-4 w-5/12 ml-4 md:w-4/12 md:ml-0 text-xs sm:text-lg lg:text-lg shadow appearance-none border rounded lg:w-3/12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 id="year"
@@ -188,20 +186,19 @@ export const Estadisticas = () => {
 
                         <div className="w-11/12 flex lg:items-center lg:justify-start">
 
-                            <div className="w-2/12 flex md:w-1/12">
-                                <p className="text-tercerColor font-source text-xl lg:text-3xl font-bold">{year}</p>
+                            <div className="w-2/12 flex sm:w-1/12">
+                                <p className="text-tercerColor font-source text-xl sm:text-2xl font-bold">{year}</p>
                             </div>
 
-                            <div>
+                            <div className="w-9/12 pl-5">
                                 <button
-                                    className="bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source lg:w-40 h-8"  
+                                    className="bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer text-base font-source sm:w-40 h-8"  
                                     onClick={() => guardarEstado(true)}
                                 >
                                 Cambiar Año</button>
                             </div>
 
                         </div>
-                        
                     </div>
                 }
 

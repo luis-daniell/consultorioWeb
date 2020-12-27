@@ -59,13 +59,13 @@ const VisualizarCita = (props) => {
         <div className="bg-colorFondo lg:w-4/5 lg:box-border lg:left-auto lg:float-right lg:h-auto">
             <Barra/>
 
-            <div className=" flex">
+            <div className=" flex justify-center">
 
-                <div className=" w-1/2 flex justify-start items-center">
-                    <p className="font-source content-center text-2xl font-bold pl-12 pt-6">Citas</p>
+                <div className=" w-6/12 flex justify-start items-center">
+                    <p className="font-source content-center text-2xl font-bold pt-6">Citas</p>
                 </div>
                 
-                <div className="w-1/2 flex justify-end items-center pr-12 pt-6">
+                <div className="w-5/12 flex justify-end items-center sm:pr-12 pt-6">
 
                    
                     <button
@@ -78,9 +78,14 @@ const VisualizarCita = (props) => {
                 </div>
             </div>
 
+            <div className="flex justify-center sm:hidden mt-4">
+                <input placeholder="Buscar..." className="flex w-11/12 justify-center  border-white border-4 lg:w-40 h-10 bg-colorFondo text-black"/>
+            </div>
+
+
 
             <div className="flex justify-center ">
-                    <div className="bg-white w-11/12 mt-10 pb-20">
+                    <div className="bg-white w-11/12 mt-10 pb-20 pt-6">
 
                         <div className="hidden sm:flex">
                             <div className=" flex w-1/2 justify-start items-center">
@@ -94,7 +99,7 @@ const VisualizarCita = (props) => {
 
                         </div>
 
-                        <div className="text-colorBoton flex justify-center">
+                        <div className="text-colorBoton hidden sm:flex sm:justify-center lg:flex lg:justify-center">
                             <div className="w-1/12  border-black border-b-2 mb-4">
                                 
                             </div>

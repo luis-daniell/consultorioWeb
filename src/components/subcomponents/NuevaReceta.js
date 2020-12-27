@@ -150,7 +150,7 @@ const NuevaReceta = () => {
                         <div className="flex">
 
                             <div className=" lg:w-1/2 flex justify-start items-center">
-                                <p className="font-source content-center text-base sm:text-lg md:text-xl lg:text-2xl font-bold pl-12 pt-6">Datos de la consulta</p>
+                                <p className="font-source content-center text-xl sm:text-2xl font-bold sm:pl-12 pt-6">Datos de la consulta</p>
                             </div>
                 
                             <div className="hidden sm:w-1/2 sm:flex sm:justify-end sm:items-center sm:pt-6 lg:w-1/2 lg:flex lg:justify-end lg:items-center lg:pr-12 lg:pt-6">
@@ -166,8 +166,8 @@ const NuevaReceta = () => {
                         <div className="bg-white mt-8 pb-8">
             
 
-                            <div className="">
-                                <p className="font-source font-bold text-base sm:text-lg md:text-xl lg:text-2xl pl-12 pt-3">Ingresa los datos para la receta</p>
+                            <div className="flex justify-center sm:justify-start">
+                                <p className="font-source font-bold text-xl sm:text-2xl sm:pl-12 pt-3">Ingresa los datos para la receta</p>
                             </div>
 
                             <div className="justify-center lg:justify-start justify-items-center flex mt-6">

@@ -146,12 +146,12 @@ const ActualizarPerfil = ({perfil}) => {
             
             <div className="bg-colorFondo lg:w-4/5 lg:box-border lg:left-auto lg:float-right lg:h-auto">
                 <Barra/>
-                <div className="flex">
+                <div className="flex justify-center ">
 
-                    <div className="w-11/12 sm:flex sm:w-1/2 sm:justify-start sm:items-center">
-                        <p className="font-source content-center text-sm sm:text-base md:text-lg lg:text-2xl font-bold pl-12 pt-6">Modificar Perfil</p>
+                    <div className="w-11/12 sm:w-6/12 sm:flex sm:justify-start sm:items-center">
+                        <p className="font-source content-center text-xl sm:text-2xl font-bold pt-6">Modificar Perfil</p>
                     </div>
-                    <div className="hidden sm:w-1/2 sm:flex sm:justify-end sm:items-center sm:pr-12 sm:pt-6">
+                    <div className="hidden sm:w-5/12 sm:flex sm:justify-end sm:items-center sm:pr-12 sm:pt-6">
                         <button
                             className="bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
                             onClick={formik.handleSubmit}

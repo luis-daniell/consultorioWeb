@@ -18,10 +18,6 @@ const RecetasMostrar = ({receta}) => {
     const {id, nombrePaciente, telefonoPaciente} = receta;
 
 
-
-
-
-
     const abrirPaginaVisualizar = (id) => {
         history.push({
 

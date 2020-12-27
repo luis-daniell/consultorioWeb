@@ -92,9 +92,9 @@ const VisualizarHistorial = ({props}) => {
             <div className="bg-colorFondo lg:w-4/5 lg:box-border lg:left-auto lg:float-right lg:h-auto">
                 <Barra/>
 
-                <div className=" flex">
-                    <div className=" w-1/2 flex justify-start items-center">
-                        <p className="font-source content-center text-2xl font-bold pl-12 pt-6">Historial</p>
+                <div className=" flex w-11/12 justify-center items-center content-center">
+                    <div className="w-11/12 flex ">
+                        <p className="font-source content-center text-xl sm:text-2xl font-bold pt-6">Historial</p>
                     </div>
                 </div>
 
@@ -102,12 +102,12 @@ const VisualizarHistorial = ({props}) => {
                     <div className="bg-white w-11/12 mt-10 pb-20 flex justify-center h-full mb-12">
 
                         <div className="w-10/12">
-                            <div className="bg-tercerColor border-1 border-black h-32 flex justify-center pt-6 rounded-t-extra text-white font-source font-bold text-3xl mt-6">
+                            <div className="bg-tercerColor border-1 border-black h-24 sm:h-32 flex justify-center pt-6 rounded-t-extra text-white font-source font-bold text-xl sm:text-2xl mt-6">
                                 <p>{expediente.nombre}</p>
                             </div>
 
                             <div className="bg-colorFondo flex content-center justify-center ">
-                                <img src={usuarioPerfil} className="-mt-12" width="120" height="120" alt="Usuario Perfil"/>
+                                <img src={usuarioPerfil} className="-mt-10 sm:-mt-12 w-20 sm:w-28" alt="Usuario Perfil"/>
                             </div>
 
                             <div className="bg-colorFondo w-full pt-4 flex justify-center justify-items-center items-center">

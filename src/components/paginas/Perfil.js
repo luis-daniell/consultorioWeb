@@ -113,8 +113,8 @@ export const Perfil = () => {
 
                 <div className=" flex">
 
-                    <div className=" w-1/2 flex justify-start items-center">
-                        <p className="font-source content-center text-sm sm:text-base md:text-lg lg:text-2xl font-bold pl-12 pt-6">Perfil</p>
+                    <div className=" w-1/2 flex sm:justify-start items-center">
+                        <p className="font-source content-center text-xl sm:text-2xl font-bold pl-12 pt-6">Perfil</p>
                     </div>
                     
                     <div className="w-1/2 flex justify-end items-center pr-12 pt-6">
@@ -141,7 +141,7 @@ export const Perfil = () => {
 
                         <div className="w-10/12">
 
-                            <div className="bg-tercerColor border-1 border-black h-32 flex justify-center pt-6 rounded-t-extra text-white font-source font-bold sm:text-2xl md:text-3xl lg:text-3xl mt-6">
+                            <div className="bg-tercerColor border-1 border-black h-24 sm:h-32 flex justify-center pt-6 rounded-t-extra text-white font-source font-bold sm:text-2xl md:text-3xl lg:text-3xl mt-6">
                                 <p>{nombre}</p>
                             </div>
 

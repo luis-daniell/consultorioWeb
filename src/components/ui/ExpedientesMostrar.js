@@ -23,7 +23,7 @@ const ExpedientesMostrar = ({expediente}) => {
     }
 
     return ( 
-        <div className="flex content-center items-center justify-items-center justify-center">
+        <div className="flex content-center items-center justify-items-center justify-center cursor-pointer" onClick={() =>abrirPagina(id)}>
 
             <div className="w-1/12 h-12 flex items-center justify-items-center justify-center border-b-2 border-r-2 border-gray-500">
                 <img src={expedienteUser}

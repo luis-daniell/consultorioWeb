@@ -118,6 +118,11 @@ const Previsualizacion = () => {
       }
   }
 
+  const abrirVolver = () => {
+    
+    history.push("/nueva-receta");
+  }
+
 
     return ( 
         <div className="">
@@ -129,14 +134,14 @@ const Previsualizacion = () => {
                 <div className="flex w-full items-center justify-center justify-items-center">
 
                     <div className="w-5/12 lg:w-1/2 flex justify-start items-center">
-                        <p className="font-source content-center text-xs sm:text-base md:text-lg lg:text-2xl font-bold lg:pl-12 pt-6">Previsualización de la receta</p>
+                        <p className="font-source content-center text-xl sm:text-2xl font-bold lg:pl-12 pt-6">Previsualización de la receta</p>
                     </div>
                     
-                    <div className="w-6/12 lg:w-1/2 flex justify-end items-center pr-12 pt-6">
+                    <div className="w-6/12 lg:w-1/2 flex justify-end sm:items-center sm:pr-12 pt-6">
 
                         <button
-                            className=" bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-20 sm:w-28 md:w-36 lg:w-40 h-8"
-                            //onClick={() => abrirActualizar()}
+                            className=" bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-24 sm:w-28 md:w-36 lg:w-40 h-8"
+                            onClick={() => abrirVolver()}
                         >Volver</button>
                       
                         <div onClick={() => segundaFuncion()} className="hidden sm:flex pl-5 lg:flex">
@@ -150,7 +155,7 @@ const Previsualizacion = () => {
                 </div>
 
                 <div className="flex justify-center " >
-                    <div className="mt-10 w-full flex justify-center">
+                    <div className="mt-10 w-full flex flex-col items-center justify-center">
 
                     
                         <div ref={ref} className="bg-white w-11/12 lg:w-11/12 pb-20 flex justify-center mb-12 flex-col items-center justify-items-center" >
@@ -236,6 +241,16 @@ const Previsualizacion = () => {
                                 
                             </div>
                         </div>
+
+                        <div onClick={() => segundaFuncion()} className="flex justify-center mb-8 sm:hidden">
+                            <button
+                                className=" bg-tercerColor  hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source sm:w-28 md:w-36 w-40 h-8"
+                                onClick={handlePrint}
+                            >Descargar</button>
+                        </div>
+
+
+
                     </div>
                 </div>
             </div>

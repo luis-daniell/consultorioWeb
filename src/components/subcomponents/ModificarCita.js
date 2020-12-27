@@ -175,10 +175,10 @@ const ModificarCita = () => {
             <div className="bg-colorFondo flex-col lg:w-4/5 lg:box-border lg:left-auto lg:float-right lg:h-auto">
                 <Barra/>
 
-                <div className=" flex">
+                <div className=" flex justify-center">
 
                     <div className=" w-11/12 sm:w-1/2 flex justify-start items-center">
-                        <p className="font-source content-center text-base sm:text-2xl font-bold pl-12 pt-6">Cita de paciente</p>
+                        <p className="font-source content-center text-xl sm:text-2xl font-bold sm:pl-12 pt-6">Cita de paciente</p>
                     </div>
                     
                     <div className="hidden sm:w-1/2 sm:flex sm:justify-end sm:items-center sm:pr-12 sm:pt-6">
@@ -198,14 +198,14 @@ const ModificarCita = () => {
 
                         <div className="w-10/12">
 
-                            <div className="bg-tercerColor border-1 border-black h-32 flex justify-center pt-6 rounded-t-extra text-white font-source font-bold text-lg sm:text-3xl mt-6">
+                            <div className="bg-tercerColor border-1 border-black h-24 sm:h-32 flex justify-center pt-6 rounded-t-extra text-white font-source font-bold text-lg sm:text-3xl mt-6">
                                 <p>{nombre +" " + apellido}</p>
                             </div>
 
 
                             <div className="bg-colorFondo flex content-center justify-center ">
 
-                                <img src={usuarioPerfil} className="-mt-12" width="120" height="120" alt="UsuarioPerfil"/>
+                                <img src={usuarioPerfil} className="-mt-12 w-20 sm:w-28"  alt="UsuarioPerfil"/>
                                 
                             </div>
 
@@ -242,7 +242,7 @@ const ModificarCita = () => {
                                     <select
                                         onChange={e => guardarDato(e.target.value)}
                                         value={dato}
-                                        className="shadow appearance-none border-2 w-10/12 sm:w-5/12 py-2 px-3"
+                                        className="shadow appearance-none border-2 w-11/12 sm:w-5/12 py-2 px-3"
                                     >
                                         
                                         {valor.map(opcion => (
@@ -254,30 +254,27 @@ const ModificarCita = () => {
                                 </div>
 
                                 { calendario ?
-                                <div className="flex justify-items-center items-center justify-center">
-                                    <div className="w-3/6 flex mt-6 justify-items-center items-center justify-center">
-
-                                        
+                                <div className="flex flex-col sm:flex-row justify-items-center items-center justify-center">
+                                    <div className="w-11/12 sm:w-3/6 flex flex-col mt-6 justify-items-center items-center justify-center">
+                                        <label className="font-source text-tercerColor text-xl sm:text-2xl">Selecciona fecha: </label>
                                         <input
                                             type="date"
                                             name="fecha"
-                                            className="shadow appearance-none border-2 w-8/12 py-2 px-3"
+                                            className="shadow appearance-none border-2 w-11/12 sm:w-8/12 py-2 px-3"
                                             value={formik.values.fecha}
                                             onChange={formik.handleChange}
                                             onBlur={formik.handleBlur}
-                                            
-                                        
                                         />
             
                                     </div>
         
         
-                                    <div className="w-3/6 flex mt-6 justify-items-center items-center justify-center">
-            
+                                    <div className=" w-11/12 sm:w-3/6 flex flex-col mt-6 justify-items-center items-center justify-center">
+                                        <label className="font-source text-tercerColor text-xl sm:text-2xl">Selecciona hora: </label>
                                         <input
                                             type="time"
                                             name="hora"
-                                            className="shadow appearance-none border-2 w-8/12 py-2 px-3"
+                                            className="shadow appearance-none border-2 w-11/12 sm:w-8/12 py-2 px-3"
                                             value={formik.values.hora}
                                             onChange={formik.handleChange}
                                             onBlur={formik.handleBlur}
