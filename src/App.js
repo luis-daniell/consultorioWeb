@@ -23,6 +23,10 @@ import NuevaReceta from "./components/subcomponents/NuevaReceta";
 import Previsualizacion from "./components/subcomponents/Previsualizacion";
 import ImprimirReceta from "./components/subcomponents/ImprimirReceta";
 import VisualizarHistorial from "./components/subcomponents/VisualizarHistorial";
+import BuscarReceta from "./pages/BuscarReceta";
+import BuscarCita from "./pages/BuscarCita";
+import BuscarExpediente from "./pages/BuscarExpediente";
+import BuscarHistorial from "./pages/BuscarHistorial";
 
 import PrivateRoute from "./login/private.route";
 import { AuthProvider } from "./firebase/Auth";
@@ -31,22 +35,10 @@ import { Route, Switch } from "react-router-dom";
 
 
 const App = () => {
-
-  
-
-
   return ( 
-
-
-    //<FirebaseContext.Provider
-     // value={{
-      //  firebase
-    //  }}
-   // >
 
       <AuthProvider>
         <Switch >
-          
               <Route exact path="/" component={Login} />
               <Route exact path="/registrar" component={Cuenta} />
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
@@ -73,10 +65,14 @@ const App = () => {
               <PrivateRoute exact path="/imprimir-receta" component={ImprimirReceta}/>
               <PrivateRoute exact path="/visualizar-historial" component={VisualizarHistorial}/>
 
+              <PrivateRoute exact path="/buscarReceta" component={BuscarReceta}/>
+              <PrivateRoute exact path="/buscarCita" component={BuscarCita}/>
+              <PrivateRoute exact path="/buscarExpediente" component={BuscarExpediente}/>
+              <PrivateRoute exact path="/buscarHistorial" component={BuscarHistorial}/>
+
 
         </Switch>
       </AuthProvider>
-    //</FirebaseContext.Provider>
    );
 }
  

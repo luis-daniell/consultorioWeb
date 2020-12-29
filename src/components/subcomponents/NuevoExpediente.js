@@ -62,8 +62,8 @@ const NuevoExpediente = props => {
 
                 <div className="flex justify-center">
                     <form 
-                    className="w-11/12 pb-20"
-                    onSubmit={formik.handleSubmit}
+                        className="w-11/12 pb-20"
+                        onSubmit={formik.handleSubmit}
                     >
 
                         <div className="flex">
@@ -73,7 +73,7 @@ const NuevoExpediente = props => {
                             
                             <div className="hidden sm:w-1/2 sm:flex justify-end items-center pr-12 pt-6">
                                 <button
-                                    className="bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
+                                    className="bg-tercerColor focus:outline-none hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
                                     type="submit"
                                 >
                                 Guardar</button>
@@ -93,7 +93,7 @@ const NuevoExpediente = props => {
                                     required 
                                     type="text" 
                                     placeholder="Nombre" 
-                                    className="w-11/12 sm:w-8/12 md:w-3/12 shadow appearance-none border-2 py-2 px-3"
+                                    className="focus:outline-none w-11/12 sm:w-8/12 md:w-3/12 shadow appearance-none border-2 py-2 px-3"
                                     id="nombre"
                                     value={formik.values.nombre}
                                     onChange={formik.handleChange}
@@ -105,7 +105,7 @@ const NuevoExpediente = props => {
                                     required
                                     id="apellidos" 
                                     type="text" placeholder="Apellidos" 
-                                    className="w-11/12 mt-6 sm:w-8/12 sm:mt-6 md:mt-0 md:w-3/12 shadow appearance-none border-2 py-2 px-3"
+                                    className="focus:outline-none w-11/12 mt-6 sm:w-8/12 sm:mt-6 md:mt-0 md:w-3/12 shadow appearance-none border-2 py-2 px-3"
                                     value={formik.values.apellidos}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
@@ -117,7 +117,7 @@ const NuevoExpediente = props => {
                                 <textarea
                                     required
                                     id="domicilio"
-                                    className="shadow appearance-none border-2 w-11/12 sm:w-8/12 py-2 px-3"
+                                    className="focus:outline-none shadow appearance-none border-2 w-11/12 sm:w-8/12 py-2 px-3"
                                     placeholder="Domicilio"
                                     value={formik.values.domicilio}
                                     onChange={formik.handleChange}
@@ -134,7 +134,7 @@ const NuevoExpediente = props => {
                                     required
                                     type="tel" 
                                     placeholder="Telefono" 
-                                    className="w-11/12 sm:w-8/12 md:w-3/12 shadow appearance-none border-2 py-2 px-3"
+                                    className="focus:outline-none w-11/12 sm:w-8/12 md:w-3/12 shadow appearance-none border-2 py-2 px-3"
                                     id ="telefono"
                                     value={formik.values.telefono}
                                     onChange={formik.handleChange}
@@ -162,7 +162,7 @@ const NuevoExpediente = props => {
                                 <input
                                     required 
                                     type="Email" placeholder="Correo Electrónico" 
-                                    className="shadow appearance-none border-2 w-11/12 sm:w-8/12 py-2 px-3"
+                                    className="focus:outline-none shadow appearance-none border-2 w-11/12 sm:w-8/12 py-2 px-3"
                                     id="correo"
                                     value={formik.values.correo}
                                     onChange={formik.handleChange}
@@ -174,7 +174,7 @@ const NuevoExpediente = props => {
                             <div className="flex justify-center sm:justify-start mt-6">
                                 <label htmlFor="descripcion" className="hidden sm:flex sm:w-3/12 font-source text-tercerColor pl-12">Antecedentes Familiares: </label>
                                 <textarea
-                                    className="shadow appearance-none border-2 w-11/12 sm:w-8/12 py-2 px-3"
+                                    className="focus:outline-none shadow appearance-none border-2 w-11/12 sm:w-8/12 py-2 px-3"
                                     placeholder="Antecedentes Familiares"
                                     id="antecedentes"
                                     value={formik.values.antecedentes}
@@ -186,7 +186,7 @@ const NuevoExpediente = props => {
                             <div className="flex justify-center sm:justify-start mt-6">
                                 <label htmlFor="descripcion" className="hidden sm:flex sm:w-3/12 pl-12 text-tercerColor">Estilos de vida: </label>
                                 <textarea
-                                    className="shadow appearance-none border-2 w-11/12 sm:w-8/12 py-2 px-3"
+                                    className="focus:outline-none shadow appearance-none border-2 w-11/12 sm:w-8/12 py-2 px-3"
                                     placeholder="Estilos de vida"
                                     id="estilos"
                                     value={formik.values.estilos}
@@ -199,7 +199,7 @@ const NuevoExpediente = props => {
                                 <label htmlFor="descripcion" className="hidden sm:flex sm:w-3/12 pl-12 text-tercerColor">Diagnóstico: </label>
                                 <textarea
                                     required
-                                    className="shadow appearance-none border-2 w-11/12 sm:w-8/12 py-2 px-3"
+                                    className="focus:outline-none shadow appearance-none border-2 w-11/12 sm:w-8/12 py-2 px-3"
                                     placeholder="Diagnóstico"
                                     id="diagnostico"
                                     value={formik.values.diagnostico}
@@ -214,7 +214,7 @@ const NuevoExpediente = props => {
                                     <label htmlFor="descripcion" className="hidden sm:flex sm:w-3/12 pl-12 text-tercerColor">Presion: </label>
                                     <input 
                                         type="text" placeholder="Presión" 
-                                        className="shadow appearance-none border-2 w-11/12 sm:w-8/12 py-2 px-3"
+                                        className="focus:outline-none shadow appearance-none border-2 w-11/12 sm:w-8/12 py-2 px-3"
                                         id="presion"
                                         value={formik.values.presion}
                                         onChange={formik.handleChange}
@@ -229,7 +229,7 @@ const NuevoExpediente = props => {
                                     <label htmlFor="descripcion" className="hidden sm:flex sm:w-3/12 pl-12 text-tercerColor">Peso: </label>
                                     <input 
                                         type="text" placeholder="Peso" 
-                                        className="shadow appearance-none border-2 w-11/12 sm:w-8/12 py-2 px-3"
+                                        className="focus:outline-none shadow appearance-none border-2 w-11/12 sm:w-8/12 py-2 px-3"
                                         id="peso"
                                         value={formik.values.peso}
                                         onChange={formik.handleChange}
@@ -245,7 +245,7 @@ const NuevoExpediente = props => {
                                     <label htmlFor="descripcion" className="hidden sm:flex sm:w-3/12 pl-12 text-tercerColor">Talla: </label>
                                     <input 
                                         type="text" placeholder="Talla" 
-                                        className="shadow appearance-none border-2 w-11/12 sm:w-8/12 py-2 px-3"
+                                        className="focus:outline-none shadow appearance-none border-2 w-11/12 sm:w-8/12 py-2 px-3"
                                         id="talla"
                                         value={formik.values.talla}
                                         onChange={formik.handleChange}
@@ -260,7 +260,7 @@ const NuevoExpediente = props => {
                             <div className="flex-wrap flex sm:flex sm:justify-around sm:pr-12 sm:pt-6 ">
                                 { presion ? (
                                     <button
-                                        className="bg-tercerColor hover:bg-blue-dark ml-4 mt-6 text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
+                                        className="bg-tercerColor focus:outline-none hover:bg-blue-dark ml-4 mt-6 text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
                                         onClick={() => guardarPresion(false)}
                                         
                                     >Toma de presion</button>)
@@ -269,7 +269,7 @@ const NuevoExpediente = props => {
 
                                     { peso ? (
                                         <button
-                                            className="bg-tercerColor hover:bg-blue-dark ml-4 mt-6 text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
+                                            className="bg-tercerColor focus:outline-none hover:bg-blue-dark ml-4 mt-6 text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
                                             onClick= {() => guardarPeso(false)}
                                         >Peso</button>)
                                     : null}
@@ -277,7 +277,7 @@ const NuevoExpediente = props => {
 
                                     { talla ? (
                                         <button
-                                            className="bg-tercerColor hover:bg-blue-dark ml-4 mt-6 text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
+                                            className="bg-tercerColor focus:outline-none hover:bg-blue-dark ml-4 mt-6 text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
                                             onClick={()=>guardarTalla(false)}
                                         >Talla</button>)
                                     : null
@@ -288,7 +288,7 @@ const NuevoExpediente = props => {
 
                         <div className="w-11/12 flex justify-center mt-6 sm:hidden ">
                             <button
-                                className="bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
+                                className="bg-tercerColor focus:outline-none hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
                                 type="submit"
                             >
                             Guardar</button>

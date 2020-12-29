@@ -66,15 +66,11 @@ export const Citas = () => {
                     </div>
                     
                     <div className="w-1/2 flex justify-end items-center pr-12 pt-6">
-
-                       
                         <button
-                            className=" bg-tercerColor hover:bg-blue-dark text-white px-3 lg:px-4 rounded-full cursor-pointer font-source w-40 h-8"
+                            className=" bg-tercerColor focus:outline-none hover:bg-blue-dark text-white px-3 lg:px-4 rounded-full cursor-pointer font-source w-40 h-8"
                             onClick={() => abrirCita()}
                         >
                         Ver Citas</button>
-                        
-                        
                     </div>
                 </div>
 
@@ -102,7 +98,7 @@ export const Citas = () => {
 
 
                                 <button
-                                    className="ml-2 lg:ml-4 sm:text-lg sm:px-5 bg-tercerColor hover:bg-blue-dark text-white px-2 lg:text-xl text-xs rounded-full cursor-pointer font-source lg:w-40 h-8"  
+                                    className="ml-2 lg:ml-4 focus:outline-none sm:text-lg sm:px-5 bg-tercerColor hover:bg-blue-dark text-white px-2 lg:text-xl text-xs rounded-full cursor-pointer font-source lg:w-40 h-8"  
                                     type="submit"
                                 >
                                 Guardar</button>

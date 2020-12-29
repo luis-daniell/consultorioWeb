@@ -120,12 +120,12 @@ export const Perfil = () => {
                     <div className="w-1/2 flex justify-end items-center pr-12 pt-6">
                         {estado ? 
                             <button
-                            className=" bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
+                            className=" bg-tercerColor focus:outline-none hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
                             onClick={() => abrirActualizar()}
                         >
                         Actualizar</button>
                         : <button
-                            className=" bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
+                            className=" bg-tercerColor focus:outline-none hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
                             onClick={() => abrirPagina()}
                         >
                         Modificar</button>

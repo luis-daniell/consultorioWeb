@@ -115,7 +115,7 @@ const Barra = () => {
           aria-label="open drawer"
           edge="start"
           onClick={handleDrawerToggle}
-          className="flex lg:hidden"
+          className="flex lg:hidden focus:outline-none"
         >
           <MenuIcon />
         </IconButton>

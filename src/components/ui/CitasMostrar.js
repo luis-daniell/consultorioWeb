@@ -9,9 +9,6 @@ const CitasMostrar = ({cita}) => {
     const { nombre, fecha, hora, id} = cita;
 
     const history = useHistory();
-
-   //console.log(props);
-
     const abrirPagina = (id) => {
         
         history.push({
@@ -51,7 +48,6 @@ const CitasMostrar = ({cita}) => {
             <div 
                 className="hidden sm:w-1/12 sm:h-12 sm:flex sm:items-center sm:justify-center sm:border-b-2 sm:border-r-2 sm:border-gray-500 sm:cursor-pointer"
                 onClick={() => abrirPagina(id)} 
-                
             >
                 <img src={vision} width="25" height="" alt="visualizar"/>
             </div>
@@ -59,9 +55,6 @@ const CitasMostrar = ({cita}) => {
             <div className="w-1/12 border-l-2 border-b-2 h-12 sm:flex sm:items-center sm:border-b-2 border-gray-500">
                 
             </div>
-
-
-
 
         </div>
      );

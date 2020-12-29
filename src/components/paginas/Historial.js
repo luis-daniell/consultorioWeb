@@ -1,11 +1,15 @@
 import React, {useState, useContext, useEffect} from 'react';
 import HistorialMostrar from '../ui/HistorialMostrar';
+import lupa from '../../img/lupa.svg'
 import Barra from "../ui/Barra";
 import Sidebar from "../ui/Sidebar";
+import {useHistory} from "react-router-dom";
 import {FirebaseContext} from '../../firebase/Auth';
 
 
 export const Historial = props => {
+
+    const history = useHistory();
 
     //Definir el state para los expedientes 
     const [expedientes, guardarExpedientes] = useState([]);
@@ -39,6 +43,21 @@ export const Historial = props => {
         guardarExpedientes(expedientes);
     }
 
+    const [ busqueda, guardarBusqueda] = useState('');
+
+    const buscarHistorial = e => {
+        e.preventDefault();
+
+        if(busqueda.trim() === '') return;
+
+        // redireccionar a /buscar
+        history.push({
+            pathname: "/buscarHistorial", 
+            search:`?q=${busqueda}`,
+            state: { detail: expedientes }
+        })
+    }
+
 
     return ( 
         <div className="">
@@ -55,10 +74,22 @@ export const Historial = props => {
                     
                 </div>
 
-                <div className="flex justify-center sm:hidden mt-4">
-                    <input placeholder="Buscar..." className="flex w-11/12 justify-center  border-white border-4 lg:w-40 h-10 bg-colorFondo text-black"/>
-                </div>
-                
+                <form
+                    onSubmit={buscarHistorial}
+                    className="flex justify-center sm:hidden mt-4"
+                >
+                    <div className="bg-colorFondo flex items-center w-11/12 border-black border">
+                        <i className="pl-2"><img src={lupa} width="15" alt="lupa"/></i>
+                        <input
+                            required
+                            type="search" 
+                            placeholder="Buscar..." 
+                            className="bg-colorFondo w-11/12 flex justify-center pl-2 lg:w-40 h-10 text-black focus:outline-none"
+                            onChange={e =>  guardarBusqueda(e.target.value) }
+                        />
+
+                    </div>    
+                </form>
                
                 <div className="flex justify-center ">
                     <div className="bg-white w-11/12 mt-10 pb-20 pt-6 sm:pt-0">
@@ -68,9 +99,21 @@ export const Historial = props => {
                                 <p className="font-source font-bold text-xl pl-12 pt-3">Pacientes</p>
                             </div>
 
-                            <div className=" hidden sm:flex sm:w-1/2 justify-end items-center lg:pr-12 pr-4 pt-6">
-                                <input placeholder="Buscar..." className="w-40 h-10 bg-colorFondo text-black"/>
-                            </div>
+                            <form
+                                onSubmit={buscarHistorial}
+                                className="hidden sm:flex mr-6 sm:w-1/2 sm:pr-4 sm:justify-end pt-6"
+                            >
+                                <div className="bg-colorFondo flex items-center">
+                                    <i className="pl-2"><img src={lupa} width="15" alt="lupa"/></i>
+                                    <input
+                                        required
+                                        type="search" 
+                                        placeholder="Buscar..." 
+                                        className="w-full lg:w-40 h-10 pl-2 bg-colorFondo focus:outline-none"
+                                        onChange={e =>  guardarBusqueda(e.target.value) }
+                                    />
+                                </div>
+                            </form>
 
 
                         </div>

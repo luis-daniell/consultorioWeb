@@ -36,6 +36,10 @@ const ImprimirReceta = () => {
         history.push("/recetas");
     }
 
+    const abrirActualizar = () => {
+        history.push("/recetas");
+    }
+
     return ( 
         <div className="">
             <Sidebar/>
@@ -52,13 +56,13 @@ const ImprimirReceta = () => {
                     <div className="w-6/12 lg:w-1/2 flex justify-end items-center sm:pr-12 pt-6">
 
                         <button
-                            className=" bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-24 sm:w-28 md:w-36 lg:w-40 h-8"
-                            //onClick={() => abrirActualizar()}
+                            className=" bg-tercerColor focus:outline-none hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-24 sm:w-28 md:w-36 lg:w-40 h-8"
+                            onClick={() => abrirActualizar()}
                         >Volver</button>
                       
                         <div onClick={() => redireccionar()} className="hidden sm:flex pl-5 lg:flex">
                             <button
-                                className=" bg-tercerColor  hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source sm:w-28 md:w-36 w-40 h-8"
+                                className=" bg-tercerColor focus:outline-none hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source sm:w-28 md:w-36 w-40 h-8"
                                 onClick={handlePrint}
                             >Descargar</button>
                         </div>
@@ -156,7 +160,7 @@ const ImprimirReceta = () => {
 
                         <div onClick={() => redireccionar()} className="w-11/12 flex justify-center items-center mb-8 sm:hidden md:hidden lg:hidden">
                             <button
-                                className=" bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
+                                className=" bg-tercerColor focus:outline-none hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
                                 onClick={handlePrint}
                             >Descargar</button>
                         </div>

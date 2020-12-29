@@ -173,7 +173,7 @@ export const Estadisticas = () => {
 
 
                             <button
-                                className="ml-2 lg:ml-4 sm:text-lg sm:px-5 bg-tercerColor hover:bg-blue-dark text-white px-2 lg:text-xl text-xs rounded-full cursor-pointer font-source lg:w-40 h-8"  
+                                className="ml-2 lg:ml-4 sm:text-lg sm:px-5 bg-tercerColor hover:bg-blue-dark text-white px-2 lg:text-xl text-xs rounded-full cursor-pointer font-source lg:w-40 h-8 focus:outline-none"  
                                 type="submit"
                             >
                             Guardar</button>
@@ -192,7 +192,7 @@ export const Estadisticas = () => {
 
                             <div className="w-9/12 pl-5">
                                 <button
-                                    className="bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer text-base font-source sm:w-40 h-8"  
+                                    className="bg-tercerColor focus:outline-none hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer text-base font-source sm:w-40 h-8"  
                                     onClick={() => guardarEstado(true)}
                                 >
                                 Cambiar Año</button>

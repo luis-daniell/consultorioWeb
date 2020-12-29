@@ -14,9 +14,9 @@ const ActualizarPerfil = ({perfil}) => {
     const location = useLocation();
 
     const {firebase, currentUser} = useContext(FirebaseContext);
+    
 
-
-    const {nombre, consultorio, cedula, telefono, direccion, especialidad} = location.state.detail;
+    const {nombre, consultorio, cedula, telefono, direccion, especialidad, imagenConsultorio, imagenDoctor} = location.state.detail;
 
     //console.log(location.state.detail);
 
@@ -26,6 +26,8 @@ const ActualizarPerfil = ({perfil}) => {
     let telefono2 = telefono;
     let direccion2 = direccion;
     let especialidad2 = especialidad;
+    let imagenConsultorio2 = imagenConsultorio;
+    let imagenDoctor2 = imagenDoctor; 
 
    //console.log(currentUser.uid);
 
@@ -49,8 +51,8 @@ const ActualizarPerfil = ({perfil}) => {
             nombre: nombre2,
             especialidad: especialidad2,
             consultorio: consultorio2,
-            imagenDoctor: '',
-            imagenConsultorio: '',
+            imagenDoctor: imagenDoctor2,
+            imagenConsultorio: imagenConsultorio2,
             cedula: cedula2, 
             telefono: telefono2,
             direccion: direccion2,
@@ -60,8 +62,21 @@ const ActualizarPerfil = ({perfil}) => {
 
         onSubmit: perfill => {
             try {
-                perfill.imagenDoctor = urlimagen;
-                perfill.imagenConsultorio = urlimagen2;
+
+                if (urlimagen === '') {
+                    console.log(urlimagen);
+                    guardarUrlimagen(imagenDoctor2);
+                }else{
+                    perfill.imagenDoctor = urlimagen;
+                }
+                if(urlimagen2 === ''){
+                    guardarUrlimagen2(imagenConsultorio2);
+                }else{
+                    perfill.imagenConsultorio = urlimagen2;
+                }
+                
+                
+
                 firebase.db.collection('usuarios').doc(currentUser.uid).update(perfill);
               
                 currentUser.updateProfile({
@@ -153,7 +168,7 @@ const ActualizarPerfil = ({perfil}) => {
                     </div>
                     <div className="hidden sm:w-5/12 sm:flex sm:justify-end sm:items-center sm:pr-12 sm:pt-6">
                         <button
-                            className="bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
+                            className="bg-tercerColor focus:outline-none hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
                             onClick={formik.handleSubmit}
                             type="submit"
                         >
@@ -176,7 +191,7 @@ const ActualizarPerfil = ({perfil}) => {
                             <label className="hidden sm:flex sm:w-3/12 sm:pl-12 text-tercerColor">Doctor: </label>
                             <input 
                                 type="text" placeholder="Nombre Completo" 
-                                className="w-11/12 sm:w-8/12 shadow appearance-none border-2 py-2 px-3"
+                                className="focus:outline-none w-11/12 sm:w-8/12 shadow appearance-none border-2 py-2 px-3"
                                 id="nombre"
                                 value={formik.values.nombre}
                                 onChange={formik.handleChange}
@@ -192,7 +207,7 @@ const ActualizarPerfil = ({perfil}) => {
                             <label className="hidden sm:flex sm:w-3/12 sm:pl-12 text-tercerColor">Especialidad: </label>
                             <input 
                                 type="text" placeholder="Especialidad de Doctor" 
-                                className="w-11/12 sm:w-8/12 shadow appearance-none border-2 py-2 px-3"
+                                className="focus:outline-none w-11/12 sm:w-8/12 shadow appearance-none border-2 py-2 px-3"
                                 id="especialidad"
                                 value={formik.values.especialidad}
                                 onChange={formik.handleChange}
@@ -207,7 +222,7 @@ const ActualizarPerfil = ({perfil}) => {
                             <label htmlFor="descripcion" className="hidden sm:flex sm:w-3/12 sm:pl-12 text-tercerColor">Nombre del consultorio: </label>
                             <input 
                                 type="text" placeholder="Nombre del consultorio" 
-                                className="shadow appearance-none border-2 w-11/12 sm:w-8/12 py-2 px-3"
+                                className="focus:outline-none shadow appearance-none border-2 w-11/12 sm:w-8/12 py-2 px-3"
                                 id="consultorio"
                                 value={formik.values.consultorio}
                                 onChange={formik.handleChange}
@@ -220,10 +235,9 @@ const ActualizarPerfil = ({perfil}) => {
                         <div className="justify-center sm:justify-start flex mt-6">
                             <label className="hidden sm:flex sm:w-3/12 pl-12 text-tercerColor" htmlFor="imagen">Imagen del Doctor: </label>
                             <FileUploader
-                                accept="image/*"
-                                //accept=".svg"
+                                accept=".svg"
                                 id="imagenDoctor"
-                                className="shadow appearance-none border-2 w-11/12 sm:w-8/12 py-2 px-3"
+                                className="focus:outline-none shadow appearance-none border-2 w-11/12 sm:w-8/12 py-2 px-3"
                                 name="imagenDoctor"
                                 randomizeFilename
                                 storageRef={firebase.storage.ref("perfil")}
@@ -235,7 +249,7 @@ const ActualizarPerfil = ({perfil}) => {
                         </div>
 
                         {subiendo && (
-                            <div className="h-12 relative w-full border">
+                            <div className="h-12 relative w-11/12 border">
                                 <div className="bg-green-500 absolute left-0 top-0 text-white px-2 text-sm h-12 flex items-center" style={{width: `${progreso}%`}}>
                                     {progreso} %
                                 </div>
@@ -243,18 +257,22 @@ const ActualizarPerfil = ({perfil}) => {
                         )}
 
                         {urlimagen && (
-                           <p className="bg-green-500 text-white p-3 text-center my-5">
-                               La imagen se subió correctamente
-                           </p> 
+                            <div className="w-full flex justify-start">
+
+                                <p className="w-3/12"></p>
+                                <p className="bg-green-500 w-8/12 text-white p-3 text-center my-5">
+                                    La imagen se subió correctamente
+                                </p> 
+                            </div>
+                           
                         )}
 
                         <div className="flex justify-center sm:justify-start mt-6">
                             <label className="hidden sm:flex sm:w-3/12 pl-12 text-tercerColor" htmlFor="imagen">Imagen del consultorio: </label>
                             <FileUploader
-                                accept="image/*"
-                                //accept=".svg"
+                                accept=".svg"
                                 id="imagenConsultorio"
-                                className="shadow appearance-none border-2 w-11/12 sm:w-8/12 py-2 px-3"
+                                className="focus:outline-none shadow appearance-none border-2 w-11/12 sm:w-8/12 py-2 px-3"
                                 name="imagenConsultorio"
                                 randomizeFilename
                                 storageRef={firebase.storage.ref("perfil")}
@@ -266,7 +284,7 @@ const ActualizarPerfil = ({perfil}) => {
                         </div>
 
                         {subiendo2 && (
-                            <div className="h-12 relative w-full border">
+                            <div className="h-12 relative w-11/12 border">
                                 <div className="bg-green-500 absolute left-0 top-0 text-white px-2 text-sm h-12 flex items-center" style={{width: `${progreso}%`}}>
                                     {progreso2} %
                                 </div>
@@ -274,9 +292,13 @@ const ActualizarPerfil = ({perfil}) => {
                         )}
 
                         {urlimagen2 && (
-                           <p className="bg-green-500 text-white p-3 text-center my-5">
-                               La imagen se subió correctamente
-                           </p> 
+                            <div className="w-full flex justify-start">
+
+                                <p className="w-3/12"></p>
+                                <p className="bg-green-500 w-8/12 text-white p-3 text-center my-5">
+                                    La imagen se subió correctamente
+                                </p> 
+                            </div>
                         )}
 
                         <div className="flex justify-center sm:justify-start mt-10">
@@ -284,7 +306,7 @@ const ActualizarPerfil = ({perfil}) => {
                             <label className="hidden sm:flex sm:w-3/12 pl-12 text-tercerColor">Cédula Profesional: </label>
                             <input 
                                 type="text" placeholder="Cédula Profesional" 
-                                className="w-11/12 sm:w-8/12 shadow appearance-none border-2 py-2 px-3"
+                                className="focus:outline-none w-11/12 sm:w-8/12 shadow appearance-none border-2 py-2 px-3"
                                 id="cedula"
                                 value={formik.values.cedula}
                                 onChange={formik.handleChange}
@@ -297,7 +319,7 @@ const ActualizarPerfil = ({perfil}) => {
                             <label className="hidden sm:flex sm:w-3/12 pl-12 text-tercerColor">Teléfono: </label>
                             <input 
                                 type="text" placeholder="Teléfono" 
-                                className="w-11/12 sm:w-8/12 shadow appearance-none border-2 py-2 px-3"
+                                className="focus:outline-none w-11/12 sm:w-8/12 shadow appearance-none border-2 py-2 px-3"
                                 id="telefono"
                                 value={formik.values.telefono}
                                 onChange={formik.handleChange}
@@ -309,7 +331,7 @@ const ActualizarPerfil = ({perfil}) => {
                             <label htmlFor="descripcion" className="hidden sm:flex sm:w-3/12 pl-12 text-tercerColor">Dirección: </label>
                             <textarea
                                 id="direccion"
-                                className="shadow appearance-none border-2 w-11/12 sm:w-8/12 py-2 px-3"
+                                className="focus:outline-none shadow appearance-none border-2 w-11/12 sm:w-8/12 py-2 px-3"
                                 placeholder="Dirección"
                                 value={formik.values.direccion}
                                 onChange={formik.handleChange}
@@ -321,13 +343,12 @@ const ActualizarPerfil = ({perfil}) => {
                 </div>
 
                 <div className="flex pb-10 justify-center sm:hidden">
-                        <button
-                            className="bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
-                            onClick={formik.handleSubmit}
-                            type="submit"
-                        >
-                        Guardar</button>
-                    </div>
+                    <button
+                        className="bg-tercerColor focus:outline-none hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
+                        onClick={formik.handleSubmit}
+                        type="submit"
+                    >Guardar</button>
+                </div>
             </div>
         </div>
      );

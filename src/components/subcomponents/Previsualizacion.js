@@ -140,13 +140,13 @@ const Previsualizacion = () => {
                     <div className="w-6/12 lg:w-1/2 flex justify-end sm:items-center sm:pr-12 pt-6">
 
                         <button
-                            className=" bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-24 sm:w-28 md:w-36 lg:w-40 h-8"
+                            className=" bg-tercerColor focus:outline-none hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-24 sm:w-28 md:w-36 lg:w-40 h-8"
                             onClick={() => abrirVolver()}
                         >Volver</button>
                       
                         <div onClick={() => segundaFuncion()} className="hidden sm:flex pl-5 lg:flex">
                             <button
-                                className=" bg-tercerColor  hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source sm:w-28 md:w-36 w-40 h-8"
+                                className=" bg-tercerColor focus:outline-none hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source sm:w-28 md:w-36 w-40 h-8"
                                 onClick={handlePrint}
                             >Descargar</button>
                         </div>
@@ -244,7 +244,7 @@ const Previsualizacion = () => {
 
                         <div onClick={() => segundaFuncion()} className="flex justify-center mb-8 sm:hidden">
                             <button
-                                className=" bg-tercerColor  hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source sm:w-28 md:w-36 w-40 h-8"
+                                className=" bg-tercerColor focus:outline-none hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source sm:w-28 md:w-36 w-40 h-8"
                                 onClick={handlePrint}
                             >Descargar</button>
                         </div>

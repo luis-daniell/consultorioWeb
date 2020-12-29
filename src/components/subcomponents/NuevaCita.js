@@ -154,7 +154,7 @@ const NuevaCita = () => {
                             
                             <div className="hidden sm:w-1/2 sm:flex sm:justify-end sm:items-center sm:pr-12 sm:pt-6">
                                 <button
-                                    className=" bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
+                                    className=" bg-tercerColor focus:outline-none hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
                                     type="submit"
                                 >
                                 Guardar</button>
@@ -171,7 +171,7 @@ const NuevaCita = () => {
                             <div className="flex justify-center sm:justify-start mt-6">
                                 <label className="hidden sm:flex sm:w-3/12 font-source text-tercerColor sm:pl-12">Nombre de paciente: </label>
                                 <select
-                                    className="shadow appearance-none border-2 w-11/12 sm:w-8/12 py-2 px-3"
+                                    className="focus:outline-none shadow appearance-none border-2 w-11/12 sm:w-8/12 py-2 px-3"
                                     id="paciente"
                                     required
                                     value={formik.values.paciente}
@@ -192,7 +192,7 @@ const NuevaCita = () => {
                                     required
                                     type="date"
                                     name="fecha"
-                                    className="shadow appearance-none border-2 w-11/12 sm:w-8/12 py-2 px-3"
+                                    className="focus:outline-none shadow appearance-none border-2 w-11/12 sm:w-8/12 py-2 px-3"
                                     value={formik.values.fecha}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
@@ -206,7 +206,7 @@ const NuevaCita = () => {
                                     required
                                     type="time"
                                     name="hora"
-                                    className="shadow appearance-none border-2 w-11/12 sm:w-8/12 py-2 px-3"
+                                    className="focus:outline-none shadow appearance-none border-2 w-11/12 sm:w-8/12 py-2 px-3"
                                     value={formik.values.hora}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
@@ -218,7 +218,7 @@ const NuevaCita = () => {
                                 <label htmlFor="descripcion" className="hidden sm:flex sm:w-3/12 font-source text-tercerColor pl-12">Descripción: </label>
                                 <textarea
                                     required
-                                    className="shadow appearance-none border-2 w-11/12 sm:w-8/12 py-2 px-3"
+                                    className="focus:outline-none shadow appearance-none border-2 w-11/12 sm:w-8/12 py-2 px-3"
                                     placeholder="Descripción"
                                     id="descripcion"
                                     value={formik.values.descripcion}
@@ -230,7 +230,7 @@ const NuevaCita = () => {
 
                         <div className=" w-11/12 sm:hidden pt-8 flex justify-center">
                                 <button
-                                    className=" bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
+                                    className=" bg-tercerColor focus:outline-none hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
                                     type="submit"
                                 >
                                 Guardar</button>

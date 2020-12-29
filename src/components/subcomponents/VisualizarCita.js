@@ -2,6 +2,7 @@ import React, {useEffect, useState, useContext} from 'react';
 import { useHistory} from "react-router-dom";
 import CitasMostrar from '../ui/CitasMostrar';
 import {FirebaseContext} from '../../firebase/Auth';
+import lupa from '../../img/lupa.svg';
 import Sidebar from "../ui/Sidebar";
 import Barra from "../ui/Barra";
 
@@ -50,7 +51,20 @@ const VisualizarCita = (props) => {
 
 
 
+    const [ busqueda, guardarBusqueda] = useState('');
 
+    const buscarCita = e => {
+        e.preventDefault();
+
+        if(busqueda.trim() === '') return;
+
+        // redireccionar a /buscar
+        history.push({
+            pathname: "/buscarCita", 
+            search:`?q=${busqueda}`,
+            state: { detail: citas }
+        })
+    }
 
     return ( 
         <div className="">
@@ -69,7 +83,7 @@ const VisualizarCita = (props) => {
 
                    
                     <button
-                        className=" bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
+                        className=" bg-tercerColor focus:outline-none hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
                         onClick={() => abrirNuevaCita()}
                     >
                     Nuevo</button>
@@ -78,9 +92,22 @@ const VisualizarCita = (props) => {
                 </div>
             </div>
 
-            <div className="flex justify-center sm:hidden mt-4">
-                <input placeholder="Buscar..." className="flex w-11/12 justify-center  border-white border-4 lg:w-40 h-10 bg-colorFondo text-black"/>
-            </div>
+            <form
+                    onSubmit={buscarCita}
+                    className="flex justify-center sm:hidden mt-4"
+                >
+                    <div className="bg-colorFondo flex items-center w-11/12 border-black border">
+                        <i className="pl-2"><img src={lupa} width="15" alt="lupa"/></i>
+                        <input
+                            required
+                            type="search" 
+                            placeholder="Buscar..." 
+                            className="bg-colorFondo w-11/12 flex justify-center pl-2 lg:w-40 h-10 text-black focus:outline-none"
+                            onChange={e =>  guardarBusqueda(e.target.value) }
+                        />
+
+                    </div>    
+            </form>
 
 
 
@@ -92,9 +119,21 @@ const VisualizarCita = (props) => {
                                 <p className="font-source font-bold text-xl pl-12 pt-3">Citas</p>
                             </div>
 
-                            <div className=" flex w-1/2 justify-end items-center pr-12 pt-6">
-                                <input placeholder="Buscar..." className="w-40 h-10 bg-colorFondo text-black"/>
-                            </div>
+                            <form
+                                onSubmit={buscarCita}
+                                className="hidden sm:flex mr-6 sm:w-1/2 sm:pr-4 sm:justify-end pt-6"
+                            >
+                                <div className="bg-colorFondo flex items-center">
+                                    <i className="pl-2"><img src={lupa} width="15" alt="lupa"/></i>
+                                    <input
+                                        required
+                                        type="search" 
+                                        placeholder="Buscar..." 
+                                        className="w-full lg:w-40 h-10 pl-2 bg-colorFondo focus:outline-none"
+                                        onChange={e =>  guardarBusqueda(e.target.value) }
+                                    />
+                                </div>
+                            </form>
 
 
                         </div>

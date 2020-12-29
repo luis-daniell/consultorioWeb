@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import {useLocation, useHistory} from "react-router-dom";
+import {agregarEvento} from '../../helper';
 import { v4 as uuidv4 } from 'uuid';
 import {FirebaseContext} from '../../firebase/Auth';
 import {useFormik} from 'formik';
@@ -96,76 +97,7 @@ const ModificarCita = () => {
 
     });
 
-    function agregarEvento (nombre, apellidos, correo, fecha, hora, descripcion ){
-
-        var gapi = window.gapi
-        
-        //  Update with your own Client Id and Api key 
-        
-        var CLIENT_ID = "529094084148-em988n3ck312m1g82k3ucm96vudp5ou2.apps.googleusercontent.com"
-        var API_KEY = "AIzaSyC5rozZvL1yXtj51_ThlbCFOxAMqDiXcIY"
-        var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"]
-        var SCOPES = "https://www.googleapis.com/auth/calendar"
-      
-        //https://www.youtube.com/watch?v=zrLf4KMs71E
-      
-          gapi.load('client:auth2', () => {
-            console.log('loaded client')
-      
-            gapi.client.init({
-              apiKey: API_KEY,
-              clientId: CLIENT_ID,
-              discoveryDocs: DISCOVERY_DOCS,
-              scope: SCOPES,
-            })
-      
-            gapi.client.load('calendar', 'v3', () => console.log('bam!'))
-            
-      
-            gapi.auth2.getAuthInstance().signIn()
-            .then(() => {
-              
-              var event = {
-                'summary': `Cita a: ${nombre} ${apellidos}`,
-                'description': `${descripcion}`,
-                'start': {
-                  'dateTime': `${fecha}T${hora}:00-06:00`,
-                  'timeZone': 'America/Mexico_City'
-                },
-                'end': {
-                  'dateTime': `${fecha}T${hora}:00-06:00`,
-                  'timeZone': 'America/Mexico_City'
-                },
-                'attendees': [
-                  {'email': `${correo}`}
-                ],
-                'reminders': {
-                  'useDefault': false,
-                  'overrides': [
-                    {'method': 'email', 'minutes': 24 * 60},
-                    {'method': 'popup', 'minutes': 10}
-                  ]
-                }
-              }
-              
-              var request = gapi.client.calendar.events.insert({
-                'calendarId': 'primary',
-                'resource': event,
-              })
-      
-              request.execute(event => {
-                console.log(event)
-                const token = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse();
-                console.log(token);
-                
-                //console.log(accessToken);
-                
-                //window.open(event.htmlLink)
-              })
-            })//FIN DE ONCLICK
-          })
-
-      }
+    
     
     return ( 
             
@@ -183,7 +115,7 @@ const ModificarCita = () => {
                     
                     <div className="hidden sm:w-1/2 sm:flex sm:justify-end sm:items-center sm:pr-12 sm:pt-6">
                         <button
-                            className=" bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
+                            className=" bg-tercerColor focus:outline-none hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
                             onClick={formik.handleSubmit}
                             type="submit"
                         >
@@ -293,7 +225,7 @@ const ModificarCita = () => {
 
                     <div className="w-11/12 flex justify-center pb-10 sm:hidden ">
                         <button
-                            className=" bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
+                            className=" bg-tercerColor focus:outline-none hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
                             onClick={formik.handleSubmit}
                             type="submit"
                         >

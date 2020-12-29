@@ -75,7 +75,7 @@ const ModificarExpediente = ({props}) => {
                     
                     <div className="hidden sm:w-1/2 sm:flex justify-end items-center pr-12 pt-6">
                         <button
-                            className=" bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
+                            className=" bg-tercerColor focus:outline-none hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
                             onClick={formik.handleSubmit}
                             type="submit"
                         >
@@ -155,9 +155,6 @@ const ModificarExpediente = ({props}) => {
                                         onBlur={formik.handleBlur}
                                     />
                                 </div>
-
-
-
 
                                 <div className="flex justify-around mt-6">
                                     <label className="text-tercerColor  hidden sm:text-2xl sm:w-3/12">Sexo: </label>
@@ -273,7 +270,7 @@ const ModificarExpediente = ({props}) => {
 
                     <div className="flex mb-10 sm:hidden">
                         <button
-                            className=" bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
+                            className=" bg-tercerColor focus:outline-none hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
                             onClick={formik.handleSubmit}
                             type="submit"
                         >

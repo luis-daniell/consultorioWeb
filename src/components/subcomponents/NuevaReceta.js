@@ -155,7 +155,7 @@ const NuevaReceta = () => {
                 
                             <div className="hidden sm:w-1/2 sm:flex sm:justify-end sm:items-center sm:pt-6 lg:w-1/2 lg:flex lg:justify-end lg:items-center lg:pr-12 lg:pt-6">
                                 <button
-                                    className=" bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
+                                    className=" bg-tercerColor focus:outline-none hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
                                     type="submit"
                                 >
                                 Guardar</button>
@@ -175,7 +175,7 @@ const NuevaReceta = () => {
                                 <label className="hidden w-11/12 sm:w-4/12 sm:justify-start sm:flex sm:font-source sm:text-tercerColor md:w-3/12 lg:w-3/12 lg:flex lg:font-source lg:text-tercerColor lg:pl-12">Nombre de paciente: </label>
 
                                 <select
-                                    className="shadow appearance-none border-2 w-11/12 sm:w-7/12 md:w-8/12 lg:w-8/12 py-2 px-3"
+                                    className="focus:outline-none shadow appearance-none border-2 w-11/12 sm:w-7/12 md:w-8/12 lg:w-8/12 py-2 px-3"
                                     id="paciente"
                                     onChange={e => guardarDato(e.target.value)}
                                     required
@@ -196,7 +196,7 @@ const NuevaReceta = () => {
 
                                 <select
                                     required
-                                    className="shadow appearance-none border-2 w-11/12 sm:w-7/12 md:w-8/12 lg:w-8/12 py-2 px-3"
+                                    className="focus:outline-none shadow appearance-none border-2 w-11/12 sm:w-7/12 md:w-8/12 lg:w-8/12 py-2 px-3"
                                     id="paciente"
                                 >
                                     <option value={diagnostico}>{diagnostico}</option>   
@@ -210,7 +210,7 @@ const NuevaReceta = () => {
                                 <label htmlFor="descripcion" className="hidden w-11/12 sm:w-4/12 sm:justify-start sm:flex sm:font-source sm:text-tercerColor md:w-3/12 lg:w-3/12 lg:flex lg:font-source lg:text-tercerColor lg:pl-12">Observaciones: </label>
                                 <textarea
                                     required
-                                    className="shadow appearance-none border-2 w-11/12 sm:w-7/12 md:w-8/12 lg:w-8/12 py-2 px-3"
+                                    className="focus:outline-none shadow appearance-none border-2 w-11/12 sm:w-7/12 md:w-8/12 lg:w-8/12 py-2 px-3"
                                     placeholder="Observaciones"
                                     id="observacion"
                                     value={formik.values.observacion}
@@ -225,7 +225,7 @@ const NuevaReceta = () => {
                                 <label htmlFor="descripcion" className="hidden w-11/12 sm:w-4/12 sm:justify-start sm:flex sm:font-source sm:text-tercerColor md:w-3/12 lg:w-3/12 lg:flex lg:font-source lg:text-tercerColor lg:pl-12">Medicamentos recetados: </label>
                                 <textarea
                                     required
-                                    className="shadow appearance-none border-2 w-11/12 sm:w-7/12 md:w-8/12 lg:w-8/12 py-2 px-3"
+                                    className=" focus:outline-none shadow appearance-none border-2 w-11/12 sm:w-7/12 md:w-8/12 lg:w-8/12 py-2 px-3"
                                     placeholder="Medicamentos"
                                     id="medicamentos"
                                     value={formik.values.medicamentos}
@@ -239,7 +239,7 @@ const NuevaReceta = () => {
                                 (  
                                     <div className="flex justify-around pr-12 pt-6">
                                         <button
-                                            className="bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
+                                            className="bg-tercerColor focus:outline-none hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
                                             onClick={() => guardarCita(false)}
                                         >Próxima cita</button>
                                     </div>
@@ -254,7 +254,7 @@ const NuevaReceta = () => {
                                         required
                                         type="date"
                                         name="fecha"
-                                        className="sm:w-7/12 md:w-3/12 lg:w-3/12 w-11/12 shadow appearance-none border-2 py-2 px-3"
+                                        className="focus:outline-none sm:w-7/12 md:w-3/12 lg:w-3/12 w-11/12 shadow appearance-none border-2 py-2 px-3"
                                         value={formik.values.fecha}
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
@@ -265,7 +265,7 @@ const NuevaReceta = () => {
                                         required
                                         type="time"
                                         name="hora"
-                                        className="shadow appearance-none mt-6 lg:mt-0 w-11/12 border-2 sm:w-7/12 md:w-3/12 md:mt-0 lg:w-3/12 py-2 px-3"
+                                        className="focus:outline-none shadow appearance-none mt-6 lg:mt-0 w-11/12 border-2 sm:w-7/12 md:w-3/12 md:mt-0 lg:w-3/12 py-2 px-3"
                                         value={formik.values.hora}
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
@@ -277,7 +277,7 @@ const NuevaReceta = () => {
                         <div className="lg:hidden sm:hidden flex justify-center items-center pr-12 pt-6">
                             
                             <button
-                                className=" bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
+                                className=" bg-tercerColor focus:outline-none hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
                                 type="submit"
                             >
                             Guardar</button>

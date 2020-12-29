@@ -8,9 +8,6 @@ const ExpedientesMostrar = ({expediente}) => {
 
 
     const {id, nombre, telefono, correo, diagnostico} = expediente;
-
-    
-
     const history = useHistory();
 
    //console.log(props);
@@ -56,10 +53,6 @@ const ExpedientesMostrar = ({expediente}) => {
                 
             </div>
 
-
-
-
-
             <div className="w-1/12 h-12 flex items-center justify-around justify-items-center border-b-2 border-gray-500 lg:border-r-2">
                 <div className="hidden sm:flex lg:flex">
                     <img src={vision} width="25" height="" className="cursor-pointer" onClick={() => redireccionar(id)} alt="Visualizar"/>
@@ -69,12 +62,7 @@ const ExpedientesMostrar = ({expediente}) => {
                     <img src={delet} width="25" height="" className="cursor-pointer" alt="Eliminar"/>
                 </div>
                 
-                
-                
             </div>
-
-
-
 
         </div>
      );
