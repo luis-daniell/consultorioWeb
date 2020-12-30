@@ -5,6 +5,12 @@ import recetaPaciente from '../../img/recetaPaciente.svg';
 import doc from '../../img/doc.svg';
 import delet from '../../img/delet.svg';
 
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal);
+
+
 
 const RecetasMostrar = ({receta}) => {
 
@@ -29,7 +35,28 @@ const RecetasMostrar = ({receta}) => {
     }
 
     const eliminar = (id) => {
-        firebase.db.collection('recetas').doc(id).delete();
+
+        MySwal.fire({
+            title: '¿Estas seguro que desea eliminar?',
+            text: "No se podrá recuperar el archivo!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Eliminar'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                firebase.db.collection('recetas').doc(id).delete();
+              Swal.fire(
+                'Eliminado!',
+                'La receta ha sido eliminada',
+                'success'
+              )
+              
+
+            }
+          })
+        
     }
 
 

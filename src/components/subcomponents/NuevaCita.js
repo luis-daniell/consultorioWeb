@@ -5,6 +5,10 @@ import {useFormik} from 'formik';
 import Sidebar from '../ui/Sidebar';
 import Barra from '../ui/Barra';
 import {FirebaseContext} from '../../firebase/Auth';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal)
 
 
 const NuevaCita = () => {
@@ -124,6 +128,10 @@ const NuevaCita = () => {
                 });  
                 //Validar si quiere agregarlo a su calendario
                 agregarEvento(getDoc.data().nombre, getDoc.data().apellidos, getDoc.data().correo, fecha, hora, descripcion);
+                MySwal.fire({
+                    icon: 'success',
+                    title: <p>Registrado Correctamente</p>
+                })
                 history.push({
                     pathname: "/visualizar-citas",
                     //state: { detail: perfil }

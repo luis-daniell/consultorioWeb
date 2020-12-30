@@ -1,5 +1,4 @@
 import React, {useContext, useState, useEffect} from "react";
-
 import {useHistory} from "react-router-dom";
 import {FirebaseContext} from '../../firebase/Auth';
 import Sidebar from "../ui/Sidebar";
@@ -10,8 +9,6 @@ import cita from '../../img/cita.svg';
 import perfil from '../../img/perfil.svg';
 
 
-
-
 export const Dashboard = props => {
 
   const history = useHistory();
@@ -20,58 +17,45 @@ export const Dashboard = props => {
   //Documentos en expedientes
 
   const [docExpedientes, guardarDocExpedientes] = useState(0);
-
   const [docRecetas, guardarDocRecetas] = useState(0);
-
   const [docCitas, guardarDocCitas] = useState(0);
-
-
-
 
   const {firebase} = useContext(FirebaseContext);
 
-    useEffect(() => {
-      const obtenerExpedientes =  () => {
+  useEffect(() => {
+    const obtenerExpedientes =  () => {
         
-          firebase.db.collection('expedientes').get().then(snap => {
-            const size = snap.size // will return the collection size
-            guardarDocExpedientes(size);
+      firebase.db.collection('expedientes').get().then(snap => {
+      const size = snap.size // will return the collection size
+      guardarDocExpedientes(size);
 
-          });
-        }
+      });
+    } 
 
-
-
-      const obtenerCitas =  () => {
-        firebase.db.collection('citas').get().then(snap => {
-          const size = snap.size // will return the collection size
-          guardarDocCitas(size);
-        });
-      }
-
-
+    const obtenerCitas =  () => {
+      firebase.db.collection('citas').get().then(snap => {
+        const size = snap.size // will return the collection size
+        guardarDocCitas(size);
+      });
+    }
 
     const obtenerRecetas =  () => {
         
       firebase.db.collection('recetas').get().then(snap => {
         const size = snap.size // will return the collection size
         guardarDocRecetas(size);
-
-    });
-      
-  }
-
-      obtenerExpedientes();
-      obtenerCitas();
-      obtenerRecetas();
-
-    },[firebase]);
-
-    
-
-    const abrirPerfil = () => {
-      history.push("/perfil");
+      });
     }
+
+    obtenerExpedientes();
+    obtenerCitas();
+    obtenerRecetas();
+
+  },[firebase]);
+
+  const abrirPerfil = () => {
+    history.push("/perfil");
+  }
 
   return (
 
@@ -103,10 +87,11 @@ export const Dashboard = props => {
                         <div className="w-6/12 sm:w-5/12">
 
                           <div className="flex justify-end">
-                            <p className="font-source text-4xl font-bold text-white">{docExpedientes}</p>
+                            <p className="font-source text-4xl font-bold text-white">{docExpedientes === 0 ? null : docExpedientes}</p>
                           </div>
                           <div className="flex justify-end">
-                            <p className="font-source text-lg text-white">Pacientes</p>
+
+                            <p className="font-source text-lg text-white">{docExpedientes === 0 ? 'Sin datos' : 'Pacientes'}</p>
                           </div>
 
                         </div>
@@ -121,11 +106,11 @@ export const Dashboard = props => {
 
                         <div className="w-6/12 sm:w-5/12">
                           <div className="flex justify-end">
-                            <p className="font-source text-4xl font-bold text-white">{docCitas}</p>
+                            <p className="font-source text-4xl font-bold text-white">{docCitas === 0 ? null : docCitas}</p>
                           </div>
 
                           <div className="flex justify-end">
-                            <p className="font-source text-lg text-white">Citas</p>
+                            <p className="font-source text-lg text-white">{docCitas === 0 ? 'Sin datos' : 'Citas'}</p>
                           </div>
                         </div>
 
@@ -155,11 +140,11 @@ export const Dashboard = props => {
                         <div className="w-6/12 sm:w-5/12">
                           
                           <div className="flex justify-end">
-                            <p className="font-source text-4xl font-bold text-black">{docRecetas}</p>
+                            <p className="font-source text-4xl font-bold text-black">{docRecetas === 0 ? null : docRecetas}</p>
                           </div>
   
                           <div className="flex justify-end">
-                            <p className="font-source text-lg text-black">Recetas</p>
+                            <p className="font-source text-lg text-black">{docRecetas === 0 ? 'Sin datos' : 'Recetas'}</p>
                           </div>
   
                         </div>

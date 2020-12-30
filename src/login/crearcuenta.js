@@ -3,6 +3,10 @@ import {useFormik} from 'formik';
 import firebase from '../firebase';
 import * as Yup from 'yup';
 import {useHistory} from "react-router-dom";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal)
 
 export const Cuenta = () => {
 
@@ -42,7 +46,12 @@ export const Cuenta = () => {
     async function crearCuenta(nombre, email, password) {
         try {
           await firebase.registrar(nombre, email, password);
-          alert("Usuario Registrado");
+          
+            MySwal.fire({
+                icon: 'success',
+                title: <p>Registrado Correctamente</p>
+            })
+          //alert("Usuario Registrado");
           history.push("/");
         } catch (error) {
         
@@ -73,7 +82,7 @@ export const Cuenta = () => {
                     <label className="block text-sm font-bold mb-2">Nombre</label>
                     <input
                         required 
-                        className="shadow appearance-none border rounded w-full py-2 px-3"
+                        className="focus:outline-none shadow appearance-none border rounded w-full py-2 px-3"
                         id="nombre"
                         name="nombre"
                         value={formik.values.nombre}
@@ -95,7 +104,7 @@ export const Cuenta = () => {
                     <label className="block text-sm font-bold mb-2">Email</label>
                     <input
                         required 
-                        className="shadow appearance-none border rounded w-full py-2 px-3"
+                        className="focus:outline-none shadow appearance-none border rounded w-full py-2 px-3"
                         id="correo"
                         name="correo"
                         value={formik.values.correo}
@@ -118,7 +127,7 @@ export const Cuenta = () => {
                     <label className="block text-sm font-bold mb-2">Password</label>
                     <input
                         required 
-                        className="shadow appearance-none border rounded w-full py-2 px-3"
+                        className="focus:outline-none shadow appearance-none border rounded w-full py-2 px-3"
                         id="password"
                         name="password"
                         value={formik.values.password}
@@ -138,7 +147,7 @@ export const Cuenta = () => {
                 <div className="flex items-center justify-center">
                     <button
                     type="submit"
-                    className=" bg-tercerColor hover:bg-blue-dark text-white font-bold py-2 px-4 rounded cursor-pointer" 
+                    className=" bg-tercerColor focus:outline-none hover:bg-blue-dark text-white font-bold py-2 px-4 rounded cursor-pointer" 
                     >Crear Cuenta</button>
                 </div>
 

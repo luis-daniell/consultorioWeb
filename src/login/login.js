@@ -3,11 +3,15 @@ import {useFormik} from 'formik';
 import firebase from '../firebase';
 import * as Yup from 'yup';
 import {Link} from 'react-router-dom';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+
 import user from '../img/user.svg'
 import candado from '../img/candado.svg'
 import userlog from '../img/userlog.svg'
 
-
+const MySwal = withReactContent(Swal);
 export const Login = props => {
 
   //auth.authenticated = false;
@@ -43,7 +47,12 @@ export const Login = props => {
       
     } catch (error) {
       console.error('Hubo un error al autenticar el usuario ', error.message);
-      alert("Correo o contraseña incorrecta");
+      //alert("Correo o contraseña incorrecta");
+      MySwal.fire({
+        icon: 'error',
+        title: 'Error...',
+        text: 'Usuario o contraseña incorrectos',
+    })
     }
   }
 
@@ -127,7 +136,7 @@ export const Login = props => {
 
               <button
                 type="submit"
-                className=" bg-tercerColor text-base hover:bg-blue-dark text-white py-2 px-4 rounded cursor-pointer"       
+                className=" bg-tercerColor focus:outline-none text-base hover:bg-blue-dark text-white py-2 px-4 rounded cursor-pointer"       
               >Iniciar Sesión</button>
                           
             </div>

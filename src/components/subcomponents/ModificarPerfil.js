@@ -6,6 +6,10 @@ import {useFormik} from 'formik';
 import FileUploader from 'react-firebase-file-uploader';
 import Barra from '../ui/Barra';
 import Sidebar from '../ui/Sidebar';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal);
 
 const ModificarPerfil = () => {
 
@@ -51,6 +55,10 @@ const ModificarPerfil = () => {
                     currentUser.updateProfile({
                         displayName: perfil.nombre
                     }).then(function() {
+                        MySwal.fire({
+                            icon: 'success',
+                            title: <p>Datos guardados correctamente</p>
+                        })
                         history.push("/perfil");
                     })
 

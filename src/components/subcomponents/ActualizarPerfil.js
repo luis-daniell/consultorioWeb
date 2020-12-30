@@ -6,6 +6,11 @@ import FileUploader from 'react-firebase-file-uploader';
 import Barra from '../ui/Barra';
 import Sidebar from '../ui/Sidebar';
 
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal);
+
 const ActualizarPerfil = ({perfil}) => {
     
 
@@ -82,6 +87,10 @@ const ActualizarPerfil = ({perfil}) => {
                 currentUser.updateProfile({
                     displayName: perfill.nombre
                   }).then(function() {
+                    MySwal.fire({
+                        icon: 'success',
+                        title: <p>Datos actualizados correctamente</p>
+                    })
                     history.push("/perfil");
                   })
                 

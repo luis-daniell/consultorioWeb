@@ -78,43 +78,47 @@ export const Citas = () => {
                 <div className="flex justify-center ">
                     <div className="bg-white w-11/12 mt-10 flex justify-center">
                         {estado ?
-                        <div>
-                            <form 
-                                className="w-11/12 flex lg:justify-start items-center justify-items-center"
-                                //onSubmit={handleSubmit}
-                                onSubmit={formik.handleSubmit}
-                                >
-                                <label className="text-base w-1/12 sm:font-bold lg:w-3/12 text-tercerColor lg:font-bold font-source sm:text-xl lg:text-3xl">Calendario</label>
-                                
-                                <input
-                                    required
-                                    id="calendario" 
-                                    type="text" placeholder="Incorporar codigo de calendario" 
-                                    className="bg-orange-300 lg:ml-4 w-5/12 ml-4 md:w-4/12 md:ml-0 text-xs sm:text-lg lg:text-lg shadow appearance-none border rounded lg:w-5/12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                    value={formik.values.calendario}
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                />
+                            <div className="w-11/12 flex justify-center flex-col">
+                                <form 
+                                    className="w-full flex flex-col sm:flex-row justify-center items-center "
+                                    
+                                    onSubmit={formik.handleSubmit}
+                                    >
+                                    <label className="w-11/12 flex justify-center mt-6 sm:w-3/12 text-xl sm:text-2xl text-tercerColor font-source font-bold">Calendario</label>
+                                    
+                                    <input
+                                        required
+                                        id="calendario" 
+                                        type="text" 
+                                        placeholder="Incorporar calendario" 
+                                        className="w-11/12 sm:w-4/12 mt-2 sm:mt-6 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        value={formik.values.calendario}
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                    />
 
+                                    <div className="w-11/12 sm:w-3/12 flex justify-center">
+                                        <button
+                                            className="focus:outline-none bg-tercerColor mt-6 hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"  
+                                            type="submit"
+                                        >
+                                        Guardar</button>
 
-                                <button
-                                    className="ml-2 lg:ml-4 focus:outline-none sm:text-lg sm:px-5 bg-tercerColor hover:bg-blue-dark text-white px-2 lg:text-xl text-xs rounded-full cursor-pointer font-source lg:w-40 h-8"  
-                                    type="submit"
-                                >
-                                Guardar</button>
+                                    </div>
+                                    
 
-                            </form>
-                            <div>
-                                <ol>
-                                    <li>Dirijase al calendario de google Calendar</li>
-                                    <li>Seleccione configuracion</li>
-                                    <li>Seleccione el calendario</li>
-                                    <li>Seleccione Integrar Calendario</li>
-                                    <li>Copie la URL publica del calendario</li>
-                                    <li>Pegue el codigo la caja de texto</li>
-                                </ol>
+                                </form>
+                                <div className="w-full mt-4 flex justify-center pb-10">
+                                    <ol className="list-disc flex justify-center flex-col content-center pl-6">
+                                        <li className="font-source text-sm sm:text-lg sm:font-bold text-tercerColor ">Dirijase al calendario de google Calendar</li>
+                                        <li className="font-source text-sm sm:text-lg sm:font-bold text-tercerColor ">Seleccione configuracion</li>
+                                        <li className="font-source text-sm sm:text-lg sm:font-bold text-tercerColor ">Seleccione el calendario</li>
+                                        <li className="font-source text-sm sm:text-lg sm:font-bold text-tercerColor ">Seleccione Integrar Calendario</li>
+                                        <li className="font-source text-sm sm:text-lg sm:font-bold text-tercerColor ">Copie la URL publica del calendario</li>
+                                        <li className="font-source text-sm sm:text-lg sm:font-bold text-tercerColor ">Pegue el codigo la caja de texto</li>
+                                    </ol>
+                                </div>
                             </div>
-                        </div>
 
                         :
                             <div className="bg-orange-600 w-full flex items-center justify-center">

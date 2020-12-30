@@ -3,6 +3,10 @@ import {useFormik} from 'formik';
 import Barra from "../ui/Barra";
 import {FirebaseContext} from '../../firebase/Auth';
 import Sidebar from "../ui/Sidebar";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal);
 
 
 const NuevoExpediente = props => {
@@ -40,6 +44,10 @@ const NuevoExpediente = props => {
         onSubmit: async expediente => {
             try {
                 await firebase.db.collection('expedientes').add(expediente);
+                MySwal.fire({
+                    icon: 'success',
+                    title: <p>Datos guardados correctamente</p>
+                })
                 
                 props.history.push("/expediente");
 

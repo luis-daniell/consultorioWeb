@@ -8,6 +8,11 @@ import usuarioPerfil from '../../img/usuarioPerfil.svg';
 import Sidebar from '../ui/Sidebar';
 import Barra from '../ui/Barra';
 
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal)
+
 
 const ModificarCita = () => {
 
@@ -73,6 +78,10 @@ const ModificarCita = () => {
                     });
 
                     agregarEvento(cita.nombre, cita.apellido, cita.correo, cita.fecha, cita.hora, cita.descripcion);
+                    MySwal.fire({
+                        icon: 'success',
+                        title: <p>Datos guardados correctamente</p>
+                    })
                     history.push("/visualizar-citas");
 
                 }else if (dato === 'atendida'){
@@ -82,10 +91,18 @@ const ModificarCita = () => {
                     .update({
                         atendida: true
                     })
+                    MySwal.fire({
+                        icon: 'success',
+                        title: <p>Datos guardados correctamente</p>
+                    })
                     history.push("/visualizar-citas");
 
                     //console.log(dato);
                 }else{
+                    MySwal.fire({
+                        icon: 'success',
+                        title: <p>Datos guardados correctamente</p>
+                    })
                     history.push("/visualizar-citas");
                    //console.log(dato);
                 }

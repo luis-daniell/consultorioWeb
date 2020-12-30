@@ -112,6 +112,7 @@ const NuevaReceta = () => {
                 receta.nuevaCita= cita;
                 
                 history.push({
+                    
                     pathname: "/previsualizacion",
                     state: { detail: receta }
                 });

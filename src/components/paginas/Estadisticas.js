@@ -6,32 +6,22 @@ import Sidebar from "../ui/Sidebar";
 import Barra from "../ui/Barra";
 import {useFormik} from 'formik';
 
-
-
-
 export const Estadisticas = () => {
-
 
     const [estado, guardarEstado] = useState(false);
     //const [yearr, guardarYear] = useState('');
-
     const {firebase} = useContext(FirebaseContext);
-
-
     //Año en LocalStorage
     let year = JSON.parse(localStorage.getItem('year'));
     if(!year){
         year = '';
     }
 
-
     const [citas, guardarCitas] = useState([]);
     const [expedientes, guardarExpedientes] = useState([]);
     const [recetas, guardarRecetas] = useState([]);
      
-    
     useEffect(() => {
-
 
         if(year === ''){
             guardarEstado(true);
@@ -39,7 +29,6 @@ export const Estadisticas = () => {
             //guardarYear(year);
             guardarEstado(false);
         }
-
 
         const obtenerCitas =  () => {
             firebase.db.collection('citas').where('atendida','==',true).where('yearCita','==',year.toString()).onSnapshot(manejarSnapshot);//Snapshot para ver los cambios en tiempo real y get para ver solamnente los cambios
@@ -62,8 +51,6 @@ export const Estadisticas = () => {
 
     },[year, firebase]);
 
-
-
     //Snapshop nos permite usar la base de datos en tiempo real de firestore
     function manejarSnapshot(snapshot) {
         const citass = snapshot.docs.map(doc => {
@@ -76,7 +63,6 @@ export const Estadisticas = () => {
         //Almacenar los resultados en el state
         guardarCitas(citass);
     }
-
 
     //Snapshop nos permite usar la base de datos en tiempo real de firestore
     function manejarSnapshot2(snapshot) {
@@ -91,7 +77,6 @@ export const Estadisticas = () => {
         guardarExpedientes(expedientess);
     }
 
-
     //Snapshop nos permite usar la base de datos en tiempo real de firestore
     function manejarSnapshot3(snapshot) {
         const recetass = snapshot.docs.map(doc => {
@@ -104,8 +89,6 @@ export const Estadisticas = () => {
         //Almacenar los resultados en el state
         guardarRecetas(recetass);
     }
-
-
 
     const graficaCitas = obtenerDatosCitas(citas, 'Citas');
     const graficaExpedientes = obtenerDatosExpedientes(expedientes, 'Expedientes');
@@ -158,14 +141,14 @@ export const Estadisticas = () => {
                             >
                             <label className="text-lg w-1/12 sm:font-bold lg:w-1/12 text-tercerColor font-source sm:text-2xl ">Año: </label>
                             <select
-                                className="lg:ml-4 w-5/12 ml-4 md:w-4/12 md:ml-0 text-xs sm:text-lg lg:text-lg shadow appearance-none border rounded lg:w-3/12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                className="lg:ml-4 w-5/12 ml-4 md:w-4/12 md:ml-0 text-xs sm:text-sm shadow appearance-none border rounded lg:w-3/12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 id="year"
                                 required
                                 value={formik.values.year}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                             >
-                                <option value="">-- Seleccione el año --</option>
+                                <option value="" className="">-- Seleccione el año --</option>
                                 <option value="2020">2020</option>
                                 <option value="2021">2021</option>
 
@@ -205,76 +188,104 @@ export const Estadisticas = () => {
 
                 <div className="mt-4 flex flex-col justify-center justify-items-center items-center md:flex-row md:justify-around lg:flex-row lg:justify-around lg:items-center lg:justify-items-center ">
                    
-                    <div className="w-11/12 md:w-5/12 lg:w-5/12">
-                        <Chart
-                            chartType="ColumnChart"
-                            loader={<div>Loading Chart</div>}
-                            data={graficaCitas}
-                            options={{
-                                title: 'Citas Atendidas',
-                                chartArea: { width: '80%' },
-                                hAxis: {
+                    {citas.length === 0 ?
+                        <div className="bg-white flex justify-center items-center h-48 w-11/12 md:w-5/12 lg:w-5/12">
+                            <p className="font-source font-bold">No hay datos</p>
+                        </div>
+                    : 
+                        <div className="w-11/12 md:w-5/12 lg:w-5/12">
+                            <Chart
+                                chartType="ColumnChart"
+                                loader={<div>Loading Chart</div>}
+                                data={graficaCitas}
+                                options={{
                                     title: 'Citas Atendidas',
-                                    minValue: 0,
-                                },
-                                vAxis: {
-                                    title: 'Citas',
-                                },
-                            }}
-                            legendToggle
-                        />
-                    </div>
+                                    chartArea: { width: '80%' },
+                                    hAxis: {
+                                        title: 'Citas Atendidas',
+                                        minValue: 0,
+                                    },
+                                    vAxis: {
+                                        title: 'Citas',
+                                    },
+                                }}
+                                legendToggle
+                            />
+                        </div>
+                
+                    }
 
-                    <div className="mt-3 w-11/12 md:mt-0 md:w-5/12 lg:w-5/12 lg:mt-0">    
+                    {expedientes.length === 0 ?
+                        <div className="bg-white flex justify-center items-center h-48 mt-3 w-11/12 md:mt-0 md:w-5/12 lg:w-5/12 lg:mt-0">    
+                             <p className="font-source font-bold">No hay datos</p>
+                        </div>
+                    :
+                        <div className="mt-3 w-11/12 md:mt-0 md:w-5/12 lg:w-5/12 lg:mt-0">    
+                        
+                            <Chart
+                                chartType="AreaChart"
+                                loader={<div>Loading Chart</div>}
+                                data={graficaExpedientes}
+                                options={{
+                                    title: 'Expedientes Registrados',
+                                    hAxis: { title: 'Expedientes', titleTextStyle: { color: '#333' } },
+                                    vAxis: { minValue: 0 },
+                                    // For the legend to fit, we make the chart area smaller
+                                    chartArea: { width: '80%', height: '70%' },
+                                    // lineWidth: 25
+                                }}
+                                // For tests
+                                rootProps={{ 'data-testid': '1' }}
+                            />
+                        </div>
                     
-                        <Chart
-                            chartType="AreaChart"
-                            loader={<div>Loading Chart</div>}
-                            data={graficaExpedientes}
-                            options={{
-                                title: 'Expedientes Registrados',
-                                hAxis: { title: 'Expedientes', titleTextStyle: { color: '#333' } },
-                                vAxis: { minValue: 0 },
-                                // For the legend to fit, we make the chart area smaller
-                                chartArea: { width: '80%', height: '70%' },
-                                // lineWidth: 25
-                            }}
-                            // For tests
-                            rootProps={{ 'data-testid': '1' }}
-                        />
-                    </div>
-
+                    }
+                    
                 </div>
 
 
                 <div className="flex flex-col justify-center justify-items-center items-center md:flex-row md:justify-around lg:flex lg:flex-row lg:justify-around lg:items-center lg:justify-items-center ">
                     
-                    <div className="w-11/12 mt-3 md:w-5/12 lg:w-5/12">
+                    {recetas.length === 0 ?
 
-                        <Chart
-                            chartType="PieChart"
-                            loader={<div>Loading Chart</div>}
-                            data={graficaRecetas}
-                            options={{
-                                title: 'Recetas Creadas',
-                            }}
-                            rootProps={{ 'data-testid': '1' }}
-                        />
-                    </div>
+                        <div className="bg-white flex justify-center items-center h-48 mt-3 w-11/12 md:mt-4 md:w-5/12 lg:w-5/12 lg:mt-6">    
+                            <p className="font-source font-bold">No hay datos</p>
+                        </div>              
+                    :
+                        <div className="w-11/12 mt-3 md:w-5/12 lg:w-5/12">
 
-                    <div className="w-11/12 mt-3 md:w-5/12 lg:w-5/12">    
+                            <Chart
+                                chartType="PieChart"
+                                loader={<div>Loading Chart</div>}
+                                data={graficaRecetas}
+                                options={{
+                                    title: 'Recetas Creadas',
+                                }}
+                                rootProps={{ 'data-testid': '1' }}
+                            />
+                        </div>
+                    }
+                   
+                    {expedientes.length === 0 ?
+                        <div className="bg-white flex justify-center items-center h-48 mt-3 w-11/12 md:mt-4 md:w-5/12 lg:w-5/12 lg:mt-6">    
+                            <p className="font-source font-bold">No hay datos</p>
+                        </div> 
+                    :
+                        <div className="w-11/12 mt-3 md:w-5/12 lg:w-5/12">    
+                        
+                            <Chart
+                                chartType="PieChart"
+                                loader={<div>Loading Chart</div>}
+                                data={diagnosticos}
+                                options={{
+                                    title: 'Diagnósticos',
+                                }}
+                                rootProps={{ 'data-testid': '1' }}
+                            />
+
+                        </div>
+                    }
                     
-                        <Chart
-                            chartType="PieChart"
-                            loader={<div>Loading Chart</div>}
-                            data={diagnosticos}
-                            options={{
-                                title: 'Diagnósticos',
-                            }}
-                            rootProps={{ 'data-testid': '1' }}
-                        />
-
-                    </div>
                 </div>
             </div>
         </div>

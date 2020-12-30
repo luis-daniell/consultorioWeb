@@ -6,6 +6,10 @@ import usuarioPerfil from '../../img/usuarioPerfil.svg';
 import {useHistory} from 'react-router-dom';
 import {useFormik} from 'formik';
 import {FirebaseContext} from '../../firebase/Auth';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal)
 
 
 
@@ -51,6 +55,10 @@ const ModificarExpediente = ({props}) => {
         onSubmit: expediente => {
             try {
                 firebase.db.collection('expedientes').doc(expediente.id).update(expediente);
+                MySwal.fire({
+                    icon: 'success',
+                    title: <p>Datos guardados correctamente</p>
+                })
                 history.push("/expediente");
             } catch (error) {
                 console.log(error);

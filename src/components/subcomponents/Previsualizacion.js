@@ -6,6 +6,12 @@ import {FirebaseContext} from '../../firebase/Auth';
 import Sidebar from '../ui/Sidebar';
 import Barra from '../ui/Barra';
 
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal);
+
+
 
 const Previsualizacion = () => {
     const ref = useRef();
@@ -63,6 +69,10 @@ const Previsualizacion = () => {
                 
     
             });
+            MySwal.fire({
+                icon: 'success',
+                title: <p>Datos guardados correctamente</p>
+            })
             
             history.push("/recetas");
     
@@ -109,6 +119,10 @@ const Previsualizacion = () => {
             });
             
             agregarEvento(nombrePaciente, apellidosPaciente, correoPaciente, fecha, hora, descripcionCita);
+            MySwal.fire({
+                icon: 'success',
+                title: <p>Datos guardados correctamente</p>
+            })
 
             history.push("/recetas");
     
