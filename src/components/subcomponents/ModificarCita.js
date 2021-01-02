@@ -20,6 +20,7 @@ const ModificarCita = () => {
     const history = useHistory();
 
     const {firebase} = useContext(FirebaseContext);
+    console.log(location.state.detail);
     const {nombre, apellido, fecha, hora, correo, descripcion, id} = location.state.detail;
 
     let nombre1 = nombre;
@@ -66,7 +67,11 @@ const ModificarCita = () => {
             try {
                 if(dato === 'pospuesta'){
 
+                    const mes = obtenerMes(cita.fecha);
+                    const year = obtenerYear(cita.fecha);
+
                     firebase.db.collection('citas').add({
+                        idPaciente: id,
                         nombre: cita.nombre,
                         apellido: cita.apellido,
                         correo: cita.correo,
@@ -74,7 +79,8 @@ const ModificarCita = () => {
                         hora: cita.hora,
                         descripcion: cita.descripcion,
                         atendida: cita.atendida,
-    
+                        mesCita: mes,
+                        yearCita: year,
                     });
 
                     agregarEvento(cita.nombre, cita.apellido, cita.correo, cita.fecha, cita.hora, cita.descripcion);
@@ -113,6 +119,21 @@ const ModificarCita = () => {
         }
 
     });
+
+    function obtenerYear(fecha){
+        //console.log(fecha);
+        const fechaq = fecha;
+        const result = fechaq.slice(0,4);
+        return result;
+
+    }
+
+    function obtenerMes(fecha){
+        //console.log(fecha);
+        const fechaq = fecha;
+        const result = fechaq.slice(5,7);
+        return result;
+    }
 
     
     

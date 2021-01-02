@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext} from 'react';
 import {NavLink} from 'react-router-dom';
+import { FirebaseContext } from "../../firebase/Auth";
+import usuarioPerfil from '../../img/usuario-de-perfil.svg';
 import usuario from '../../img/usuario.svg';
 import estadistica from '../../img/estadistica.svg';
 import calendario from '../../img/calendario.svg';
@@ -12,12 +14,30 @@ import receta from '../../img/receta.svg';
 
 const Sidebar = props => {
 
+    const {currentUser} = useContext(FirebaseContext);
+
+    let imagenPerfil = usuarioPerfil;
+
+    if(currentUser.photoURL === null){
+        imagenPerfil = usuarioPerfil;
+      }else{
+        imagenPerfil= currentUser.photoURL;
+      }
+    
     return ( 
 
         <aside className="hidden lg:flex lg:w-1/5 lg:fixed lg:h-screen lg:bg-gray-800 lg:float-left">
             <div className="w-full">
-                <div className="w-full pt-3 bg-gray-900">
-                    <p className="uppercase text-white text-2xl tracking-wide text-center font-bold font-source">Consultorio</p>
+                
+                <div className="w-full pt-2 pb-2 flex justify-center items-center bg-gray-900">
+                    <div className="w-2/12 flex justify-center items-center">
+                        <img src={imagenPerfil} width="25" alt="Imagen de perfil"/>
+                    </div>
+                    <div className="w-9/12 flex pl-2">
+                        <p className="uppercase text-white text-2xl tracking-wide text-center font-bold font-source">Consultorio</p>
+                    </div>
+                    
+                    
                 </div>
                 
                 <nav className="pl-4">

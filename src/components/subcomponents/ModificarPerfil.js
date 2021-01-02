@@ -1,5 +1,5 @@
 import React,{useContext, useState} from 'react';
-import {useHistory} from "react-router-dom";
+import {useHistory, useLocation} from "react-router-dom";
 import {FirebaseContext} from '../../firebase/Auth';
 import {useFormik} from 'formik';
 //import * as Yup from 'yup';
@@ -15,9 +15,11 @@ const ModificarPerfil = () => {
 
     const history = useHistory();
     const {firebase, currentUser} = useContext(FirebaseContext);
+    
+    const location = useLocation();
+    console.log(location.state.detail);
 
    //console.log(currentUser.uid);
-
      //State para las imagen de doctor
     const [subiendo, guardarSubiendo] = useState(false);
     const [progreso, guardarProgreso] = useState(0);
@@ -36,8 +38,8 @@ const ModificarPerfil = () => {
             nombre: '',
             especialidad: '',
             consultorio: '',
-            imagenDoctor: '',
-            imagenConsultorio: '',
+            //imagenDoctor: '',
+            //imagenConsultorio: '',
             cedula: '', 
             telefono: '',
             direccion: '',
@@ -45,24 +47,57 @@ const ModificarPerfil = () => {
 
         onSubmit: perfil => {
             try {
-                if(urlimagen === '' || urlimagen2 === ''){
-                    alert("Selecciona la imagen");
-                }else{
-                    perfil.imagenDoctor = urlimagen;
-                    perfil.imagenConsultorio = urlimagen2;
-                    firebase.db.collection('usuarios').doc(currentUser.uid).set(perfil);
-                    
-                    currentUser.updateProfile({
-                        displayName: perfil.nombre
-                    }).then(function() {
+                if(location.state.detail){
+                    if(urlimagen === '' || urlimagen2 === ''){
                         MySwal.fire({
-                            icon: 'success',
-                            title: <p>Datos guardados correctamente</p>
+                        icon: 'warning',
+                        title: "Selecciona las imagenes"
                         })
-                        history.push("/perfil");
-                    })
-
-                } 
+                    }else{
+                        //perfil.imagenDoctor = urlimagen;
+                        firebase.db.collection('imagen').add({urlimagen2});
+                        perfil.administrador = location.state.detail;
+                        firebase.db.collection('usuarios').doc(currentUser.uid).set(perfil);
+                        
+                        currentUser.updateProfile({
+                            displayName: perfil.nombre,
+                            photoURL: urlimagen,
+    
+                        }).then(function() {
+                            MySwal.fire({
+                                icon: 'success',
+                                title: <p>Datos guardados correctamente</p>
+                            })
+                            history.push("/perfil");
+                        })
+    
+                    }
+                }else{
+                    if(urlimagen === '' ){
+                        MySwal.fire({
+                        icon: 'warning',
+                        title: "Selecciona la imagene"
+                        })
+                    }else{
+                        //perfil.imagenDoctor = urlimagen;
+                        perfil.administrador = location.state.detail;
+                        firebase.db.collection('usuarios').doc(currentUser.uid).set(perfil);
+                        
+                        currentUser.updateProfile({
+                            displayName: perfil.nombre,
+                            photoURL: urlimagen,
+    
+                        }).then(function() {
+                            MySwal.fire({
+                                icon: 'success',
+                                title: <p>Datos guardados correctamente</p>
+                            })
+                            history.push("/perfil");
+                        })
+    
+                    }
+                }
+                 
                 
             } catch (error) {
                 console.log(error);
@@ -134,6 +169,7 @@ const ModificarPerfil = () => {
         //console.log(progreso);
     }
 
+    //console.log(admin);
 
     return ( 
         <div className="">
@@ -242,15 +278,16 @@ const ModificarPerfil = () => {
                             )}
 
                             {urlimagen && (
-                                <div className="w-full flex justify-start">
+                                <div className="w-full flex justify-center sm:justify-start">
 
-                                    <p className="w-3/12"></p>
-                                    <p className="bg-green-500 w-8/12 text-white p-3 text-center my-5">
+                                    <p className="hidden sm:flex sm:w-3/12"></p>
+                                    <p className="bg-green-500 w-11/12 sm:w-8/12 text-white p-3 text-center my-5">
                                         La imagen se subió correctamente
                                     </p> 
                                 </div>
                             )}
 
+                            {location.state.detail ? <>(
                             <div className="flex justify-center sm:justify-start mt-6">
                                 <label className="hidden sm:flex sm:w-3/12 sm:pl-12 text-tercerColor" htmlFor="imagen">Imagen del consultorio: </label>
                                 <FileUploader
@@ -277,15 +314,15 @@ const ModificarPerfil = () => {
                             )}
 
                             {urlimagen2 && (
-                                <div className="w-full flex justify-start">
+                                <div className="w-full flex justify-center sm:justify-start">
 
-                                    <p className="w-3/12"></p>
-                                    <p className="bg-green-500 w-8/12 text-white p-3 text-center my-5">
+                                    <p className="hidden sm:flex sm:w-3/12"></p>
+                                    <p className="bg-green-500 w-11/12 sm:w-8/12 text-white p-3 text-center my-5">
                                         La imagen se subió correctamente
                                     </p> 
                                 </div>
                             )}
-
+                            )</>: null} 
 
                             <div className="flex justify-center sm:justify-start mt-10">
 
@@ -342,7 +379,7 @@ const ModificarPerfil = () => {
 
                         <div className="flex pb-10 justify-center sm:hidden">
                             <button
-                                className="bg-tercerColor hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
+                                className="bg-tercerColor focus:outline-none hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
                                     
                                 type="submit"
                             >

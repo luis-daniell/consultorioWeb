@@ -92,7 +92,7 @@ const ModificarExpediente = ({props}) => {
                 </div>
 
 
-                <div className="flex justify-center items-center flex-col sm:flex-row">+
+                <div className="flex justify-center items-center flex-col sm:flex-row">
                 
                     <div className="bg-white w-11/12 mt-10 pb-14 flex justify-center mb-10">
 

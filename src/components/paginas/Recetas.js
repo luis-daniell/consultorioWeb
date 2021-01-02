@@ -1,30 +1,53 @@
 import React,{useState, useContext, useEffect} from 'react';
 import {FirebaseContext} from '../../firebase/Auth';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 import RecetasMostrar from '../ui/RecetasMostrar';
 import Barra from '../ui/Barra';
 import Sidebar from "../ui/Sidebar";
 import {useHistory} from "react-router-dom";
 import lupa from '../../img/lupa.svg';
 
+const MySwal = withReactContent(Swal);
+
 export const Recetas = (props) => {
 
     const history = useHistory();
 
-    const redireccionar = () => {
-        history.push("/nueva-receta");
-    }
+    
 
-    const {firebase} = useContext(FirebaseContext);
+    const {firebase, currentUser} = useContext(FirebaseContext);
     const [recetas, guardarRecetas] = useState([]);
+    const [existencia, guardarExistencia] = useState(false);
+    const [docExpedientes, guardarDocExpedientes] = useState(0);
 
 
     useEffect(() => {
         const obtenerRecetas =  () => {
             firebase.db.collection('recetas').onSnapshot(manejarSnapshot);//Snapshot para ver los cambios en tiempo real y get para ver solamnente los cambios            
         }
+        const obtenerExpedientes =  () => {
+        
+            firebase.db.collection('expedientes').get().then(snap => {
+            const size = snap.size // will return the collection size
+            guardarDocExpedientes(size);
+      
+            });
+          } 
+        
+        const obtenerPerfil = async () => {
+            const perfilQ = await firebase.db.collection('usuarios').doc(currentUser.uid);
+            const perfil = await perfilQ.get();
+            if(perfil.exists) {
+                guardarExistencia(true);
+            } else {
+                guardarExistencia(false);
+            }
+        }
+        obtenerExpedientes();
         obtenerRecetas();
-
-    },[firebase]);
+        obtenerPerfil();
+    },[firebase, currentUser]);
 
     //Snapshop nos permite usar la base de datos en tiempo real de firestore
     function manejarSnapshot(snapshot) {
@@ -53,6 +76,21 @@ export const Recetas = (props) => {
             search:`?q=${busqueda}`,
             state: { detail: recetas }
         })
+    }
+
+    const redireccionar = () => {
+        if(existencia){
+            if (docExpedientes === 0){
+                MySwal.fire('Necesitas tener expedientes')
+            }else{
+                history.push("/nueva-receta");
+            }
+            
+        }else{
+            MySwal.fire('Necesitas configurar tu perfil')
+        }
+        
+        
     }
 
     return ( 

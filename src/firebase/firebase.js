@@ -20,10 +20,7 @@ class Firebase {
     //Inicia sesion del usuario
 
     async login(correo, password){
-
-        
         return this.auth.signInWithEmailAndPassword(correo, password);
-        
     }
 
     // Registra un usuario

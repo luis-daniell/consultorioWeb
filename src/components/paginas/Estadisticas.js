@@ -31,20 +31,23 @@ export const Estadisticas = () => {
         }
 
         const obtenerCitas =  () => {
-            firebase.db.collection('citas').where('atendida','==',true).where('yearCita','==',year.toString()).onSnapshot(manejarSnapshot);//Snapshot para ver los cambios en tiempo real y get para ver solamnente los cambios
+            firebase.db.collection('citas')
+            .where('atendida','==',true).where('yearCita','==',year.toString()).onSnapshot(manejarSnapshot);//Snapshot para ver los cambios en tiempo real y get para ver solamnente los cambios
             
         }
         obtenerCitas();
 
         const obtenerExpedientes =  () => {
-            firebase.db.collection('expedientes').where('yearExpediente','==',year.toString()).onSnapshot(manejarSnapshot2);//Snapshot para ver los cambios en tiempo real y get para ver solamnente los cambios
+            firebase.db.collection('expedientes')
+            .where('yearExpediente','==',year.toString()).onSnapshot(manejarSnapshot2);//Snapshot para ver los cambios en tiempo real y get para ver solamnente los cambios
             
         }
         obtenerExpedientes();
 
 
         const obtenerRecetas =  () => {
-            firebase.db.collection('recetas').where('yearReceta','==',year.toString()).onSnapshot(manejarSnapshot3);//Snapshot para ver los cambios en tiempo real y get para ver solamnente los cambios
+            firebase.db.collection('recetas')
+            .where('yearReceta','==',year.toString()).onSnapshot(manejarSnapshot3);//Snapshot para ver los cambios en tiempo real y get para ver solamnente los cambios
             
         }
         obtenerRecetas();
@@ -96,24 +99,15 @@ export const Estadisticas = () => {
     const diagnosticos = obtenerDiagnosticoExpedientes(expedientes, 'Expedientes');
     //console.log(diagnosticos);    
 
-
- 
     const formik = useFormik({
         initialValues : {
             year: '',
         },
-
-
         onSubmit: dato => {
-            
             localStorage.setItem('year',(dato.year));
             guardarEstado(false);
-
         }
-
     });
-
-
 
     return ( 
         <div className="">
@@ -123,14 +117,11 @@ export const Estadisticas = () => {
                 <Barra/>
 
                 <div className="content-center">
-
                     <div className="ml-4 flex sm:pl-4 md:pl-5 w-11/12 lg:ml-0 lg:pl-0 lg:justify-start items-center">
                         <p className="font-source content-center text-xl sm:text-2xl font-bold lg:pl-12 pt-6">Estadísticas</p>
                     </div>
-
                 </div>
 
-                
                 {estado ? 
                     <div className="w-11/12 flex justify-items-center items-center justify-center mt-10">
 
@@ -151,9 +142,8 @@ export const Estadisticas = () => {
                                 <option value="" className="">-- Seleccione el año --</option>
                                 <option value="2020">2020</option>
                                 <option value="2021">2021</option>
-
+                                <option value="2022">2022</option>
                             </select>
-
 
                             <button
                                 className="ml-2 lg:ml-4 sm:text-lg sm:px-5 bg-tercerColor hover:bg-blue-dark text-white px-2 lg:text-xl text-xs rounded-full cursor-pointer font-source lg:w-40 h-8 focus:outline-none"  
@@ -208,6 +198,7 @@ export const Estadisticas = () => {
                                     vAxis: {
                                         title: 'Citas',
                                     },
+                                    colors: ['#41AEA9'],
                                 }}
                                 legendToggle
                             />
@@ -233,14 +224,13 @@ export const Estadisticas = () => {
                                     // For the legend to fit, we make the chart area smaller
                                     chartArea: { width: '80%', height: '70%' },
                                     // lineWidth: 25
+                                    colors: ['#213E3B'],
                                 }}
                                 // For tests
                                 rootProps={{ 'data-testid': '1' }}
                             />
                         </div>
-                    
                     }
-                    
                 </div>
 
 
@@ -285,7 +275,6 @@ export const Estadisticas = () => {
 
                         </div>
                     }
-                    
                 </div>
             </div>
         </div>

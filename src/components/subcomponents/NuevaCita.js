@@ -49,7 +49,6 @@ const NuevaCita = () => {
             descripcion: '',
         },
 
-
         onSubmit: cita => {
             try {
                 const mes = obtenerMes(cita.fecha);
@@ -57,19 +56,12 @@ const NuevaCita = () => {
 
                 cita.year = year;
                 cita.mes = mes;
-                
-
                 //Se pasa el id del cliente
                 //idExpediente = cita.paciente;
-
                 //Consultar datos para obtener el nombre y cooreo 
                 cita.atendida = false;
                 
                 obtenerDatoExpediente(cita.paciente, cita.fecha, cita.hora, cita.descripcion, cita.atendida, cita.year, cita.mes);
-               // console.log(objectExpediente);
-
-                //firebase.db.collection('citas').add(cita);
-
             } catch (error) {
                 console.log(error);
             }
@@ -78,25 +70,18 @@ const NuevaCita = () => {
     });
 
     function obtenerYear(fecha){
-        console.log(fecha);
+        //console.log(fecha);
         const fechaq = fecha;
-
-
         const result = fechaq.slice(0,4);
-
         return result;
 
     }
 
     function obtenerMes(fecha){
-        console.log(fecha);
+        //console.log(fecha);
         const fechaq = fecha;
-
-
         const result = fechaq.slice(5,7);
-
         return result;
-
     }
 
     async function obtenerDatoExpediente (id, fecha, hora, descripcion, atendida,  year, mes) {

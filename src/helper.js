@@ -1,5 +1,4 @@
 import React from 'react';
-import { Document, Page, Text,  Image, StyleSheet } from '@react-pdf/renderer';
 import {NavLink} from 'react-router-dom';
 import usuario from '../src/img/usuario.svg';
 import estadistica from '../src/img/estadistica.svg';
@@ -9,25 +8,9 @@ import historial from '../src/img/historial.svg';
 import tablero from '../src/img/tablero.svg';
 import receta from '../src/img/receta.svg';
 
-const styles = StyleSheet.create({
-  
-  title: {
-    fontSize: 24,
-    textAlign: 'center'
-  },
-
-  image: {
-    height: 120,
-    width: 120,
-    marginVertical: 30,
-    marginHorizontal: 100,
-  },
-});
-
 
 export function agregarEvento (nombre, apellidos, correo, fecha, hora, descripcion ){
 
-     
   var gapi = window.gapi
   
   //  Update with your own Client Id and Api key 
@@ -91,26 +74,6 @@ export function agregarEvento (nombre, apellidos, correo, fecha, hora, descripci
         })
       })//FIN DE ONCLICK
     })
-}
-
-export function PdfDocument(props) {
-  console.log("pdf props", props.data.consultorioLogo);
- // const data = nombre;
-  //const img = props.data.consultorioLogo;
-  const img ="https://ep01.epimg.net/elpais/imagenes/2019/10/30/album/1572424649_614672_1572453030_noticia_normal.jpg";
-  const metodo = 'GET';
- 
-//Se configuro en google cloud
- 
-  return (
-    <Document>
-      <Page size="A4" wrap >
-          <Text style={styles.title}>{props.data.nombreConsultorio}</Text>
-          <Image style={styles.image} src={{ uri: img, method: metodo, headers: {'Access-Control-Allow-Origin:' :'*'}, body: '' }} />
-          
-      </Page>
-    </Document>
-  );
 }
 
 export function obtenerDatosCitas(citas, titulo){
@@ -210,25 +173,21 @@ export function obtenerDatosCitas(citas, titulo){
         mes: 'Diciembre',
         cantidad: diciembre
         }
-
-
     ];
 
    // console.log(meses);
     const returnedArray = [[titulo, '']];
     for(let i=0; i<meses.length; i++) {
-
         if(meses[i].cantidad >= 1){
             returnedArray[i+1] = [meses[i].mes, meses[i].cantidad];
         }
-            
     } 
 
     var filtered = returnedArray.filter(function (el) {
         return el != null;
-      });
+    });
 
-      return filtered;
+    return filtered;
 }
 
 export function obtenerDatosExpedientes(expedientes, titulo){
@@ -288,7 +247,6 @@ export function obtenerDatosExpedientes(expedientes, titulo){
         }else{
             diciembre = diciembre + 1;
         }
-
     }
 
     const meses = [{
@@ -330,9 +288,8 @@ export function obtenerDatosExpedientes(expedientes, titulo){
         mes: 'Diciembre',
         cantidad: diciembre
         }
-
-
     ];
+
     const returnedArray = [[titulo, '']];
     for(let i=0; i<meses.length; i++) {
 
@@ -403,7 +360,6 @@ export function obtenerDatosRecetas(recetas, titulo){
         }else{
             diciembre = diciembre + 1;
         }
-
     }
 
     const meses = [{
@@ -446,6 +402,7 @@ export function obtenerDatosRecetas(recetas, titulo){
         cantidad: diciembre
         }
     ];
+
     const returnedArray = [[titulo, '']];
     for(let i=0; i<meses.length; i++) {
 
@@ -467,9 +424,7 @@ export function obtenerDiagnosticoExpedientes(expedientes, titulo){
   expedientes.forEach(logArrayElements);
     
     function logArrayElements(element, index, array) {
-
       arreglo.push(element.diagnostico);
-
     }
     
     var repetidos = {};
@@ -482,17 +437,27 @@ export function obtenerDiagnosticoExpedientes(expedientes, titulo){
     const valores = Object.values(repetidos);
 
     for(let i=0; i<llaves.length; i++) {
-
       returnedArray[i+1] = [llaves[i], valores[i]];
-      
-  }
-      return returnedArray;
+    }
+
+    return returnedArray;
 }
 
-export const Ssidebar = () =>{
+export const Ssidebar = ({imagenPerfil}) =>{
+
     return(
     <div className="w-full pt-3 bg-gray-900">
-        <p className="uppercase text-white text-2xl tracking-wide text-center font-bold font-source">Consultorio</p>
+
+
+        <div className="w-full pt-2 pb-2 flex flex-col bg-gray-900">
+            <div className="w-full flex justify-start items-center pl-5">
+                <img src={imagenPerfil} width="50" alt="Imagen de perfil" className="bg-white rounded-full"/>
+            </div>
+            <div className="w-9/12 flex pl-5 pt-2">
+                <p className="uppercase text-white text-xl tracking-wide text-center font-bold font-source">Consultorio</p>
+            </div>
+        </div>
+        
 
         <div className="bg-gray-800">
             <nav className="pl-4">
@@ -561,41 +526,36 @@ export const Ssidebar = () =>{
                         <div className="flex content-center">
                             <img src={calendario} width="20" height="20" alt="calendario"/>
                         </div>
-
                         <div className="pl-6">
                             <span className="">Citas</span>
                         </div>
                     </div>
                         
-                    </NavLink>
+                </NavLink>
                     
-                    <NavLink className="p-1 text-white block hover:bg-tercerColor hover:text-gray-900 font-source font-bold text-lg mt-8" activeClassName="text-yellow-500"  to="/expediente">
+                <NavLink className="p-1 text-white block hover:bg-tercerColor hover:text-gray-900 font-source font-bold text-lg mt-8" activeClassName="text-yellow-500"  to="/expediente">
                         
                     <div className="flex content-center">
                         <div className="flex content-center">
                             <img src={expediente} width="20" height="20" alt="expediente"/>
                         </div>
-
                         <div className="pl-6">
                             <span className="">Expediente</span>
                         </div>
                     </div>
 
-                    </NavLink>
+                </NavLink>
 
-                    <NavLink className="p-1 text-white block hover:bg-tercerColor hover:text-gray-900 font-source font-bold text-lg mt-8" activeClassName="text-yellow-500"  to="/historial">
-                        
+                <NavLink className="p-1 text-white block hover:bg-tercerColor hover:text-gray-900 font-source font-bold text-lg mt-8" activeClassName="text-yellow-500"  to="/historial">
                         <div className="flex content-center">
                             <div className="flex content-center">
                                 <img src={historial} width="20" height="20" alt="historial"/>
                             </div>
-
                             <div className="pl-6">
                                 <span className="">Historial</span>
                             </div>
                         </div>
-                        
-                    </NavLink>
+                </NavLink>
 
                 </nav>
             </div>  

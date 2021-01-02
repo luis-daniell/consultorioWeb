@@ -24,15 +24,19 @@ const Previsualizacion = () => {
 
     const {currentUser, firebase} = useContext(FirebaseContext);
     const [usuario, guardarUsuario] = useState([]);
+    const [logo, guardarLogo] = useState([]);
     
     useEffect(() => {
         const obtenerUsuario = async () => {
-
             const userQ = await firebase.db.collection('usuarios').doc(currentUser.uid);
             const usuario = await userQ.get();
             guardarUsuario(usuario.data());
-
         }
+        const obtenerImagen = async () => {
+            await firebase.db.collection('imagen').onSnapshot(manejarSnapshot);
+        }
+        obtenerImagen();
+
         obtenerUsuario();
     },[firebase, currentUser]);
 
@@ -53,7 +57,6 @@ const Previsualizacion = () => {
     
                 nombreConsultorio: usuario.consultorio,
                 fechaHoy: fech,
-
                 nombreDoctor: usuario.nombre,
                 
                 doctorEspecialidad: usuario.especialidad,
@@ -84,6 +87,7 @@ const Previsualizacion = () => {
       }else{
 
         try {
+
             firebase.db.collection('recetas').add({
     
                 nombreConsultorio: usuario.consultorio,
@@ -100,12 +104,14 @@ const Previsualizacion = () => {
                 pacienteId: idPaciente,
                 mesReceta: mes.toString(),
                 yearReceta: year.toString(),
-                
     
             });
 
+            const mess = obtenerMes(fecha);
+            const yearr = obtenerYear(fecha);
+
             firebase.db.collection('citas').add({
-                id: idPaciente,
+                idPaciente: idPaciente,
                 nombre: nombrePaciente,
                 apellido: apellidosPaciente,
                 correo: correoPaciente,
@@ -113,8 +119,8 @@ const Previsualizacion = () => {
                 hora: hora,
                 descripcion: descripcionCita,
                 atendida: false,
-                mesCita: mes.toString(),
-                yearCita: year.toString(),
+                mesCita: mess,
+                yearCita: yearr,
 
             });
             
@@ -133,10 +139,34 @@ const Previsualizacion = () => {
   }
 
   const abrirVolver = () => {
-    
     history.push("/nueva-receta");
   }
 
+  function obtenerYear(fecha){
+    //console.log(fecha);
+    const fechaq = fecha;
+    const result = fechaq.slice(0,4);
+    return result;
+
+    }
+
+    function obtenerMes(fecha){
+        //console.log(fecha);
+        const fechaq = fecha;
+        const result = fechaq.slice(5,7);
+        return result;
+    }
+    function manejarSnapshot(snapshot) {
+        const imagen = snapshot.docs.map(doc => {
+            return{
+                id: doc.id,
+                ...doc.data()
+            }
+        });
+
+        //Almacenar los resultados en el state
+        guardarLogo(imagen);
+    }
 
     return ( 
         <div className="">
@@ -182,7 +212,7 @@ const Previsualizacion = () => {
                             <div className="border-r-4 border-l-4 md:flex-nowrap lg:flex-nowrap border-indigo-800 w-10/12 flex justify-center justify-items-center items-center ">
                                 
                                 <div className="flex justify-center w-3/12 md:w-3/12 lg:w-2/12">
-                                    <img src={usuario.imagenConsultorio} className="pt-4" width="120" height="120" alt="ImagenConsultorio"/>                                   
+                                    <img src={logo[0].urlimagen2} className="pt-4" width="120" height="120" alt="ImagenConsultorio"/>                                   
                                 </div>
 
                                 <div className=" w-7/12 flex justify-center flex-wrap md:w-7/12 lg:w-9/12">

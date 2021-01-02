@@ -30,44 +30,29 @@ export const Perfil = () => {
 
 
     //State para las imagenes 
-    const [imagen, guardarImagen] = useState('');
 
-    const [logo, guardarLogo] = useState('');
+    const [logo, guardarLogo] = useState([]);
 
 
     let imagenPerfil = usuarioPerfil;
     let imagenLogo = ordenador;
 
-    if(imagen === ''){
+    if(currentUser.photoURL === null){
         imagenPerfil = usuarioPerfil;
 
     }else{
-        imagenPerfil= imagen;
+        imagenPerfil= currentUser.photoURL;
     }
 
-
-    if(logo === ''){
+    if(logo.length === 0){
         imagenLogo = ordenador;
-
     }else{
-        imagenLogo= logo;
+        imagenLogo= logo[0].urlimagen2;
     }
-
 
     const history = useHistory();
 
-    const abrirPagina = () => {
-        history.push({
-            pathname: "/modificar-perfil"
-        });
-     }
-
-     const abrirActualizar = () => {     
-        history.push({
-            pathname: "/actualizar-perfil",
-            state: { detail: perfil }
-        });
-     }
+    
 
      useEffect(() => {  
             const obtenerPerfil = async () => {
@@ -78,10 +63,7 @@ export const Perfil = () => {
                    guardarNombre(currentUser.displayName);
                    guardarConsultorio(perfil.data().consultorio);
                    guardarEspecialidad(perfil.data().especialidad);
-
-                   guardarImagen(perfil.data().imagenDoctor);
-                   guardarLogo(perfil.data().imagenConsultorio);
-
+                   //guardarLogo(perfil.data().imagenConsultorio);
                    guardarCedula(perfil.data().cedula);
                    guardarDireccion(perfil.data().direccion);
                    guardarTelefono(perfil.data().telefono);
@@ -89,20 +71,59 @@ export const Perfil = () => {
                    guardarEstado(true);
                 } else {
                     guardarEstado(false);
-                    console.log("No existe");
                     guardarNombre(currentUser.displayName);
                     guardarConsultorio('Nombre de consultorio');
                     guardarEspecialidad('----------');
-
-
                     guardarCedula('----------');
                    guardarDireccion('----------');
                    guardarTelefono('----------');
                 }
             }
+
+
+            const obtenerImagen = () => {
+                 firebase.db.collection('imagen').onSnapshot(manejarSnapshot);
+            }
+
+            obtenerImagen();
             obtenerPerfil();
         
     }, [currentUser, firebase]);
+
+    function manejarSnapshot(snapshot) {
+        const imagen = snapshot.docs.map(doc => {
+            return{
+                id: doc.id,
+                ...doc.data()
+            }
+        });
+
+        //Almacenar los resultados en el state
+        guardarLogo(imagen);
+    }
+
+    let admin;
+    if (logo.length === 0){
+        admin = true;
+    }
+    if(logo.length > 0){
+        admin = false;
+    }
+
+    const abrirPagina = () => {
+        history.push({
+            pathname: "/modificar-perfil",
+            state: { detail: admin }
+        });
+     }
+
+     const abrirActualizar = () => {     
+        history.push({
+            pathname: "/actualizar-perfil",
+            state: { detail: perfil }
+        });
+     }
+
 
     return ( 
         <div className="">

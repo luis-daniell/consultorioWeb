@@ -1,5 +1,7 @@
 import React, {useState, useContext} from 'react';
 import {useFormik} from 'formik';
+
+import {useHistory} from "react-router-dom";
 import Barra from "../ui/Barra";
 import {FirebaseContext} from '../../firebase/Auth';
 import Sidebar from "../ui/Sidebar";
@@ -10,7 +12,7 @@ const MySwal = withReactContent(Swal);
 
 
 const NuevoExpediente = props => {
-
+    const history = useHistory();
     //Botones
     const [presion, guardarPresion] = useState(true);
     const [peso, guardarPeso] = useState(true);
@@ -49,7 +51,7 @@ const NuevoExpediente = props => {
                     title: <p>Datos guardados correctamente</p>
                 })
                 
-                props.history.push("/expediente");
+                history.push("/expediente");
 
             } catch (error) {
                 console.log(error);

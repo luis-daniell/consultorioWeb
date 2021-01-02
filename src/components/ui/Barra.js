@@ -1,10 +1,8 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext} from 'react';
 import {useHistory} from "react-router-dom";
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-
 import { FirebaseContext } from "../../firebase/Auth";
 import usuarioPerfil from '../../img/usuarioPerfil.svg';
-
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
@@ -56,37 +54,17 @@ const Barra = () => {
     setMobileOpen(!mobileOpen);
   };
 
-  const drawer = ( 
-    <Ssidebar/>
-  );
-
-
   const history = useHistory();
 
-  const [imagen, guardarImagen] = useState('');
   const {currentUser, firebase} = useContext(FirebaseContext);
 
   let imagenPerfil = usuarioPerfil;
 
-  useEffect(() => {  
-    const obtenerPerfil = async () => {
-      const perfilQ = await firebase.db.collection('usuarios').doc(currentUser.uid);
-      const perfil = await perfilQ.get();
-      if(perfil.exists) {
-        guardarImagen(perfil.data().imagenDoctor);
-        //guardarConsultarDB(false);
-      } else {
-        console.log("No existe");
-      }
-    }
-    obtenerPerfil();
-    
-  }, [firebase, currentUser]);
 
-  if(imagen === ''){
+  if(currentUser.photoURL === null){
     imagenPerfil = usuarioPerfil;
   }else{
-    imagenPerfil= imagen;
+    imagenPerfil= currentUser.photoURL;
   }
 
   const [open, setOpen] = React.useState(false);
@@ -103,6 +81,12 @@ const Barra = () => {
     firebase.cerrarSesion();
     history.push("/");
   }
+
+  const drawer = ( 
+    <Ssidebar
+      imagenPerfil = {imagenPerfil}
+    />
+  );
 
   return ( 
 
@@ -151,13 +135,12 @@ const Barra = () => {
               <p className="font-source font-bold text-xs">{currentUser.displayName}</p>
             </div>
                         
-            <a href="# " id="menu-btn" onClick={handleClick}><img src={imagenPerfil} width="30" alt="Imagen de perfil"/></a>
+            <div className="cursor-pointer" id="menu-btn" onClick={handleClick}><img src={imagenPerfil} width="30" alt="Imagen de perfil"/></div>
                     
             {open ? (
 
-              <div id="dropdown" className="flex bg-white flex-col absolute rounded mt-32 p-2 text-sm w-32 border-black border-2">
-                <a href="# " className="px-2 py-1 hover:bg-segundoColor rounded">Configuración</a>
-                <a href="# " className="px-2 py-1 hover:bg-segundoColor rounded" onClick={()=> cerrarSesion()}>Cerrar Sesión</a>
+              <div id="dropdown" className="flex bg-white flex-col absolute rounded mt-20 p-2 text-sm w-32 border-black border-2">
+                <a href="/" className="px-2 py-1 hover:bg-segundoColor rounded" onClick={()=> cerrarSesion()}>Cerrar Sesión</a>
               </div>
 
             ) : null}

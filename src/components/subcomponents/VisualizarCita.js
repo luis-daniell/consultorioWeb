@@ -1,34 +1,51 @@
 import React, {useEffect, useState, useContext} from 'react';
 import { useHistory} from "react-router-dom";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 import CitasMostrar from '../ui/CitasMostrar';
 import {FirebaseContext} from '../../firebase/Auth';
 import lupa from '../../img/lupa.svg';
 import Sidebar from "../ui/Sidebar";
 import Barra from "../ui/Barra";
 
+const MySwal = withReactContent(Swal);
+
 const VisualizarCita = (props) => {
-
-
 
     const history = useHistory();
 
-    const abrirNuevaCita = () => {     
-        history.push({
-            pathname: "/nueva-cita",
-            //state: { detail: perfil }
-        });
+    const abrirNuevaCita = () => {
+        if(docExpedientes === 0){
+            MySwal.fire('Necesitas tener expedientes')
+        }else{
+            history.push({
+                pathname: "/nueva-cita",
+                //state: { detail: perfil }
+            });
+        }     
+        
      }
 
-
+     const [docExpedientes, guardarDocExpedientes] = useState(0);
      const [citas, guardarCitas] = useState([]);
      const {firebase} = useContext(FirebaseContext);
 
 
      useEffect(() => {
         const obtenerCitas =  () => {
-            firebase.db.collection('citas').where('atendida', '==', false).onSnapshot(manejarSnapshot);//Snapshot para ver los cambios en tiempo real y get para ver solamnente los cambios
-            
+            //Snapshot para ver los cambios en tiempo real y get para ver solamnente los cambios   
+            firebase.db.collection('citas').where('atendida', '==', false).onSnapshot(manejarSnapshot);
         }
+
+        const obtenerExpedientes =  () => {
+        
+            firebase.db.collection('expedientes').get().then(snap => {
+            const size = snap.size // will return the collection size
+            guardarDocExpedientes(size);
+      
+            });
+          } 
+        obtenerExpedientes();
         obtenerCitas();
 
     },[firebase]);
@@ -43,13 +60,9 @@ const VisualizarCita = (props) => {
                 ...doc.data()
             }
         });
-
         //Almacenar los resultados en el state
         guardarCitas(cita);
     }
-
-
-
 
     const [ busqueda, guardarBusqueda] = useState('');
 
@@ -103,8 +116,6 @@ const VisualizarCita = (props) => {
 
                     </div>    
                 </form>
-
-
 
                 <div className="flex justify-center ">
                     {citas.length === 0 ?

@@ -20,19 +20,15 @@ export const Expediente = props => {
     const redireccionar = () => {
         history.push("/nuevo-expediente");
     }
-
-
     //Consultar la base de datos al cargar 
     useEffect(() => {
         const obtenerExpedientes =  () => {
-            firebase.db.collection('expedientes').onSnapshot(manejarSnapshot);//Snapshot para ver los cambios en tiempo real y get para ver solamnente los cambios
-            
+            //Snapshot para ver los cambios en tiempo real y get para ver solamnente los cambios
+            firebase.db.collection('expedientes').onSnapshot(manejarSnapshot);
         }
         obtenerExpedientes();
 
     },[firebase]);
-
-
 
     //Snapshop nos permite usar la base de datos en tiempo real de firestore
     function manejarSnapshot(snapshot) {

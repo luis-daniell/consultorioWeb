@@ -1,10 +1,13 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {FirebaseContext} from '../../firebase/Auth';
+import withReactContent from 'sweetalert2-react-content';
+import Swal from 'sweetalert2';
 import {useHistory} from "react-router-dom";
 import {useFormik} from 'formik';
 import Sidebar from '../ui/Sidebar';
 import Barra from '../ui/Barra';
 
+const MySwal = withReactContent(Swal);
 
 const NuevaReceta = () => {
 
@@ -14,18 +17,12 @@ const NuevaReceta = () => {
     //Para la nueva cita
     const [cita, guardarCita] = useState(true);
     //Si cita esta en false entonces generamos una nueva cita
-
     //Guardar el id cuando este se seleccione:
     const [dato, guardarDato] = useState('');
-
     //Expediente de acuerdo a su id
     const [expediente, guardarExpediente] = useState([]);
-
-    //console.log(expediente);
-
     //State de diagnostico de acuerdo a su id
     const [diagnostico, guardarDiagnostico] = useState('-- Seleccione el paciente --');
-
     //State para guardar descripcion de la cita
     const [descripcion, guardarDescripcion] = useState('');
 
@@ -54,7 +51,7 @@ const NuevaReceta = () => {
                     ...doc.data()
                 }
             });
-            console.log(cita);
+            //guardarDescripcion(cita);
                 //Almacenar los resultados en el state
             guardarDescripcion(cita[0].descripcion);
         }
@@ -70,8 +67,6 @@ const NuevaReceta = () => {
         if(cita === false ){
             obtenerCitas();
         }
-
-
         obtenerExpedientes();
     },[firebase, dato, cita]);
 
@@ -98,7 +93,6 @@ const NuevaReceta = () => {
         },
 
         onSubmit: receta => {
-
 
             if(cita === false){
                 ///Se va a crear una nueva cita
@@ -133,6 +127,21 @@ const NuevaReceta = () => {
         }
     });
 
+
+    const validacion = () => {
+        if (expediente.length === 0) {
+            MySwal.fire({
+                icon: 'warning',
+                title: 'Error...',
+                text: 'Selecciona el paciente',
+            })
+        }else{
+            guardarCita(false);
+        }
+        
+    }
+
+    
     return ( 
 
         <div className="">
@@ -217,7 +226,6 @@ const NuevaReceta = () => {
                                     value={formik.values.observacion}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
-                                    
                                 ></textarea>
                             </div>
 
@@ -241,7 +249,7 @@ const NuevaReceta = () => {
                                     <div className="flex justify-around pr-12 pt-6">
                                         <button
                                             className="bg-tercerColor focus:outline-none hover:bg-blue-dark text-white px-4 rounded-full cursor-pointer font-source w-40 h-8"
-                                            onClick={() => guardarCita(false)}
+                                            onClick={() => validacion()}
                                         >Próxima cita</button>
                                     </div>
                                 )

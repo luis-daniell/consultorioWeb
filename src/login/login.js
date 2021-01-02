@@ -1,20 +1,22 @@
-import React from "react";
+import React, {useContext} from "react";
 import {useFormik} from 'formik';
 import firebase from '../firebase';
 import * as Yup from 'yup';
-import {Link} from 'react-router-dom';
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
-
-
+import {Link, Redirect} from 'react-router-dom';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import {FirebaseContext} from '../firebase/Auth';
+import {useHistory} from "react-router-dom";
 import user from '../img/user.svg'
 import candado from '../img/candado.svg'
 import userlog from '../img/userlog.svg'
 
 const MySwal = withReactContent(Swal);
-export const Login = props => {
+export const Login = () => {
 
+  const history = useHistory();
   //auth.authenticated = false;
+  const {currentUser} = useContext(FirebaseContext);
 
   const formik = useFormik({
     initialValues: {
@@ -43,7 +45,7 @@ export const Login = props => {
   async function iniciarSesion(email, password) {
     try {
       await firebase.login(email, password);
-      props.history.push("/dashboard");
+      history.push("/dashboard");
       
     } catch (error) {
       console.error('Hubo un error al autenticar el usuario ', error.message);
@@ -57,10 +59,10 @@ export const Login = props => {
   }
 
   return (
-
     
     <div className="h-screen overflow-hidden flex items-center justify-center bg-cuartoColor ">
-
+      { currentUser ? <Redirect to="/dashboard" /> :(
+    
 
       <div className="bg-white shadow-2xl rounded-extra px-12 pb-8 mb-4 flex flex-col sm:w-6/12  md:w-5/12 lg:w-4/12 xl:w-3/12 xl:px-12">
 
@@ -146,7 +148,8 @@ export const Login = props => {
             </div>
 
         </form>
-      </div>
+      </div>)
+      }
     </div>
   );
 };

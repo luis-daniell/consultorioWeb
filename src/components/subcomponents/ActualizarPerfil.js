@@ -1,4 +1,4 @@
-import React,{useContext, useState} from 'react';
+import React,{useContext, useState, useEffect} from 'react';
 import {useLocation, useHistory} from "react-router-dom";
 import {FirebaseContext} from '../../firebase/Auth';
 import {useFormik} from 'formik';
@@ -13,17 +13,36 @@ const MySwal = withReactContent(Swal);
 
 const ActualizarPerfil = ({perfil}) => {
     
-
-
     const history = useHistory();
     const location = useLocation();
 
     const {firebase, currentUser} = useContext(FirebaseContext);
     
 
-    const {nombre, consultorio, cedula, telefono, direccion, especialidad, imagenConsultorio, imagenDoctor} = location.state.detail;
+    const {nombre, consultorio, cedula, telefono, direccion, especialidad, administrador} = location.state.detail;
 
     //console.log(location.state.detail);
+    const [logo, guardarLogo] = useState([]);
+    useEffect(() => {  
+            const obtenerImagen = () => {
+                firebase.db.collection('imagen').onSnapshot(manejarSnapshot);
+        }
+
+        obtenerImagen();
+
+    }, [currentUser, firebase]);
+
+    function manejarSnapshot(snapshot) {
+        const imagen = snapshot.docs.map(doc => {
+            return{
+                id: doc.id,
+                ...doc.data()
+            }
+        });
+
+        //Almacenar los resultados en el state
+        guardarLogo(imagen);
+    }
 
     let nombre2 = nombre;
     let consultorio2 = consultorio;
@@ -31,8 +50,6 @@ const ActualizarPerfil = ({perfil}) => {
     let telefono2 = telefono;
     let direccion2 = direccion;
     let especialidad2 = especialidad;
-    let imagenConsultorio2 = imagenConsultorio;
-    let imagenDoctor2 = imagenDoctor; 
 
    //console.log(currentUser.uid);
 
@@ -46,7 +63,8 @@ const ActualizarPerfil = ({perfil}) => {
     const [progreso2, guardarProgreso2] = useState(0);
     const [urlimagen2, guardarUrlimagen2] = useState('');
 
-
+    
+    
 
      //Validacion y leer los datos del formulario
      const formik = useFormik({
@@ -56,8 +74,8 @@ const ActualizarPerfil = ({perfil}) => {
             nombre: nombre2,
             especialidad: especialidad2,
             consultorio: consultorio2,
-            imagenDoctor: imagenDoctor2,
-            imagenConsultorio: imagenConsultorio2,
+            //imagenDoctor: imagenDoctor2,
+            //imagenConsultorio: imagenConsultorio2,
             cedula: cedula2, 
             telefono: telefono2,
             direccion: direccion2,
@@ -68,31 +86,42 @@ const ActualizarPerfil = ({perfil}) => {
         onSubmit: perfill => {
             try {
 
-                if (urlimagen === '') {
-                    console.log(urlimagen);
-                    guardarUrlimagen(imagenDoctor2);
-                }else{
-                    perfill.imagenDoctor = urlimagen;
-                }
-                if(urlimagen2 === ''){
-                    guardarUrlimagen2(imagenConsultorio2);
-                }else{
-                    perfill.imagenConsultorio = urlimagen2;
-                }
-                
-                
+                if(administrador){
 
-                firebase.db.collection('usuarios').doc(currentUser.uid).update(perfill);
-              
-                currentUser.updateProfile({
-                    displayName: perfill.nombre
-                  }).then(function() {
-                    MySwal.fire({
-                        icon: 'success',
-                        title: <p>Datos actualizados correctamente</p>
-                    })
-                    history.push("/perfil");
-                  })
+                    firebase.db.collection('imagen').doc(logo[0].id)
+                    .update({
+                        urlimagen2: urlimagen2
+                    });
+
+                    firebase.db.collection('usuarios').doc(currentUser.uid).update(perfill);
+                  
+                    currentUser.updateProfile({
+                        displayName: perfill.nombre,
+                        
+                        photoURL: urlimagen,
+                      }).then(function() {
+                        MySwal.fire({
+                            icon: 'success',
+                            title: <p>Datos actualizados correctamente</p>
+                        })
+                        history.push("/perfil");
+                      })
+                }else{
+    
+                    firebase.db.collection('usuarios').doc(currentUser.uid).update(perfill);
+                  
+                    currentUser.updateProfile({
+                        displayName: perfill.nombre,
+                        
+                        photoURL: urlimagen,
+                      }).then(function() {
+                        MySwal.fire({
+                            icon: 'success',
+                            title: <p>Datos actualizados correctamente</p>
+                        })
+                        history.push("/perfil");
+                      })
+                }
                 
             } catch (error) {
                 console.log(error);
@@ -266,16 +295,17 @@ const ActualizarPerfil = ({perfil}) => {
                         )}
 
                         {urlimagen && (
-                            <div className="w-full flex justify-start">
+                            <div className="w-full flex justify-center sm:justify-start">
 
-                                <p className="w-3/12"></p>
-                                <p className="bg-green-500 w-8/12 text-white p-3 text-center my-5">
+                                <p className="hidden sm:flex sm:w-3/12"></p>
+                                <p className="bg-green-500 w-11/12 sm:w-8/12 text-white p-3 text-center my-5">
                                     La imagen se subió correctamente
                                 </p> 
                             </div>
                            
                         )}
 
+                        {administrador ? <>
                         <div className="flex justify-center sm:justify-start mt-6">
                             <label className="hidden sm:flex sm:w-3/12 pl-12 text-tercerColor" htmlFor="imagen">Imagen del consultorio: </label>
                             <FileUploader
@@ -301,14 +331,16 @@ const ActualizarPerfil = ({perfil}) => {
                         )}
 
                         {urlimagen2 && (
-                            <div className="w-full flex justify-start">
+                            <div className="w-full flex justify-center sm:justify-start">
 
-                                <p className="w-3/12"></p>
-                                <p className="bg-green-500 w-8/12 text-white p-3 text-center my-5">
+                                <p className="hidden sm:flex sm:w-3/12"></p>
+                                <p className="bg-green-500 w-11/12 sm:w-8/12 text-white p-3 text-center my-5">
                                     La imagen se subió correctamente
                                 </p> 
                             </div>
                         )}
+                        </> : null}
+                        
 
                         <div className="flex justify-center sm:justify-start mt-10">
 
