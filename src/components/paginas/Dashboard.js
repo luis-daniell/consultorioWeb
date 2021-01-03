@@ -142,13 +142,11 @@ export const Dashboard = props => {
                           <div className="flex justify-end">
                             <p className="font-source text-4xl font-bold text-black">{docRecetas === 0 ? null : docRecetas}</p>
                           </div>
-  
                           <div className="flex justify-end">
                             <p className="font-source text-lg text-black">{docRecetas === 0 ? 'Sin datos' : 'Recetas'}</p>
                           </div>
   
                         </div>
-
 
                         <div className="flex justify-start w-5/12 ml-6">
                           <img src={recetaDoc} width="70" height="70" alt="receta"/>

@@ -2,6 +2,8 @@ import React, {useContext, useEffect, useRef, useState} from 'react';
 import { useReactToPrint } from "react-to-print";
 import {agregarEvento} from '../../helper';
 import {useLocation, useHistory} from "react-router-dom";
+
+import ordenador from '../../img/ordenador.svg';
 import {FirebaseContext} from '../../firebase/Auth';
 import Sidebar from '../ui/Sidebar';
 import Barra from '../ui/Barra';
@@ -34,12 +36,33 @@ const Previsualizacion = () => {
         }
         const obtenerImagen = async () => {
             await firebase.db.collection('imagen').onSnapshot(manejarSnapshot);
-        }
+       }
         obtenerImagen();
 
         obtenerUsuario();
     },[firebase, currentUser]);
 
+    let imagenLogo = ordenador;
+    if(logo.length === 0){
+        imagenLogo = ordenador;
+    }else{
+        imagenLogo= logo[0].urlimagen2;
+    }
+    
+    function manejarSnapshot(snapshot) {
+        const imagen = snapshot.docs.map(doc => {
+            return{
+                id: doc.id,
+                ...doc.data()
+            }
+        });
+        
+        //Almacenar los resultados en el state
+        guardarLogo(imagen);
+    }
+    console.log(logo);
+
+    
     const {nombrePaciente, apellidosPaciente, medicamentos, idPaciente, nuevaCita, correoPaciente, fecha, hora, descripcionCita, telefonoPaciente} = location.state.detail;
     
     const f = new Date();
@@ -47,7 +70,6 @@ const Previsualizacion = () => {
     const year =  f.getFullYear();
     const fech = f.getFullYear() + "/" + (f.getMonth() +1) + "/" + f.getDate();
 
-    
     const segundaFuncion =()=> {
 
       if(nuevaCita === true){
@@ -156,17 +178,6 @@ const Previsualizacion = () => {
         const result = fechaq.slice(5,7);
         return result;
     }
-    function manejarSnapshot(snapshot) {
-        const imagen = snapshot.docs.map(doc => {
-            return{
-                id: doc.id,
-                ...doc.data()
-            }
-        });
-
-        //Almacenar los resultados en el state
-        guardarLogo(imagen);
-    }
 
     return ( 
         <div className="">
@@ -212,7 +223,7 @@ const Previsualizacion = () => {
                             <div className="border-r-4 border-l-4 md:flex-nowrap lg:flex-nowrap border-indigo-800 w-10/12 flex justify-center justify-items-center items-center ">
                                 
                                 <div className="flex justify-center w-3/12 md:w-3/12 lg:w-2/12">
-                                    <img src={logo[0].urlimagen2} className="pt-4" width="120" height="120" alt="ImagenConsultorio"/>                                   
+                                    <img src={imagenLogo} className="pt-4" width="120" height="120" alt="ImagenConsultorio"/>                                   
                                 </div>
 
                                 <div className=" w-7/12 flex justify-center flex-wrap md:w-7/12 lg:w-9/12">

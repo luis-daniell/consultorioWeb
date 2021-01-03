@@ -11,7 +11,7 @@ import withReactContent from 'sweetalert2-react-content'
 const MySwal = withReactContent(Swal);
 
 
-const NuevoExpediente = props => {
+const NuevoExpediente = () => {
     const history = useHistory();
     //Botones
     const [presion, guardarPresion] = useState(true);
@@ -43,9 +43,9 @@ const NuevoExpediente = props => {
             mesExpediente: mes,
         },
 
-        onSubmit: async expediente => {
+        onSubmit: expediente => {
             try {
-                await firebase.db.collection('expedientes').add(expediente);
+                firebase.db.collection('expedientes').add(expediente);
                 MySwal.fire({
                     icon: 'success',
                     title: <p>Datos guardados correctamente</p>
@@ -64,8 +64,6 @@ const NuevoExpediente = props => {
         <div className="">
             
             <Sidebar/>
-            
-            
             
             <div className="bg-colorFondo lg:w-4/5 lg:box-border lg:left-auto lg:float-right">
                 <Barra/>

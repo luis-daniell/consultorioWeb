@@ -37,7 +37,7 @@ const ExpedientesMostrar = ({expediente}) => {
                 <p className="text-tercerColor">{telefono}</p>
             </div>
 
-            <div className="hidden md:flex md:w-3/12 md:border-b-2 md:border-gray-500 md:h-12 lg:w-3/12 lg:h-12 lg:flex lg:items-center lg:border-b-2 lg:border-gray-500">
+            <div className="hidden md:flex md:w-3/12 md:border-b-2 items-center md:border-gray-500 md:h-12 lg:w-3/12 lg:h-12 lg:flex lg:items-center lg:border-b-2 lg:border-gray-500">
                 <p className="text-tercerColor">{correo}</p>
             </div>
 

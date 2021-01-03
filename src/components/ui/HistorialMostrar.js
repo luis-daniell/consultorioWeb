@@ -1,11 +1,17 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import vision from '../../img/vision.svg';
 import delet from '../../img/delet.svg';
+import {FirebaseContext} from '../../firebase/Auth';
 import expedienteUser from '../../img/expedienteUser.svg';
 import {useHistory} from "react-router-dom";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal);
 
 const ExpedientesMostrar = ({expediente}) => {
 
+    const {firebase} = useContext(FirebaseContext);
 
     const {id, nombre, telefono, correo, diagnostico} = expediente;
     const history = useHistory();
@@ -16,14 +22,50 @@ const ExpedientesMostrar = ({expediente}) => {
 
     const redireccionar = () => {
 
-        //console.log(id);
-        
         history.push({
 
             pathname: "/visualizar-historial",
             state: { detail: expediente }
 
         });
+    }
+
+    const eliminar = (id) => {
+        console.log(id);
+        MySwal.fire({
+            title: '¿Estas seguro que desea eliminar?',
+            text: "Se eliminaran los datos del expediente actual!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Eliminar'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                firebase.db.collection('expedientes').doc(id).delete();
+                var jobskill_query1 = firebase.db.collection('recetas').where('pacienteId','==',id);
+                    jobskill_query1.get().then(function(querySnapshot) {
+                    querySnapshot.forEach(function(doc) {
+                        doc.ref.delete();
+                });
+                });
+
+                var jobskill_query2 = firebase.db.collection('citas').where('idPaciente','==',id);
+                    jobskill_query2.get().then(function(querySnapshot) {
+                    querySnapshot.forEach(function(doc) {
+                        doc.ref.delete();
+                });
+                });
+              Swal.fire(
+                'Eliminado!',
+                'La receta ha sido eliminada',
+                'success'
+              )
+              
+
+            }
+          })
+        
     }
 
     return ( 
@@ -59,7 +101,7 @@ const ExpedientesMostrar = ({expediente}) => {
                 </div>
 
                 <div>
-                    <img src={delet} width="25" height="" className="cursor-pointer" alt="Eliminar"/>
+                    <img src={delet} width="25" height="" onClick={() => eliminar(id)}className="cursor-pointer" alt="Eliminar"/>
                 </div>
                 
             </div>

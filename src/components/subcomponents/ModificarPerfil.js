@@ -287,7 +287,7 @@ const ModificarPerfil = () => {
                                 </div>
                             )}
 
-                            {location.state.detail ? <>(
+                            {location.state.detail ? <>
                             <div className="flex justify-center sm:justify-start mt-6">
                                 <label className="hidden sm:flex sm:w-3/12 sm:pl-12 text-tercerColor" htmlFor="imagen">Imagen del consultorio: </label>
                                 <FileUploader
@@ -322,7 +322,7 @@ const ModificarPerfil = () => {
                                     </p> 
                                 </div>
                             )}
-                            )</>: null} 
+                            </>: null} 
 
                             <div className="flex justify-center sm:justify-start mt-10">
 

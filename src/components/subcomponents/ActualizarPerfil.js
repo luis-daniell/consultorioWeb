@@ -11,14 +11,13 @@ import withReactContent from 'sweetalert2-react-content'
 
 const MySwal = withReactContent(Swal);
 
-const ActualizarPerfil = ({perfil}) => {
+const ActualizarPerfil = () => {
     
     const history = useHistory();
     const location = useLocation();
 
     const {firebase, currentUser} = useContext(FirebaseContext);
     
-
     const {nombre, consultorio, cedula, telefono, direccion, especialidad, administrador} = location.state.detail;
 
     //console.log(location.state.detail);
@@ -27,9 +26,7 @@ const ActualizarPerfil = ({perfil}) => {
             const obtenerImagen = () => {
                 firebase.db.collection('imagen').onSnapshot(manejarSnapshot);
         }
-
-        obtenerImagen();
-
+    obtenerImagen();
     }, [currentUser, firebase]);
 
     function manejarSnapshot(snapshot) {
@@ -63,11 +60,8 @@ const ActualizarPerfil = ({perfil}) => {
     const [progreso2, guardarProgreso2] = useState(0);
     const [urlimagen2, guardarUrlimagen2] = useState('');
 
-    
-    
-
-     //Validacion y leer los datos del formulario
-     const formik = useFormik({
+    //Validacion y leer los datos del formulario
+    const formik = useFormik({
 
         initialValues: {
             uid: currentUser.uid,
@@ -81,7 +75,6 @@ const ActualizarPerfil = ({perfil}) => {
             direccion: direccion2,
 
         },
-
 
         onSubmit: perfill => {
             try {
@@ -112,15 +105,14 @@ const ActualizarPerfil = ({perfil}) => {
                   
                     currentUser.updateProfile({
                         displayName: perfill.nombre,
-                        
                         photoURL: urlimagen,
-                      }).then(function() {
+                    }).then(function() {
                         MySwal.fire({
                             icon: 'success',
                             title: <p>Datos actualizados correctamente</p>
                         })
                         history.push("/perfil");
-                      })
+                    })
                 }
                 
             } catch (error) {
@@ -134,18 +126,14 @@ const ActualizarPerfil = ({perfil}) => {
         guardarProgreso(0);
         guardarSubiendo(true);
     }
-
     const handleUploadError = error => {
         guardarSubiendo(false);
         //console.log(error);
     }
-
     const handleUploadSuccess = async nombre => {
         guardarProgreso(100);
         guardarSubiendo(false);
-
         //Almacenar la URL de destino
-
         const url = await firebase
                     .storage
                     .ref("perfil")
@@ -170,13 +158,10 @@ const ActualizarPerfil = ({perfil}) => {
         guardarSubiendo2(false);
         //console.log(error);
     }
-
     const handleUploadSuccess2 = async nombre => {
         guardarProgreso2(100);
         guardarSubiendo2(false);
-
         //Almacenar la URL de destino
-
         const url2 = await firebase
                     .storage
                     .ref("perfil")
@@ -185,13 +170,10 @@ const ActualizarPerfil = ({perfil}) => {
         //console.log(url2);
         guardarUrlimagen2(url2);
     }
-
     const handleProgress2 = progreso => {
         guardarProgreso2(progreso);
         //console.log(progreso);
     }
-
-
     return ( 
         <div className="">
             

@@ -1,13 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import {useHistory} from "react-router-dom";
+import {FirebaseContext} from '../../firebase/Auth';
 import {useFormik} from 'formik';
 import Barra from "../ui/Barra";
 import Iframe from 'react-iframe';
 import Sidebar from "../ui/Sidebar";
+import CitasMovil from '../subcomponents/CitasMovil';
 
-export const Citas = () => {
+export const Citas = (props) => {
 
     const [estado, guardarEstado] = useState(false);
+    const [citas, guardarCitas] = useState([]);
+    const {firebase} = useContext(FirebaseContext);
     
     const history = useHistory();
 
@@ -29,8 +33,25 @@ export const Citas = () => {
             //guardarYear(year);
             guardarEstado(false);
         }
-    }, [calendarioLocal])
 
+        const obtenerCitas =  () => {
+            //Snapshot para ver los cambios en tiempo real y get para ver solamnente los cambios   
+            firebase.db.collection('citas').where('atendida', '==', false).onSnapshot(manejarSnapshot);
+        }
+
+        obtenerCitas();
+    }, [calendarioLocal, firebase])
+
+    function manejarSnapshot(snapshot) {
+        const cita = snapshot.docs.map(doc => {
+            return{
+                id: doc.id,
+                ...doc.data()
+            }
+        });
+        //Almacenar los resultados en el state
+        guardarCitas(cita);
+    }
 
     const formik = useFormik({
         initialValues : {
@@ -50,6 +71,8 @@ export const Citas = () => {
     //const urlCalendario = devolverCalendario(<iframe src="https://calendar.google.com/calendar/embed?src=luisdanielcastro16%40gmail.com&ctz=America%2FMexico_City" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>);
     //console.log(urlCalendario);
 
+    const f = new Date();
+    const dia =  f.getDate();
 
 
     return ( 
@@ -76,7 +99,7 @@ export const Citas = () => {
 
 
                 <div className="flex justify-center ">
-                    <div className="bg-white w-11/12 mt-10 flex justify-center">
+                    <div className="bg-white w-11/12 mt-10 flex flex-col justify-center">
                         {estado ?
                             <div className="w-11/12 flex justify-center flex-col">
                                 <form 
@@ -135,7 +158,26 @@ export const Citas = () => {
                                 </div>
                             
                             </div>
-                    }    
+                    }
+
+                        {citas.length === 0 ? null :
+                            <div className="flex flex-col w-full justify-end items-center content-center sm:hidden">
+                                <div className="w-10/12 flex items-center">
+                                    <div className="bg-gray-700 rounded-full w-5 h-5 -ml-2 flex justify-center items-center">{dia}</div>
+                                    <p className="font-source text-xs pl-2">Tus Citas</p>
+                                </div>
+                                <div className="flex flex-col w-10/12 content-center items-center justify-end border-black border-l">
+                                    {citas.map(cita => (
+                                        <CitasMovil
+                                            key={cita.id}
+                                            cita={cita}
+                                            props = {props}
+                                        /> 
+                                    ))}
+                                </div>
+                                
+                            </div> 
+                        }   
                     </div>
                 </div>
             </div>

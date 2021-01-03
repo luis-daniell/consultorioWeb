@@ -59,10 +59,6 @@ const RecetasMostrar = ({receta}) => {
         
     }
 
-
-    
-
-
     return ( 
         <div className="flex content-center items-center justify-items-center justify-center">
 
